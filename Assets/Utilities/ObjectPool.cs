@@ -16,7 +16,7 @@ namespace Utilities
     /// 等待对象池异步加载结束，再进行获取 </para>
     ///
     /// <para> （3）对象池模块的运行与预制体的命名相关，若运行时遭到修改，可能无法正常运行；</para>
-    /// 
+    ///
     /// </summary>
     public sealed class ObjectPool : MonoBehaviour
     {
@@ -49,10 +49,10 @@ namespace Utilities
         [SerializeField] private PreWarmMode _preWarmMode;
         
         /// <summary> 默认异步帧间隔 </summary>
-        [Min(1), SerializeField] private int _defaultWaitFrames;
+        [Min(1), SerializeField] private int _defaultWaitFrames = 1;
         
         /// <summary> 默认每次异步间隔的加载/卸载个数 </summary>
-        [Min(1) ,SerializeField] private int _defaultObjectsPerWait;
+        [Min(1) ,SerializeField] private int _defaultObjectsPerWait = 5;
 
 
         /// <summary> 异步操作完成事件 </summary>
@@ -115,6 +115,10 @@ namespace Utilities
             _inAsyncOperation = false;
             // 获取物体最早只能在Start或OnEnable内进行，以防预热还未完成
 
+            // 对象的Prefab必须设置Enable为false，
+            // 在初次加载不会执行Awake和OnEnable，浪费资源
+            _prefab.SetActive(false);
+            
             // 开启预热
             if (_preWarmMode == PreWarmMode.Async)
             {
@@ -125,6 +129,12 @@ namespace Utilities
                 BaseResize(_defaultSize);
             }
             // 动态模式不加载对象
+        }
+
+        /// <summary> 游戏结束时，将prefab设为true </summary>
+        private void OnDestroy()
+        {
+            _prefab.SetActive(true);
         }
 
         /// <summary> 申请单个对象 </summary>
@@ -145,7 +155,6 @@ namespace Utilities
             while (_appliedObjects.Count < newSize)
             {
                 GameObject go = Apply();
-                go.SetActive(false);
                 _currentObjects.Push(go);
             }
             // Shrink
@@ -165,7 +174,6 @@ namespace Utilities
                 for (int i = 1; i <= objectsPerSlice && _appliedObjects.Count < newSize; ++i)
                 {
                     GameObject go = Apply();
-                    go.SetActive(false);
                     _currentObjects.Push(go);              
                 }
                 yield return WaitCache.Frames(asyncFrames);
@@ -205,18 +213,16 @@ namespace Utilities
         private GameObject BaseSpawn()
         {
             // 默认申请完的物体或已归还池内的物体位置旋转已重设为默认
-            if (_currentObjects.Count == 0)
-            {
-                // 不足，申请新的
-                // 即便正在异步加载，也重新申请新的
-                return Apply();
-            }
+            
+            // 不足，申请新的
+            // 即便正在异步加载，也重新申请新的
+            GameObject go = _currentObjects.Count == 0 ? Apply() : _currentObjects.Pop();
 
             // 可在对象的OnEnable中重设对象参数
             // 这意味着一次性的初始化操作（非重设操作）
             // 应当在Awake内完成而非Start
-            _currentObjects.Peek().SetActive(true);
-            return _currentObjects.Pop();
+            go.SetActive(true);
+            return go;
         }
 
         /// <summary> 延迟返还物体实现 </summary>

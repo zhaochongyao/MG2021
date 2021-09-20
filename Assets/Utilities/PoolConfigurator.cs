@@ -31,7 +31,7 @@ namespace Utilities
 #if UNITY_EDITOR
             if (_poolSettings.ContainsKey(sceneName) == false)
             {
-                Debug.LogWarning("不存在该场景");
+                Debug.LogWarning("不存在该场景的池配置文件: " + sceneName);
                 return;
             }
 #endif

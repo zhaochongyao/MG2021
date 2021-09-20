@@ -50,7 +50,7 @@ namespace Utilities.DataStructures
             _secondsCache = new LFUCache<float, WaitForSeconds>(DefaultSize);
         }
         
-        /// <summary> 等待固定帧 </summary>
+        /// <summary> 等待物理帧 </summary>
         public static WaitForFixedUpdate FixedUpdate()
         {
             return _fixedUpdate ??= new WaitForFixedUpdate();

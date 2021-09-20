@@ -5,11 +5,11 @@
     /// </summary>
     public abstract class State<T>
     {
-        protected readonly T _self;
+        protected readonly T self;
 
         protected State(T owner)
         {
-            _self = owner;
+            self = owner;
         }
 
         /// <summary> 状态进入时触发 </summary>

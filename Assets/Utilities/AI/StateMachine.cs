@@ -59,7 +59,7 @@ namespace Utilities.AI
             ManagerProxy.Instance.UpdateEvent += OnUpdate;
             ManagerProxy.Instance.FixedUpdateEvent += OnFixedUpdate;
         }
-
+        
         /// <summary> 当前状态 </summary>
         public State<T> CurState => _curState;
 
