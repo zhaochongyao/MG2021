@@ -1,11 +1,14 @@
-﻿using System;
-using UnityEngine;
+﻿using UnityEngine;
 using Utilities.AI;
 
 namespace UtilitiesExample
 {
+    /// <summary>
+    /// AI样例
+    /// </summary>
     public class AIExample : MonoBehaviour
     {
+        // 状态机
         private StateMachine<AIExample> _stateMachine;
 
         private Rigidbody _rigidbody;
@@ -36,6 +39,7 @@ namespace UtilitiesExample
 
         private void OnEnable()
         {
+            // 每次从对象池取出时，重启状态机
             Debug.Log("OnEnable");
             _stateMachine.Boot();
         }
@@ -54,21 +58,26 @@ namespace UtilitiesExample
 
         private void InitStateMachine()
         {
+            // 初始化状态机
             _stateMachine = new StateMachine<AIExample>();
 
+            // 初始化所有状态
             Run run = new Run(this);
             Chase chase = new Chase(this);
             Idle idle = new Idle(this);
             Death death = new Death(this);
 
+            // 定义所有过渡条件
             bool WithinRange() => _toTarget.magnitude < _sightRadius;
             bool OutOfRange() => !WithinRange();
             bool InDanger() => _playerRage && WithinRange();
             bool Safe() => !InDanger();
             bool GoDie() => _playerRage && Input.GetKey(KeyCode.Tab);
 
+            // 设置初态
             _stateMachine.DefaultState = idle;
         
+            // 添加所有过渡边
             _stateMachine.AddTransition(idle, chase, WithinRange);
             _stateMachine.AddTransition(chase, idle, OutOfRange);
             _stateMachine.AddTransition(idle, run, InDanger);
