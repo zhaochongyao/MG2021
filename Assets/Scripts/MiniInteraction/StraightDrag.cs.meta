@@ -1,0 +1,12 @@
+fileFormatVersion: 2
+guid: c5e70c22adbda8e4a8cc8dccf5534ee8
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences:
+  - _gizmosColorSetting: {fileID: 11400000, guid: 1642caf2399e1384595cda2a10789ffd, type: 2}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

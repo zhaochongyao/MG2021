@@ -14,7 +14,7 @@ namespace Utilities.DesignPatterns
             if (Instance == null)
             {
                 Instance = this as T;
-                DontDestroyOnLoad(gameObject);
+                DontDestroyOnLoad(gameObject.transform.root);
             }
             else
             {
