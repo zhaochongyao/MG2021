@@ -17,6 +17,8 @@ namespace MiniInteraction
         }
 
         [SerializeField] private DragDirection _dragDirection;
+
+        [SerializeField] private bool _canReverse;
         
         private Camera _camera;
 

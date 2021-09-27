@@ -10,10 +10,10 @@ namespace Utilities
     public static class OptionSaver
     {
         /// <summary> 保存事件 </summary>
-        internal static event Action SaveEvent;
+        public static event Action SaveEvent;
 
         /// <summary> 加载事件 </summary>
-        internal static event Action LoadEvent;
+        public static event Action LoadEvent;
 
         /// <summary> 初始化 </summary>
         internal static void Init()

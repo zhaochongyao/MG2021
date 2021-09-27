@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using UnityEngine;
 
 namespace Utilities.DataStructures
@@ -13,6 +14,7 @@ namespace Utilities.DataStructures
         /// <summary> 默认池或缓存大小 </summary>
         private const int DefaultSize = 10;
 
+        /// <summary> 禁用等待秒池 </summary>
         private static readonly bool _disableSecondsRealTimePool = true;
 
         /// <summary> 等待固定帧 </summary>
@@ -26,6 +28,12 @@ namespace Utilities.DataStructures
         
         /// <summary> 等待帧池 </summary>
         private static readonly Stack<WaitForFrames> _framesPool;
+
+        /// <summary> 等待直到条件池 </summary>
+        private static readonly Stack<WaitUntilCustom> _untilPool;
+
+        /// <summary> 等待当条件池 </summary>
+        private static readonly Stack<WaitWhileCustom> _whilePool;
         
         /// <summary> 等待秒缓存，固定大小，根据使用频率保留最有可能使用的WaitForSeconds </summary>
         private static readonly LFUCache<float, WaitForSeconds> _secondsCache;
@@ -45,6 +53,8 @@ namespace Utilities.DataStructures
             }
 
             _framesPool = new Stack<WaitForFrames>();
+            _untilPool = new Stack<WaitUntilCustom>();
+            _whilePool = new Stack<WaitWhileCustom>();
 
             // 初始化Cache
             _secondsCache = new LFUCache<float, WaitForSeconds>(DefaultSize);
@@ -62,7 +72,6 @@ namespace Utilities.DataStructures
             // return _endOfFrame = _endOfFrame ?? new WaitForEndOfFrame();
             return _endOfFrame ??= new WaitForEndOfFrame();
         }
-
         
         /// <summary> 等待秒（不受TimeScale影响） </summary>
         public static WaitForSecondsRealtimeCustom SecondsRealtime(float time)
@@ -91,6 +100,22 @@ namespace Utilities.DataStructures
             }
             return wait;
         }
+
+        /// <summary> 等待直到条件成立 </summary>
+        public static WaitUntilCustom Until(Func<bool> predicate)
+        {
+            WaitUntilCustom wait = _untilPool.Count > 0 ? _untilPool.Pop() : new WaitUntilCustom();
+            wait.Reset(predicate);
+            return wait;
+        }
+
+        /// <summary> 等待当条件成立 </summary>
+        public static WaitWhileCustom While(Func<bool> predicate)
+        {
+            WaitWhileCustom wait = _whilePool.Count > 0 ? _whilePool.Pop() : new WaitWhileCustom();
+            wait.Reset(predicate);
+            return wait;
+        }
         
         /// <summary> 归还等待秒（内部使用） </summary>
         private static void Return(WaitForSecondsRealtimeCustom wait)
@@ -102,6 +127,18 @@ namespace Utilities.DataStructures
         private static void Return(WaitForFrames wait)
         {
             _framesPool.Push(wait);
+        }
+
+        /// <summary> 归还等待直到条件成立（内部使用） </summary>
+        private static void Return(WaitUntilCustom wait)
+        {
+            _untilPool.Push(wait);
+        }
+
+        /// <summary> 归还等待当条件成立（内部使用） </summary>
+        private static void Return(WaitWhileCustom wait)
+        {
+            _whilePool.Push(wait);
         }
         
         /// <summary>
@@ -137,7 +174,7 @@ namespace Utilities.DataStructures
         /// <summary>
         /// 继承自定义让出指令，实现可重用的等待固定帧类
         /// </summary>
-        public class WaitForFrames : CustomYieldInstruction
+        public sealed class WaitForFrames : CustomYieldInstruction
         {
             /// <summary> 剩余帧 </summary>
             private int _remainFrames;
@@ -165,6 +202,75 @@ namespace Utilities.DataStructures
                 {
                     bool keepWait = _count < _remainFrames;
                     _count++;
+                    if (keepWait == false)
+                    {
+                        Return(this);
+                    }
+                    return keepWait;
+                }
+            }
+        }
+        
+        
+        /// <summary>
+        /// 继承自定义让出指令，实现可重用的等待条件
+        /// </summary>
+        public sealed class WaitUntilCustom : CustomYieldInstruction
+        {
+            private Func<bool> _predicate;
+
+            /// <summary> 重用等待对象 </summary>
+            public void Reset(Func<bool> predicate)
+            {
+#if UNITY_EDITOR
+                if (predicate == null)
+                {
+                    Debug.LogError("错误，条件为空");
+                }
+#endif
+                _predicate = predicate;
+            }
+
+            /// <summary> 重写YieldInstruction属性，给协程提供终止条件 </summary>
+            public override bool keepWaiting
+            {
+                get
+                {
+                    bool keepWait = _predicate.Invoke() == false;
+                    if (keepWait == false)
+                    {
+                        Return(this);
+                    }
+                    return keepWait;
+                }
+            }
+        }
+        
+        /// <summary>
+        /// 继承自定义让出指令，实现可重用的等待条件
+        /// </summary>
+        public sealed class WaitWhileCustom : CustomYieldInstruction
+        {
+            private Func<bool> _predicate;
+            
+            /// <summary> 重用等待对象 </summary>
+            public void Reset(Func<bool> predicate)
+            {
+#if UNITY_EDITOR
+                if (predicate == null)
+                {
+                    Debug.LogError("错误，条件为空");
+                }
+#endif
+                _predicate = predicate;
+            }
+
+            /// <summary> 重写YieldInstruction属性，给协程提供终止条件 </summary>
+            public override bool keepWaiting
+            {
+                get
+                {
+                    bool keepWait = _predicate.Invoke() == false;
                     if (keepWait == false)
                     {
                         Return(this);

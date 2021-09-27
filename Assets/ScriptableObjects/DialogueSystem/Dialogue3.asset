@@ -1,0 +1,22 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8c420b4d81397be43a77d69e7522e152, type: 3}
+  m_Name: Dialogue3
+  m_EditorClassIdentifier: 
+  _backGroundColor: {r: 0.539231, g: 0.8617568, b: 0.9622642, a: 1}
+  _dialogues:
+  - "this is a short one@\uFF01#\uFFE5%\u2026\u2026&*\uFF08\uFF09\u2014\u2014+~\u300A\u300B\uFF1A\u201C{}|\uFF1F\u3010\u3011\u3001\uFF0C\u3002\u3001\uFF1B\u2018"
+  - and this is a long one, as you can see it is so fucking long
+  - hehe sha bi
+  - "!@#$%^&*()_+~{}|:\"<>?`-=[]\\;',~\uFF01@\xB7#\uFFE5%\u2026\u2026&*\uFF08\uFF09\u2014\u2014+{}|\uFF1A\u201C\u201D\u300A\u300B\uFF1F\uFF0C\u3002\u3001\uFF1B\u2018\u2019\u3010\u3011\u3001=-"
+  - "\u591A\u6765\u70B9\u4E2D\u6587\u8BD5\u8BD5\u54C8"
+  - "\u6211\u5C31\u662F\u60F3\u6D4B\u6D4B\u8FD9\u4E2A\u4E2D\u6587\uFF1A\u201C\u201D\u201C\u201D''\u2018\u2019\u2018\u2019\n\u5B57\u4F53\uFF0C\u5C31\u662F\u8981\u6253\u90A3\u4E48\u591A\u5B57\uFF0C\u4F60\u771F\u7684\u4E0D\u8981\u9017"
