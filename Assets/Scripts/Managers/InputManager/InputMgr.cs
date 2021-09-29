@@ -35,7 +35,12 @@ public class InputMgr : BaseManager<InputMgr>
         //左键按下时
         if (Input.GetMouseButtonDown(0))
         {
-            EventCenter.GetInstance().EventTrigger<Vector3>("点击事件",Input.mousePosition);
+            EventCenter.GetInstance().EventTrigger<Vector3>("点击事件", Input.mousePosition);
+        }
+        // 左键松开
+        if (Input.GetMouseButtonUp(0))
+        {
+            EventCenter.GetInstance().EventTrigger<Vector3>("左键松开", Input.mousePosition);
         }
         //右键按下时
         if (Input.GetMouseButtonDown(1))
