@@ -12,11 +12,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 69d6d3f6d9fa44d2b2f68beccfe61bcf, type: 3}
   m_Name: DialogueSystemConfig
   m_EditorClassIdentifier: 
+  _dialoguePlayIntervalTime: 0.8
   _backgroundScaleXTime: 0.8
   _backgroundScaleXCurve: 27
   _backgroundScaleYTime: 0.2
   _backgroundScaleYCurve: 6
   _textShowTime: 0.8
   _textShowCurve: 4
-  _dialoguePanelFadeOutTime: 0.8
+  _dialoguePanelFadeOutTime: 0.4
   _dialoguePanelFadeOutCurve: 4
+  _dialogueLinePrefab: {fileID: 3621177419281274919, guid: 96571b8add4c7f4458b0f4e5dbccb427, type: 3}
+  _dialogueLayoutTopPadding: 100
+  _dialogueLayoutHorizontalPadding: 100
+  _dialogueLayoutBottomPadding: 50
+  _dialogueLayoutSpacing: 40

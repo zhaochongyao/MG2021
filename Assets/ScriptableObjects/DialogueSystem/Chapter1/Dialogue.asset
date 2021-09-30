@@ -9,7 +9,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9a676f7858033004c872a9374fe7bf14, type: 3}
-  m_Name: "\u914D\u89D2"
+  m_Script: {fileID: 11500000, guid: 8c420b4d81397be43a77d69e7522e152, type: 3}
+  m_Name: Dialogue
   m_EditorClassIdentifier: 
-  _color: {r: 0.2264151, g: 0.2264151, b: 0.2264151, a: 1}
+  _dialogues:
+  - _characterDialogueStyleSO: {fileID: 11400000, guid: a460fff044f91df44b11008df50575c5, type: 2}
+    _text: hahaha
+  _dialogueOptionSO: {fileID: 0}
