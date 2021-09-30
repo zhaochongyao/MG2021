@@ -5,8 +5,10 @@ namespace DialogueSystem
     [CreateAssetMenu(fileName = "TextBackgroundColor", menuName = "ScriptableObject/TextBackgroundColor")]
     public class TextBackgroundColorSO : ScriptableObject
     {
-        [SerializeField] private Color _color;
+        [SerializeField] private Color _backGroundColor;
 
-        public Color Color => _color;
+        [SerializeField] private Color _textColor;
+        
+        public Color BackGroundColor => _backGroundColor;
     }
 }
