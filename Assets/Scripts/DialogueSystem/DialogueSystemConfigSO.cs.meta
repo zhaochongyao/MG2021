@@ -1,3 +1,13 @@
-﻿fileFormatVersion: 2
+fileFormatVersion: 2
 guid: 69d6d3f6d9fa44d2b2f68beccfe61bcf
-timeCreated: 1632718003
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences:
+  - _dialogueLayoutGroupPrefab: {fileID: 1785985368591045254, guid: a08a2ea930a7b504fbc0df7c1b1f4025, type: 3}
+  - _dialogueLinePrefab: {fileID: 3621177419281274919, guid: 96571b8add4c7f4458b0f4e5dbccb427, type: 3}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

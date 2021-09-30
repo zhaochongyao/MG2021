@@ -13,11 +13,8 @@ MonoBehaviour:
   m_Name: Dialogue1
   m_EditorClassIdentifier: 
   _dialogues:
-  - _textBackgroundColorSO: {fileID: 11400000, guid: a460fff044f91df44b11008df50575c5, type: 2}
-    _text: "\u8FD9\u662F\u2026\u2026"
-  - _textBackgroundColorSO: {fileID: 11400000, guid: a460fff044f91df44b11008df50575c5, type: 2}
-    _text: "\u5F00\u59CB\u4E86\u5417\uFF1F"
-  - _textBackgroundColorSO: {fileID: 11400000, guid: a460fff044f91df44b11008df50575c5, type: 2}
-    _text: "\u5BA2\u6237\u8D44\u6599\u6CA1\u6709\u5BF9\u63A5\uFF01"
-  - _textBackgroundColorSO: {fileID: 11400000, guid: a460fff044f91df44b11008df50575c5, type: 2}
-    _text: "\u7B2C\u4E00\u5355\u5C31\u9047\u5230\u5927\u9EBB\u70E6\u4E86\u7684"
+  - _characterDialogueStyleSO: {fileID: 11400000, guid: a460fff044f91df44b11008df50575c5, type: 2}
+    _text: "\u6211\u8981\u706D\u4E86\u4F60\uFF01"
+  - _characterDialogueStyleSO: {fileID: 11400000, guid: a460fff044f91df44b11008df50575c5, type: 2}
+    _text: "\u4F60\u6709\u4EC0\u4E48\u9057\u8A00\uFF1F"
+  _dialogueOptionSO: {fileID: 11400000, guid: 890f2dd27f6228c4faa7f8f62e2e5277, type: 2}

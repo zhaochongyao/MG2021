@@ -2,8 +2,8 @@
 
 namespace DialogueSystem
 {
-    [CreateAssetMenu(fileName = "DialogueOption", menuName = "ScriptableObject/Dialogue Option")]
-    public class DialogueOption : ScriptableObject
+    [CreateAssetMenu(fileName = "DialogueOption", menuName = "Dialogue System/Dialogue Option")]
+    public class DialogueOptionSO : ScriptableObject
     {
         [SerializeField] private SingleOption[] _options;
 
@@ -15,10 +15,10 @@ namespace DialogueSystem
     {
         [SerializeField] private Dialogue _description;
 
-        [SerializeField] private DialogueDataSO _dialogueData;
+        [SerializeField] private DialogueDataSO _dialogueDataSO;
 
         public Dialogue Description => _description;
 
-        public DialogueDataSO DialogueData => _dialogueData;
+        public DialogueDataSO DialogueDataSO => _dialogueDataSO;
     }
 }

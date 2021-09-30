@@ -3,7 +3,11 @@ guid: 4c12d588a27e969439dccc42d1188b09
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2
-  defaultReferences: []
+  defaultReferences:
+  - _sceneCameraPanel: {instanceID: 0}
+  - _localCameraPanel: {instanceID: 0}
+  - _dialogueSystemConfigSO: {fileID: 11400000, guid: b8318a16b975f4441a0ef0e52ff0da15, type: 2}
+  - _dialogueLayoutGroupPrefab: {fileID: 1785985368591045254, guid: a08a2ea930a7b504fbc0df7c1b1f4025, type: 3}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 

@@ -3,9 +3,11 @@ using UnityEngine;
 
 namespace DialogueSystem
 {
-    [CreateAssetMenu(fileName = "DialogueSystemConfig", menuName = "ScriptableObject/DialogueSystemConfig")]
+    [CreateAssetMenu(fileName = "DialogueSystemConfig", menuName = "Dialogue System/Dialogue System Config")]
     public class DialogueSystemConfigSO : ScriptableObject
     {
+        [SerializeField] private float _dialoguePlayIntervalTime;
+        
         [SerializeField] private float _backgroundScaleXTime;
 
         [SerializeField] private Ease _backgroundScaleXCurve;
@@ -22,6 +24,18 @@ namespace DialogueSystem
 
         [SerializeField] private Ease _dialoguePanelFadeOutCurve;
 
+        [SerializeField] private GameObject _dialogueLinePrefab;
+
+        [SerializeField] private int _dialogueLayoutTopPadding;
+
+        [SerializeField] private int _dialogueLayoutHorizontalPadding;
+
+        [SerializeField] private int _dialogueLayoutBottomPadding;
+
+        [SerializeField] private int _dialogueLayoutSpacing;
+
+        public float DialoguePlayIntervalTime => _dialoguePlayIntervalTime;
+
         public float BackgroundScaleXTime => _backgroundScaleXTime;
 
         public Ease BackgroundScaleXCurve => _backgroundScaleXCurve;
@@ -37,5 +51,15 @@ namespace DialogueSystem
         public float DialoguePanelFadeOutTime => _dialoguePanelFadeOutTime;
 
         public Ease DialoguePanelFadeoutCurve => _dialoguePanelFadeOutCurve;
+        
+        public GameObject DialogueLinePrefab => _dialogueLinePrefab;
+        
+        public int DialogueLayoutTopPadding => _dialogueLayoutTopPadding;
+
+        public int DialogueLayoutBottomPadding => _dialogueLayoutBottomPadding;
+        
+        public int DialogueLayoutHorizontalPadding => _dialogueLayoutHorizontalPadding;
+        
+        public int DialogueLayoutSpacing => _dialogueLayoutSpacing;
     }
 }

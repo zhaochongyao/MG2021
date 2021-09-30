@@ -1,0 +1,23 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a0d7467e57d645acb96dd4b7d564be1c, type: 3}
+  m_Name: DialogueOption
+  m_EditorClassIdentifier: 
+  _options:
+  - _description:
+      _characterDialogueStyleSO: {fileID: 11400000, guid: 0795c7fc7b3640649b4f17d0b51c6c98, type: 2}
+      _text: "\u4FFA\u4E0D\u60F3\u6B7B\u554A\uFF01"
+    _dialogueDataSO: {fileID: 11400000, guid: 09a5dc77199772347a7fb1ffd1d20321, type: 2}
+  - _description:
+      _characterDialogueStyleSO: {fileID: 11400000, guid: 0795c7fc7b3640649b4f17d0b51c6c98, type: 2}
+      _text: "\u54C8\u54C8\u54C8\u54C8\u3002"
+    _dialogueDataSO: {fileID: 11400000, guid: 294419a367dd10645abc692b3a2c6992, type: 2}
