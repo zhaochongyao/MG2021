@@ -17,7 +17,6 @@ public class GameManager : MonoBehaviour
     }
     void ClickObject(Vector3 clickPos)
     {
-        
         Vector3 mousePos = Camera.main.ScreenToWorldPoint(clickPos);
         Vector3 screenPoint = Camera.main.WorldToScreenPoint(new Vector3(-11,2,0));
         Vector3 xxx = Camera.main.ScreenToWorldPoint(new Vector3(mousePos.x, mousePos.y, screenPoint.z));

@@ -5,100 +5,111 @@ using Unity.Mathematics;
 using UnityEngine;
 using UnityEngine.Serialization;
 
-namespace Player
+enum MoveDirection
 {
-    enum MoveDirection
+    Left = -1,
+    Right = 1
+}
+public class Player : MonoBehaviour
+{
+    // component
+    private Rigidbody2D _rigidbody;    
+    // component
+        
+    // other object
+    private Collider2D _mayCollider;
+    // other object
+        
+    // attribute
+    public bool jump = false;               // 
+    public Vector3 aimPoint;                // 鼠标点击坐标(世界坐标)
+    public float moveSpeed = 3f;            // 水平移动速度
+    public float detact = 3f;               // 障碍物检测距离
+    private MoveDirection _aimDirection;     // 移动目标方向
+    // attribute
+        
+    private void Start()
     {
-        Left = -1,
-        Right = 1
+        _rigidbody = gameObject.GetComponent<Rigidbody2D>();
+        aimPoint = transform.position;
+        EventCenter.GetInstance().AddEventListener<Vector3>("player_move_event", MoveTo);
     }
-    public class player : MonoBehaviour
+
+    private Vector3 ConvertScreenToWorldPoint(Vector3 screenPoint)
     {
-        public bool jump = false;
-        private Rigidbody2D _rigidbody;
-        public Vector3 aimPoint;
-        public float moveSpeed = 3f;
-        private Collider2D _mayCollider;
-        public float detact = 3f;
-        private MoveDirection aimDirection;
-        private void Start()
+        if (Camera.main == null)
         {
-            _rigidbody = gameObject.GetComponent<Rigidbody2D>();
-            aimPoint = transform.position;
-            EventCenter.GetInstance().AddEventListener<Vector3>("player_move_event", MoveTo);
+            utils.LogUtil.LogError(Constdef.ConstDefine.CameraNullError);
+            return transform.position;  // 出错返回自身坐标 即不移动
         }
-
-        private void MoveTo(Vector3 point)
+        var transformScreen = Camera.main.WorldToScreenPoint(transform.position);
+        screenPoint.z = transformScreen.z;
+        var resultPoint = Camera.main.ScreenToWorldPoint(screenPoint);
+        return resultPoint;
+    }
+        
+    private void MoveTo(Vector3 point)
+    {
+        if (transform == null || Camera.main == null)
         {
-            jump = true;
-            Vector3 screenPoint = Camera.main.WorldToScreenPoint(transform.position);
-            point.z = screenPoint.z;
-            aimPoint = Camera.main.ScreenToWorldPoint(point);
-            MoveDirection direction = aimPoint.x > transform.position.x ? MoveDirection.Right : MoveDirection.Left;
-            Vector2 hitDirection = new Vector2((float)direction, 0);
-            RaycastHit2D hit = Physics2D.Raycast(transform.position, hitDirection, 1);
-            Debug.DrawLine(transform.position, transform.position+new Vector3(hitDirection.x, hitDirection.y, 0)*100, Color.red);
-            if (hit.collider != null && hit.transform.position.x > point.x)
-            {
-                _mayCollider = hit.collider;
-                Debug.Log(hit.transform.name);
-            }
-            if (transform.position.x > aimPoint.x)
-            {
-                aimDirection = MoveDirection.Left;
-            }
+            return;
+        }
+        jump = true;
+        aimPoint = ConvertScreenToWorldPoint(point);
+        if (transform.position.x > aimPoint.x)
+        {
+            _aimDirection = MoveDirection.Left;
+        }
             
-            if (transform.position.x < aimPoint.x)
-            {
-                aimDirection = MoveDirection.Right;
-            }
+        if (transform.position.x < aimPoint.x)
+        {
+            _aimDirection = MoveDirection.Right;
+        }
+    }
+
+    private void Jump()
+    {
+        jump = false;
+        _rigidbody.AddForce(new Vector2(0, 1000));
+    }
+    private void Update()
+    {
+        if (_mayCollider != null)
+        {
+            Jump();
+            _mayCollider = null;
         }
 
-        private void Jump()
+        if (math.abs(transform.position.x - aimPoint.x) > 0.1)
         {
-            jump = false;
-            _rigidbody.AddForce(new Vector2(0, 1000));
+            if (_aimDirection == MoveDirection.Left && transform.position.x > aimPoint.x)
+                Move(_aimDirection);
+            if (_aimDirection == MoveDirection.Right && transform.position.x < aimPoint.x)
+                Move(_aimDirection);
         }
-        private void Update()
-        {
-            if (_mayCollider != null)
-            {
-                Jump();
-                _mayCollider = null;
-            }
 
-            if (math.abs(transform.position.x - aimPoint.x) > 0.1)
+        var transformPosition = transform.position;
+        var direction = aimPoint.x > transformPosition.x ? MoveDirection.Right : MoveDirection.Left;
+        var hitDirection = new Vector2((float)direction, 0);
+        var sss = new Vector3(hitDirection.x*detact, hitDirection.y);
+        var list = Physics2D.OverlapAreaAll(transformPosition, transformPosition+sss);
+        if (list.Length > 0)
+        {
+            foreach (var itemCollider in list)
             {
-                if (aimDirection == MoveDirection.Left && transform.position.x > aimPoint.x)
-                    Move(aimDirection);
-                if (aimDirection == MoveDirection.Right && transform.position.x < aimPoint.x)
-                    Move(aimDirection);
-            }
-            MoveDirection direction = aimPoint.x > transform.position.x ? MoveDirection.Right : MoveDirection.Left;
-            Vector2 hitDirection = new Vector2((float)direction, 0);
-            Vector3 sss = new Vector3(hitDirection.x*detact, hitDirection.y);
-            Collider2D[] list = Physics2D.OverlapAreaAll(transform.position, transform.position+sss);
-            if (list.Length > 0 ) //&& jump && hit.collider.gameObject!=gameObject
-            {
-                // _mayCollider = hit.collider;
-                // Debug.Log(hit.transform.name);
-                for (var i = 0; i < list.Length; i++)
+                if (itemCollider.gameObject != gameObject && jump &&
+                    (itemCollider.transform.position.x - transform.position.x)*(float)direction > 0 &&
+                    (aimPoint.x - itemCollider.transform.position.x)*(float)direction > 0)
                 {
-                    if (list[i].gameObject != gameObject && jump &&
-                        (list[i].transform.position.x - transform.position.x)*(float)direction > 0
-                        && (aimPoint.x - list[i].transform.position.x)*(float)direction > 0)
-                    {
-                        _mayCollider = list[i].GetComponent<BoxCollider2D>();
-                        Debug.Log(list[i].gameObject.name);
-                    }
-                        
+                    _mayCollider = itemCollider.GetComponent<BoxCollider2D>();
+                    Debug.Log(itemCollider.gameObject.name);
                 }
             }
         }
+    }
         
-        private void Move(MoveDirection direction)
-        {
-            this.transform.position += new Vector3(((float) direction) * moveSpeed * Time.deltaTime, 0, 0);
-        }
+    private void Move(MoveDirection direction)
+    {
+        this.transform.position += new Vector3(((float) direction) * moveSpeed * Time.deltaTime, 0, 0);
     }
 }
