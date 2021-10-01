@@ -3,7 +3,7 @@
 namespace DialogueSystem
 {
     [System.Serializable]
-    public class Dialogue
+    public sealed class Dialogue
     {
         [SerializeField] private CharacterDialogueStyleSO _characterDialogueStyleSO;
         

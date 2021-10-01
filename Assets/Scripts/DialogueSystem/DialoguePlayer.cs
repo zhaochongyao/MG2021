@@ -13,73 +13,42 @@ namespace DialogueSystem
     /// <summary>
     /// 对话播放器
     /// </summary>
-    public class DialoguePlayer : LSingleton<DialoguePlayer>
+    public sealed class DialoguePlayer : LSingleton<DialoguePlayer>
     {
         [SerializeField] private Transform _sceneCameraPanel;
-
         [SerializeField] private Transform _localCameraPanel;
 
         private List<Image> _background;
-
         private List<TextMeshProUGUI> _text;
+        private List<DialogueOptionReceiver> _optionReceivers;
 
         [SerializeField] private DialogueSystemConfigSO _config;
-
-        private Queue<Dialogue[]> _dialogueQueue;
+        private Queue<DialogueDataSO> _dialogueQueue;
 
         [SerializeField] private GameObject _dialogueLayoutGroupPrefab;
-
         private GameObject _dialogueGroup;
-
         private VerticalLayoutGroup _verticalLayoutGroup;
 
         private Func<bool> _dialogueContinueCondition;
 
         private int _playingDialogue;
 
-        private class SwapCameraValues
-        {
-            public Transform CameraPanel;
-
-            public int LeftPadding;
-
-            public int RightPadding;
-
-            public Vector2 Pivot;
-
-            public TextAnchor TextAnchor;
-
-            public void Swap(SwapCameraValues other)
-            {
-                Swap(ref CameraPanel, ref other.CameraPanel);
-                Swap(ref LeftPadding, ref other.LeftPadding);
-                Swap(ref RightPadding, ref other.RightPadding);
-                Swap(ref Pivot, ref other.Pivot);
-                Swap(ref TextAnchor, ref other.TextAnchor);
-            }
-            
-            private static void Swap<T>(ref T lhs, ref T rhs)
-            {
-                T temp = lhs;
-                lhs = rhs;
-                rhs = temp;
-            }
-        }
-
-        private SwapCameraValues _currentValues;
-
-        private SwapCameraValues _backupValues;
-        
         private void Start()
         {
+            InitCameraSwapValues();
+            InitMember();
             StartCoroutine(InitCo());
         }
 
         private IEnumerator InitCo()
         {
-            // 自适应屏幕大小，填充合适数目的对话框
-            // 注意：对话框数目已在初始化时确定，若游戏中改变分辨率或屏幕比例，依然使用初始化确定的数目
+            yield return StartCoroutine(GenerateDialogueLineCo());
+            StartCoroutine(DialogueControlFlowCo());
+        }
 
+        private void InitCameraSwapValues()
+        {
+            // 创建相机对应两个不同屏幕的设置值
             _currentValues = new SwapCameraValues
             {
                 CameraPanel = _localCameraPanel,
@@ -97,11 +66,29 @@ namespace DialogueSystem
                 TextAnchor = TextAnchor.UpperRight,
                 Pivot = new Vector2(1f, 0f)
             };
-                
-            _dialogueQueue = new Queue<Dialogue[]>();
+        }
+
+        private void InitMember()
+        {
+            // 初始化成员
+            _dialogueQueue = new Queue<DialogueDataSO>();
             _background = new List<Image>();
             _text = new List<TextMeshProUGUI>();
+            _optionReceivers = new List<DialogueOptionReceiver>();
 
+            _optionSelected = false;
+            _playingDialogue = 0;
+
+            // 默认为任意键继续对话
+            _dialogueContinueCondition = () => Input.anyKeyDown;
+        }
+
+        private IEnumerator GenerateDialogueLineCo()
+        {
+            // 自适应屏幕大小，填充合适数目的对话框
+            // 注意：对话框数目已在初始化时确定，若游戏中改变分辨率或屏幕比例，依然使用初始化确定的数目
+
+            // 创建垂直布局对象
             _dialogueGroup = Instantiate
             (
                 _dialogueLayoutGroupPrefab,
@@ -111,11 +98,12 @@ namespace DialogueSystem
             _verticalLayoutGroup.padding.top = _config.DialogueLayoutTopPadding;
             _verticalLayoutGroup.padding.left = _config.DialogueLayoutHorizontalPadding;
             _verticalLayoutGroup.spacing = _config.DialogueLayoutSpacing;
-            
+
             Camera canvasWorldCamera = _currentValues.CameraPanel.GetComponent<Image>().canvas.worldCamera;
 
             while (true)
             {
+                // 创建一行对话框
                 GameObject imageObj = Instantiate
                 (
                     _config.DialogueLinePrefab,
@@ -128,11 +116,25 @@ namespace DialogueSystem
                 TextMeshProUGUI text = imageObj.GetComponentInChildren<TextMeshProUGUI>();
                 text.alpha = 0f;
 
+                // 添加选项接受器
+                if (imageObj.TryGetComponent(out DialogueOptionReceiver dialogueOptionReceiver) == false)
+                {
+                    dialogueOptionReceiver = imageObj.AddComponent<DialogueOptionReceiver>();
+                }
+
+                dialogueOptionReceiver.Init
+                (
+                    background,
+                    text,
+                    _config.DialogueOptionFadeOutTime,
+                    _config.DialogueOptionFadeOutCurve
+                );
+
                 // 需要等待一帧，生成对象的坐标数据才会被更新
                 yield return null;
+
                 RectTransform rectTrans = imageObj.GetComponent<RectTransform>();
                 int lowerBound = (int) canvasWorldCamera.WorldToScreenPoint(rectTrans.position).y;
-
                 if (lowerBound < _config.DialogueLayoutBottomPadding)
                 {
                     Destroy(imageObj);
@@ -141,15 +143,38 @@ namespace DialogueSystem
 
                 _background.Add(background);
                 _text.Add(text);
+                _optionReceivers.Add(dialogueOptionReceiver);
             }
-            
-            // 默认为任意键继续对话
-            _dialogueContinueCondition = () => Input.anyKeyDown;
-
-            _playingDialogue = 0;
-            
-            StartCoroutine(DialogueControlFlowCo());
         }
+
+        private class SwapCameraValues
+        {
+            public Transform CameraPanel;
+            public int LeftPadding;
+            public int RightPadding;
+            public Vector2 Pivot;
+            public TextAnchor TextAnchor;
+
+            public void Swap(SwapCameraValues other)
+            {
+                Swap(ref CameraPanel, ref other.CameraPanel);
+                Swap(ref LeftPadding, ref other.LeftPadding);
+                Swap(ref RightPadding, ref other.RightPadding);
+                Swap(ref Pivot, ref other.Pivot);
+                Swap(ref TextAnchor, ref other.TextAnchor);
+            }
+
+            private static void Swap<T>(ref T lhs, ref T rhs)
+            {
+                T temp = lhs;
+                lhs = rhs;
+                rhs = temp;
+            }
+        }
+
+        private SwapCameraValues _currentValues;
+
+        private SwapCameraValues _backupValues;
 
         /// <summary>
         /// 切换对话框对应的摄像机
@@ -157,7 +182,7 @@ namespace DialogueSystem
         public void SwapCameraCanvas()
         {
             _currentValues.Swap(_backupValues);
-            
+
             _dialogueGroup.transform.SetParent(_currentValues.CameraPanel, false);
             _verticalLayoutGroup.padding.left = _currentValues.LeftPadding;
             _verticalLayoutGroup.padding.right = _currentValues.RightPadding;
@@ -168,10 +193,111 @@ namespace DialogueSystem
             }
         }
 
+        private IEnumerator DialogueControlFlowCo()
+        {
+            // 排队接受并处理一组一组的对话
+            while (true)
+            {
+                if (_dialogueQueue.Count == 0)
+                {
+                    yield return null;
+                }
+                else
+                {
+                    yield return StartCoroutine(DialogueGroupDisplayCo(_dialogueQueue.Peek().Dialogues));
+                    yield return StartCoroutine(CloseDialogueGroupCo());
+                    if (_dialogueQueue.Peek().DialogueOptionSO != null)
+                    {
+                        yield return StartCoroutine(DialogueOptionDisplayCo(_dialogueQueue.Peek().DialogueOptionSO));
+                    }
+
+                    _dialogueQueue.Dequeue();
+                }
+            }
+        }
+
+        private IEnumerator DialogueGroupDisplayCo(Dialogue[] dialogues)
+        {
+            // 处理一组对话
+            for (int i = 0, curLine = 0; i < dialogues.Length; i++)
+            {
+                Dialogue dialogue = dialogues[i];
+                StartCoroutine(DialogueLineDisplayCo(curLine, dialogue));
+                yield return WaitCache.Seconds(_config.DialogueContinueDisplayInterval);
+
+                // 等待按下按键
+                while (true)
+                {
+                    yield return null; // 顺序不能换
+                    if (_dialogueContinueCondition.Invoke())
+                    {
+                        break;
+                    }
+                }
+
+                if (curLine == _background.Count - 1 && i != dialogues.Length - 1)
+                {
+                    yield return StartCoroutine(CloseDialogueGroupCo());
+                    curLine = 0;
+                }
+                else
+                {
+                    curLine++;
+                }
+            }
+        }
+
+        private bool _optionSelected;
+
+        private IEnumerator DialogueOptionDisplayCo(DialogueOptionSO dialogueOptionSO)
+        {
+            int curLine = dialogueOptionSO.NoticeDialogues.Length;
+            if (curLine != 0)
+            {
+                yield return StartCoroutine(DialogueGroupDisplayCo(dialogueOptionSO.NoticeDialogues));
+            }
+
+            _optionSelected = false;
+
+            foreach (SingleOption option in dialogueOptionSO.Options)
+            {
+                StartCoroutine(ActivateOption(curLine, option));
+                yield return WaitCache.Seconds(_config.DialogueOptionDisplayInterval);
+
+#if UNITY_EDITOR
+                if (curLine == _background.Count - 1)
+                {
+                    Debug.LogError("选项超出上限，请不要设置过多前置对话或选项");
+                }
+                else
+#endif
+                {
+                    curLine++;
+                }
+            }
+
+            DialogueOptionReceiver.ReceiveClick += OnReceiveClick;
+            yield return WaitCache.Until(() => _optionSelected);
+            DialogueOptionReceiver.ReceiveClick -= OnReceiveClick;
+            yield return StartCoroutine(CloseDialogueGroupCo());
+        }
+
+        private IEnumerator ActivateOption(int curLine, SingleOption option)
+        {
+            yield return StartCoroutine(DialogueLineDisplayCo(curLine, option.Description));
+            _optionReceivers[curLine].OptionUpdate(option.DialogueDataSO);
+        }
+
+        private void OnReceiveClick(DialogueDataSO dialogueDataSO)
+        {
+            _optionSelected = true;
+            _dialogueQueue.Enqueue(dialogueDataSO);
+        }
+
         private IEnumerator DialogueLineDisplayCo(int dialogueIndex, Dialogue dialogue)
         {
             _playingDialogue++;
-            
+
             // 播放某一行的对话
             Image background = _background[dialogueIndex];
             TextMeshProUGUI text = _text[dialogueIndex];
@@ -212,14 +338,11 @@ namespace DialogueSystem
                 .SetEase(_config.TextShowCurve);
 
             yield return WaitCache.Seconds(_config.TextShowTime);
-            
+
             _playingDialogue--;
         }
-        
-        private bool NoDialoguePlaying()
-        {
-            return _playingDialogue == 0;
-        }
+
+        private bool NoDialoguePlaying() => _playingDialogue == 0;
 
         private IEnumerator CloseDialogueGroupCo()
         {
@@ -239,52 +362,6 @@ namespace DialogueSystem
 
             yield return WaitCache.Seconds(_config.DialoguePanelFadeOutTime);
         }
-        private IEnumerator DialogueGroupDisplayCo(Dialogue[] dialogues)
-        {
-            // 处理一组对话
-            int curLine = 0;
-            foreach (Dialogue dialogue in dialogues)
-            {
-                 StartCoroutine(DialogueLineDisplayCo(curLine, dialogue));
-                 yield return WaitCache.Seconds(_config.DialoguePlayIntervalTime);
-                 
-                // 等待按下按键
-                while (true)
-                {
-                    yield return null; // 顺序不能换
-                    if (_dialogueContinueCondition.Invoke())
-                    {
-                        break;
-                    }
-                }
-
-                if (curLine == _background.Count - 1)
-                {
-                    yield return StartCoroutine(CloseDialogueGroupCo());
-                    curLine = 0;
-                }
-                else
-                {
-                    curLine++;
-                }
-            }
-
-            if (curLine != 0)
-            {
-                yield return StartCoroutine(CloseDialogueGroupCo());
-            }
-        }
-
-        private IEnumerator DialogueControlFlowCo()
-        {
-            // 排队接受并处理一组一组的对话
-            while (true)
-            {
-                yield return _dialogueQueue.Count == 0
-                    ? null
-                    : StartCoroutine(DialogueGroupDisplayCo(_dialogueQueue.Dequeue()));
-            }
-        }
 
         /// <summary>
         /// 播放一组对话（按先到先得的顺序同步播放）
@@ -292,7 +369,7 @@ namespace DialogueSystem
         /// <param name="dialogueDataSO"> 一组对话 </param>
         public void SendDialogue(DialogueDataSO dialogueDataSO)
         {
-            _dialogueQueue.Enqueue(dialogueDataSO.Dialogues);
+            _dialogueQueue.Enqueue(dialogueDataSO);
         }
 
         /// <summary>

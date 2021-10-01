@@ -3,7 +3,7 @@ using UnityEngine;
 namespace DialogueSystem
 {
     [CreateAssetMenu(fileName = "CharacterDialogueStyle", menuName = "Dialogue System/Character Dialogue Style")]
-    public class CharacterDialogueStyleSO : ScriptableObject
+    public sealed class CharacterDialogueStyleSO : ScriptableObject
     {
         [SerializeField] private Color _backGroundColor = new Color(1f, 1f, 1f, 1f);
 

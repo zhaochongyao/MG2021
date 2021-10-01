@@ -3,7 +3,7 @@ using Utilities.Random;
 
 namespace DialogueSystem
 {
-    public class DialogueTester : MonoBehaviour
+    public sealed class DialogueTester : MonoBehaviour
     {
         [SerializeField] private DialogueDataSO[] _dialogueDataSOs;
         
@@ -17,6 +17,8 @@ namespace DialogueSystem
             {
                 DialoguePlayer.Instance.SwapCameraCanvas();
             }
+            
+            
         }
     }
 }

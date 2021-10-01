@@ -3,22 +3,14 @@
 namespace DialogueSystem
 {
     [CreateAssetMenu(fileName = "DialogueOption", menuName = "Dialogue System/Dialogue Option")]
-    public class DialogueOptionSO : ScriptableObject
+    public sealed class DialogueOptionSO : ScriptableObject
     {
+        [SerializeField] private Dialogue[] _noticeDialogues;
+        
         [SerializeField] private SingleOption[] _options;
 
+        public Dialogue[] NoticeDialogues => _noticeDialogues;
+        
         public SingleOption[] Options => _options;
-    }
-
-    [System.Serializable]
-    public class SingleOption
-    {
-        [SerializeField] private Dialogue _description;
-
-        [SerializeField] private DialogueDataSO _dialogueDataSO;
-
-        public Dialogue Description => _description;
-
-        public DialogueDataSO DialogueDataSO => _dialogueDataSO;
     }
 }

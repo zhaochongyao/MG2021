@@ -4,9 +4,15 @@ using UnityEngine;
 namespace DialogueSystem
 {
     [CreateAssetMenu(fileName = "DialogueSystemConfig", menuName = "Dialogue System/Dialogue System Config")]
-    public class DialogueSystemConfigSO : ScriptableObject
+    public sealed class DialogueSystemConfigSO : ScriptableObject
     {
-        [SerializeField] private float _dialoguePlayIntervalTime;
+        [SerializeField] private float _dialogueContinueDisplayInterval;
+
+        [SerializeField] private float _dialogueOptionDisplayInterval;
+
+        [SerializeField] private float _dialogueOptionFadeOutTime;
+
+        [SerializeField] private Ease _dialogueOptionFadeOutCurve;
         
         [SerializeField] private float _backgroundScaleXTime;
 
@@ -34,8 +40,14 @@ namespace DialogueSystem
 
         [SerializeField] private int _dialogueLayoutSpacing;
 
-        public float DialoguePlayIntervalTime => _dialoguePlayIntervalTime;
+        public float DialogueContinueDisplayInterval => _dialogueContinueDisplayInterval;
 
+        public float DialogueOptionDisplayInterval => _dialogueOptionDisplayInterval;
+
+        public float DialogueOptionFadeOutTime => _dialogueOptionFadeOutTime;
+
+        public Ease DialogueOptionFadeOutCurve => _dialogueOptionFadeOutCurve;
+        
         public float BackgroundScaleXTime => _backgroundScaleXTime;
 
         public Ease BackgroundScaleXCurve => _backgroundScaleXCurve;

@@ -12,7 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 69d6d3f6d9fa44d2b2f68beccfe61bcf, type: 3}
   m_Name: DialogueSystemConfig
   m_EditorClassIdentifier: 
-  _dialoguePlayIntervalTime: 0.8
+  _dialogueContinueDisplayInterval: 0.8
+  _dialogueOptionDisplayInterval: 0.4
+  _dialogueOptionFadeOutTime: 0.4
+  _dialogueOptionFadeOutCurve: 4
   _backgroundScaleXTime: 0.8
   _backgroundScaleXCurve: 27
   _backgroundScaleYTime: 0.2
