@@ -17,16 +17,18 @@ public class GameManager : MonoBehaviour
     }
     void ClickObject(Vector3 clickPos)
     {
-        Vector3 mousePos = Camera.main.ScreenToWorldPoint(clickPos);
-        Vector3 screenPoint = Camera.main.WorldToScreenPoint(new Vector3(-11,2,0));
-        Vector3 xxx = Camera.main.ScreenToWorldPoint(new Vector3(mousePos.x, mousePos.y, screenPoint.z));
+        var screenPosition = Camera.main.WorldToScreenPoint(transform.position);
+        clickPos = new Vector3(clickPos.x, clickPos.y, screenPosition.z);
+        Debug.Log("mouse position = " + clickPos);
+        Vector3 xxx = Camera.main.ScreenToWorldPoint(clickPos);
         Vector2 mousePos2D = new Vector2(xxx.x, xxx.y);
-        Collider2D[] colliders = Physics2D.OverlapPointAll(mousePos2D);
-        if (colliders.Length > 0)
+        Debug.Log("world position = " + xxx);
+        var hit = Physics2D.OverlapPoint(mousePos2D);
+        if (hit!=null)
         {
-            Debug.Log(colliders[0].gameObject.name);
+            Debug.Log(hit.name);
+            hit.GetComponent<SpriteRenderer>().color = Color.black;
         }
-        EventCenter.GetInstance().EventTrigger("player_move_event", clickPos);
     }
     
    
