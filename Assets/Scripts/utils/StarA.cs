@@ -60,7 +60,8 @@ public class StarA
             }
         }
     }
-    public Point getMinPoint()
+
+    private Point getMinPoint()
     {
         if (openList.Count == 0)
             return null;
@@ -105,12 +106,14 @@ public class StarA
         }
         StartAs(result, end);
     }
-    public void GetH(Point p,Point end)
+
+    private void GetH(Point p,Point end)
     {
         p.h = (Math.Abs(p.x - end.x) + Math.Abs(p.y - end.y)) * 10;
         p.f = p.g + p.h;
     }
-    public Point FindNewPoints(Point start, Point end)
+
+    private Point FindNewPoints(Point start, Point end)
     {
         start.visible = false;
         openList.Remove(start);
@@ -150,18 +153,16 @@ public class StarA
         return getMinPoint();
     }
   
-    public void Print(Point end)
+    public void Link(Point end)
     {
         if (end == null)
             return;
-        Point p = end;
-        if (p.father != null)
+        if (end.father != null)
         {
-            p.father.child = p;
+            end.father.child = end;
         }
-        Debug.LogError(p.x + " " + p.y +"   position="+p.Layout);
-        Controllers[p.x, p.y].GetComponent<SpriteRenderer>().color = Color.green;
-        Print(p.father);
+        Controllers[end.x, end.y].GetComponent<SpriteRenderer>().color = Color.green;
+        Link(end.father);
     }
 
 }

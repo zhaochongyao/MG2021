@@ -1,5 +1,3 @@
-using System;
-using System.Threading;
 using Constdef;
 using UnityEngine;
 using utils;
@@ -18,9 +16,11 @@ namespace Managers.MapManager
         
         private void Start()
         {
-            var renderSize = transform.GetComponent<SpriteRenderer>().size;
-            _width = renderSize.x * transform.localScale.x;
-            _height = renderSize.y * transform.localScale.y;
+            var localTransform = transform;
+            var renderSize = localTransform.GetComponent<SpriteRenderer>().size;
+            var localScale = localTransform.localScale;
+            _width = renderSize.x * localScale.x;
+            _height = renderSize.y * localScale.y;
             GenerateMap();
         }
 
@@ -31,19 +31,19 @@ namespace Managers.MapManager
         {
             if (generateItem == null)
             {
-                LogUtil.LogError(Constdef.ConstDefine.TransformNullError);
+                LogUtil.LogError(ConstDefine.TransformNullError);
                 return;
             }
             if (splitColumn <= 0 || splitRow <= 0)
             {
-                LogUtil.LogError(Constdef.ConstDefine.MapSplitNumError);
+                LogUtil.LogError(ConstDefine.MapSplitNumError);
                 return;
             }
             var parentPosition = transform.position - new Vector3(_width/2f, 0,  _height/2f);
             var parentRotation = gameObject.transform.rotation;
-            var itemWidth = _width / (float) splitRow;
-            var itemHeight = _height / (float) splitColumn;
-            MapManager.GetInstance().Init(splitColumn, splitRow);
+            var itemWidth = _width / splitRow;
+            var itemHeight = _height / splitColumn;
+            MapManager.GetInstance().Init(splitRow, splitColumn);
             MapItemController[,] controllers = new MapItemController[splitColumn, splitRow];
             for (var column = 0; column < splitColumn; column++)
             {
@@ -51,18 +51,21 @@ namespace Managers.MapManager
                 {
                     var item = GameObject.Instantiate(generateItem,  parentPosition + new Vector3(row*itemWidth, 0, column*itemHeight), parentRotation, null);
                     var itemLocalScale = item.transform.localScale;
-                    itemLocalScale = new Vector3(itemLocalScale.x/(float) splitRow, itemLocalScale.y/(float) splitColumn, itemLocalScale.z);
+                    itemLocalScale = new Vector3(itemLocalScale.x / splitRow, itemLocalScale.y / splitColumn, itemLocalScale.z);
                     item.transform.localScale = itemLocalScale;
                     item.layer = LayerMask.NameToLayer(ConstDefine.MapLayer);
                     item.AddComponent<BoxCollider>();
-                    item.GetComponent<MapItemController>().Init(column, row);
-                    MapManager.GetInstance().GetPoint(column, row).Layout = item.transform.position + new Vector3(itemWidth/2, itemHeight/2, 0);
-                    controllers[column, row] = item.GetComponent<MapItemController>();
+                    var mapItemManager = item.GetComponent<MapItemController>();
+                    if (mapItemManager != null)
+                    {
+                        mapItemManager.Init(column, row);
+                        controllers[column, row] = mapItemManager;
+                    }
+                    MapManager.GetInstance().GetPoint(column, row).Layout = item.transform.position ;
                 }
             }
             MapManager.GetInstance().SetControllers(controllers);
             Destroy(gameObject);
         }
-        
     }
 }

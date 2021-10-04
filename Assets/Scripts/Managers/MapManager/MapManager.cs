@@ -19,7 +19,7 @@ namespace Managers.MapManager
         {
             Debug.Log("寻找路径: "+a.x+","+a.y+"--->"+b.x+","+b.y);
             _start_a_map.StartAs(a, b);
-            _start_a_map.Print(b);
+            _start_a_map.Link(b);
         }
         public StarA.Point GetPoint(int x, int y)
         {
