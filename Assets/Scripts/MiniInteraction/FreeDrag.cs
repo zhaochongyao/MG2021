@@ -8,21 +8,19 @@ namespace MiniInteraction
     {
         private RectTransform _dragRectTrans;
 
-        private Camera _camera;
-
         private void Awake()
         {
             _dragRectTrans = GetComponent<RectTransform>();
-            _camera = GetComponent<Image>().canvas.worldCamera;
         }
 
         public void OnDrag(PointerEventData eventData)
         {
+            Camera eventCamera = eventData.pressEventCamera;
             Vector3 originPosition = _dragRectTrans.position;
-            Vector2 position = _camera.WorldToScreenPoint(originPosition);
+            Vector2 position = eventCamera.WorldToScreenPoint(originPosition);
             float preserveZ = originPosition.z;
             position += eventData.delta;
-            Vector3 newPosition = _camera.ScreenToWorldPoint(position);
+            Vector3 newPosition = eventCamera.ScreenToWorldPoint(position);
             newPosition.z = preserveZ;
             _dragRectTrans.position = newPosition;
         }

@@ -2,9 +2,12 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using DG.Tweening;
+using Singletons;
 using TMPro;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.UI;
+using Utilities;
 using Utilities.DataStructures;
 using Utilities.DesignPatterns;
 
@@ -22,12 +25,14 @@ namespace DialogueSystem
         private List<TextMeshProUGUI> _text;
         private List<DialogueOptionReceiver> _optionReceivers;
 
-        [SerializeField] private DialogueSystemConfigSO _config;
+        private DialogueSystemConfigSO _config;
         private Queue<DialogueDataSO> _dialogueQueue;
 
         [SerializeField] private GameObject _dialogueLayoutGroupPrefab;
         private GameObject _dialogueGroup;
         private VerticalLayoutGroup _verticalLayoutGroup;
+
+        public event Action TextUpdate = delegate { };
 
         private Func<bool> _dialogueContinueCondition;
 
@@ -35,8 +40,8 @@ namespace DialogueSystem
 
         private void Start()
         {
-            InitCameraSwapValues();
             InitMember();
+            InitCameraSwapValues();
             StartCoroutine(InitCo());
         }
 
@@ -76,11 +81,13 @@ namespace DialogueSystem
             _text = new List<TextMeshProUGUI>();
             _optionReceivers = new List<DialogueOptionReceiver>();
 
+            _config = GameConfigProxy.Instance.DialogueSystemConfigSO;
+
             _optionSelected = false;
             _playingDialogue = 0;
 
-            // 默认为任意键继续对话
-            _dialogueContinueCondition = () => Input.anyKeyDown;
+            _dialogueContinueCondition = () =>
+                Input.GetMouseButtonDown(0) && EventSystem.current.IsPointerOverGameObject() == false;
         }
 
         private IEnumerator GenerateDialogueLineCo()
@@ -100,6 +107,7 @@ namespace DialogueSystem
             _verticalLayoutGroup.spacing = _config.DialogueLayoutSpacing;
 
             Camera canvasWorldCamera = _currentValues.CameraPanel.GetComponent<Image>().canvas.worldCamera;
+            float refHeight = _currentValues.CameraPanel.GetComponentInParent<CanvasScaler>().referenceResolution.y;
 
             while (true)
             {
@@ -122,19 +130,14 @@ namespace DialogueSystem
                     dialogueOptionReceiver = imageObj.AddComponent<DialogueOptionReceiver>();
                 }
 
-                dialogueOptionReceiver.Init
-                (
-                    background,
-                    text,
-                    _config.DialogueOptionFadeOutTime,
-                    _config.DialogueOptionFadeOutCurve
-                );
-
                 // 需要等待一帧，生成对象的坐标数据才会被更新
                 yield return null;
 
                 RectTransform rectTrans = imageObj.GetComponent<RectTransform>();
-                int lowerBound = (int) canvasWorldCamera.WorldToScreenPoint(rectTrans.position).y;
+
+                int lowerBound = (int) (canvasWorldCamera.WorldToScreenPoint(rectTrans.position).y /
+                                        (GraphicOptions.Height / refHeight));
+                
                 if (lowerBound < _config.DialogueLayoutBottomPadding)
                 {
                     Destroy(imageObj);
@@ -306,6 +309,9 @@ namespace DialogueSystem
             text.color = dialogue.CharacterDialogueStyleSO.TextColor;
             text.alpha = 0f;
             text.text = dialogue.Text;
+
+            // 更新事件触发
+            TextUpdate.Invoke();
 
             background.rectTransform.sizeDelta = new Vector2
             {

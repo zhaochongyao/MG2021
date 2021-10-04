@@ -3,7 +3,9 @@ guid: 128cff80be9cfa64e826d96a7e66d9b2
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2
-  defaultReferences: []
+  defaultReferences:
+  - _dialogueSystemConfigSO: {fileID: 11400000, guid: b8318a16b975f4441a0ef0e52ff0da15, type: 2}
+  - _keyWordConfigSO: {fileID: 11400000, guid: c3c01782c6bb84e4fa464ab52966aca0, type: 2}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 

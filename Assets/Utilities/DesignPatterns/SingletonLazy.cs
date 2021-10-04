@@ -9,7 +9,7 @@
         private static T _instance;
 
         /// <summary> 私有化构造 </summary>
-        private SingletonLazy() { }
+        protected SingletonLazy() { }
 
         /// <summary> 获取单例 </summary>
         public static T Instance

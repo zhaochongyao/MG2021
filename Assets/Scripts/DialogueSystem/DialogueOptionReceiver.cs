@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using DG.Tweening;
+using Singletons;
 using TMPro;
 using UnityEngine;
 using UnityEngine.EventSystems;
@@ -9,6 +10,7 @@ using Utilities.DataStructures;
 
 namespace DialogueSystem
 {
+    [RequireComponent(typeof(Image))]
     public sealed class DialogueOptionReceiver : MonoBehaviour, IPointerClickHandler
     {
         private Image _background;
@@ -20,41 +22,39 @@ namespace DialogueSystem
 
         public static event Action<DialogueDataSO> ReceiveClick = delegate {};
 
-        public void Init
-        (
-            Image background,
-            TextMeshProUGUI text,
-            float fadeOutTime,
-            Ease fadeOutCurve
-        )
+        private void Start()
         {
-            _background = background;
-            _text = text;
-            _fadeOutTime = fadeOutTime;
-            _fadeOutCurve = fadeOutCurve;
+            _background = GetComponent<Image>();
+            _text = GetComponentInChildren<TextMeshProUGUI>();
+            
+            DialogueSystemConfigSO dialogueSystemConfigSO = GameConfigProxy.Instance.DialogueSystemConfigSO;
+            _fadeOutTime = dialogueSystemConfigSO.DialogueOptionFadeOutTime;
+            _fadeOutCurve = dialogueSystemConfigSO.DialogueOptionFadeOutCurve;
+
             _optionTarget = null;
-            _lock = true;
+            
+            // 所有接收器接受时，各自自动上锁
+            ReceiveClick += OnReceiveClick;
+        }
+
+        private void OnReceiveClick(DialogueDataSO optionTarget)
+        {
+            _background.raycastTarget = false;
         }
 
         public void OptionUpdate(DialogueDataSO optionTarget)
         {
             _optionTarget = optionTarget;
-            _lock = false;
+            _background.raycastTarget = true;
         }
-
-        private bool _lock;
 
         public void OnPointerClick(PointerEventData eventData)
         {
-            if (_lock == false)
-            {
-                StartCoroutine(ReceiveClickCo());
-            }
+            StartCoroutine(ReceiveClickCo());
         }
         
         private IEnumerator ReceiveClickCo()
         {
-            _lock = true;
             _background
                 .DOFade(0f, _fadeOutTime)
                 .SetEase(_fadeOutCurve);

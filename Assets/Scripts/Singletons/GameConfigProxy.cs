@@ -1,3 +1,5 @@
+using DialogueSystem;
+using KeywordSystem;
 using ScriptableObjects;
 using UnityEngine;
 using Utilities.DesignPatterns;
@@ -6,9 +8,10 @@ namespace Singletons
 {
     public class GameConfigProxy : GSingleton<GameConfigProxy>
     {
-        [SerializeField] private GizmosColorSettingSO _gizmosColorSettingSO;
+        [SerializeField] private DialogueSystemConfigSO _dialogueSystemConfigSO;
+        [SerializeField] private KeywordConfigSO _keywordConfigSO;
 
-        public GizmosColorSettingSO GizmosColorSetting => _gizmosColorSettingSO;
-
+        public DialogueSystemConfigSO DialogueSystemConfigSO => _dialogueSystemConfigSO;
+        public KeywordConfigSO KeywordConfigSO => _keywordConfigSO;
     }
 }
