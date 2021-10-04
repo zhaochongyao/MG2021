@@ -15,7 +15,7 @@ namespace Managers.MapManager
         }
         private void OnMouseDown()
         {
-            EventCenter.GetInstance().EventTrigger<>(Common.PlayerMoveEvent, MapManager.GetInstance().GetPoint(_layoutX, _layoutY));
+            EventCenter.GetInstance().EventTrigger<StarA.Point>(Common.PlayerMoveEvent, MapManager.GetInstance().GetPoint(_layoutX, _layoutY));
         }
     }
 }
