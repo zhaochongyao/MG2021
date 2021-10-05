@@ -23,9 +23,14 @@ namespace Constdef
         }
     }
     
-    public class ConstDefine
+    public static class ConstDefine
     {
-        public static MyError CameraNullError = new MyError("<point err:摄像机为空!>", 10001);
-        public static MyError TransformNullError = new MyError("<point err:Transform为空!>", 10002);
+        public static readonly MyError CameraNullError = new MyError("<null err:摄像机为空!>", 10001);
+        public static readonly MyError TransformNullError = new MyError("<null err:Transform为空!>", 10002);
+        public static readonly MyError GenerateItemNullError = new MyError("<null error:地图预设Item为空!>", 10003);
+        public static readonly MyError MapSplitNumError = new MyError("<number error:split number error!>", 10003);
+
+
+        public static readonly string MapLayer = "Map";
     }
 }
