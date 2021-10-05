@@ -32,7 +32,14 @@ namespace DialogueSystem
         private GameObject _dialogueGroup;
         private VerticalLayoutGroup _verticalLayoutGroup;
 
-        public event Action TextUpdate = delegate { };
+        public event Action<int, string> TextUpdate = delegate { };
+        public event Action<int> TextShowBegin = delegate { };
+        public event Action<int> TextShowEnd = delegate { };
+
+        public event Action OptionBegin = delegate { };
+
+        public event Action OptionEnd = delegate { };
+
 
         private Func<bool> _dialogueContinueCondition;
 
@@ -109,6 +116,7 @@ namespace DialogueSystem
             Camera canvasWorldCamera = _currentValues.CameraPanel.GetComponent<Image>().canvas.worldCamera;
             float refHeight = _currentValues.CameraPanel.GetComponentInParent<CanvasScaler>().referenceResolution.y;
 
+            int index = 0;
             while (true)
             {
                 // 创建一行对话框
@@ -130,6 +138,7 @@ namespace DialogueSystem
                     dialogueOptionReceiver = imageObj.AddComponent<DialogueOptionReceiver>();
                 }
 
+                imageObj.AddComponent<DialogueLineIndex>().Index = index;
                 // 需要等待一帧，生成对象的坐标数据才会被更新
                 yield return null;
 
@@ -137,7 +146,7 @@ namespace DialogueSystem
 
                 int lowerBound = (int) (canvasWorldCamera.WorldToScreenPoint(rectTrans.position).y /
                                         (GraphicOptions.Height / refHeight));
-                
+
                 if (lowerBound < _config.DialogueLayoutBottomPadding)
                 {
                     Destroy(imageObj);
@@ -147,6 +156,7 @@ namespace DialogueSystem
                 _background.Add(background);
                 _text.Add(text);
                 _optionReceivers.Add(dialogueOptionReceiver);
+                index++;
             }
         }
 
@@ -262,6 +272,7 @@ namespace DialogueSystem
 
             _optionSelected = false;
 
+            OptionBegin.Invoke();
             foreach (SingleOption option in dialogueOptionSO.Options)
             {
                 StartCoroutine(ActivateOption(curLine, option));
@@ -282,6 +293,7 @@ namespace DialogueSystem
             DialogueOptionReceiver.ReceiveClick += OnReceiveClick;
             yield return WaitCache.Until(() => _optionSelected);
             DialogueOptionReceiver.ReceiveClick -= OnReceiveClick;
+            OptionEnd.Invoke();
             yield return StartCoroutine(CloseDialogueGroupCo());
         }
 
@@ -311,7 +323,7 @@ namespace DialogueSystem
             text.text = dialogue.Text;
 
             // 更新事件触发
-            TextUpdate.Invoke();
+            TextUpdate.Invoke(dialogueIndex, text.text);
 
             background.rectTransform.sizeDelta = new Vector2
             {
@@ -329,21 +341,21 @@ namespace DialogueSystem
                 .DOScaleY(1f, _config.BackgroundScaleYTime)
                 .SetEase(_config.BackgroundScaleYCurve);
 
-            yield return WaitCache.Seconds
+            float scaleTime = Mathf.Max
             (
-                Mathf.Max
-                (
-                    _config.BackgroundScaleXTime,
-                    _config.BackgroundScaleYTime
-                )
+                _config.BackgroundScaleXTime,
+                _config.BackgroundScaleYTime
             );
+            yield return WaitCache.Seconds(scaleTime);
 
+            TextShowBegin.Invoke(dialogueIndex);
             // 文字逐渐出现
             text
                 .DOFade(1f, _config.TextShowTime)
                 .SetEase(_config.TextShowCurve);
 
             yield return WaitCache.Seconds(_config.TextShowTime);
+            TextShowEnd.Invoke(dialogueIndex);
 
             _playingDialogue--;
         }

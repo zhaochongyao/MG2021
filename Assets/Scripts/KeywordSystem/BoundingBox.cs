@@ -2,7 +2,7 @@
 
 namespace KeywordSystem
 {
-    public sealed class BoundingBox
+    public readonly struct BoundingBox
     {
         private readonly Vector2 _min;
 
@@ -27,6 +27,21 @@ namespace KeywordSystem
         {
             _min = min;
             _max = max;
+        }
+
+        public BoundingBox(Vector2 center, Vector2 size, float ratio)
+        {
+            size *= ratio;
+            _min = new Vector2
+            {
+                x = center.x - size.x / 2,
+                y = center.y - size.y / 2
+            };
+            _max = new Vector2
+            {
+                x = center.x + size.x / 2,
+                y = center.y + size.y / 2
+            };
         }
 
         public bool Contains(Vector2 point)

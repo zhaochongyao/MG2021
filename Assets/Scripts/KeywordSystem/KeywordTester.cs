@@ -36,7 +36,6 @@ namespace KeywordSystem
             _acAutomaton = new AcAutomaton();
             _acAutomaton.Construct(_keywords);
             var res = _acAutomaton.Match(_text);
-            res = MergeRange(res);
             foreach (Range pair in res)
             {
                 string key = "";

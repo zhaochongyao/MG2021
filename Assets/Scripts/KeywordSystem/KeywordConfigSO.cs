@@ -12,7 +12,6 @@ namespace KeywordSystem
         [SerializeField] private GameObject _keywordBackgroundPrefab;
 
         [SerializeField] private float _clickBoxExpandRatio;
-        [SerializeField] private Color _flyingTextColor;
         
         public Color HighLightColor => _highLightColor;
         public Color CollectedColor => _collectedColor;
@@ -21,7 +20,6 @@ namespace KeywordSystem
         public GameObject KeywordBackgroundPrefab => _keywordBackgroundPrefab;
 
         public float ClickBoxExpandRatio => _clickBoxExpandRatio;
-        public Color FlyingTextColor => _flyingTextColor;
         
         public void SetKeywordListSO(KeywordListSO keywordListSO)
         {

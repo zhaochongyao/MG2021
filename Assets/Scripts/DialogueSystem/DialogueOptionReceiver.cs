@@ -32,6 +32,7 @@ namespace DialogueSystem
             _fadeOutCurve = dialogueSystemConfigSO.DialogueOptionFadeOutCurve;
 
             _optionTarget = null;
+            _background.raycastTarget = false;
             
             // 所有接收器接受时，各自自动上锁
             ReceiveClick += OnReceiveClick;

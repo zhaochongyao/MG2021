@@ -17,8 +17,6 @@ namespace DialogueSystem
             {
                 DialoguePlayer.Instance.SwapCameraCanvas();
             }
-            
-            
         }
     }
 }

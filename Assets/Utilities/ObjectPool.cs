@@ -307,6 +307,7 @@ namespace Utilities
             GameObject go = _poolsMapping[original.name].BaseSpawn();
             go.transform.SetPositionAndRotation(position, rotation);
             go.transform.SetParent(parent);
+            go.transform.localScale = Vector3.one;
             return go;
         }
 

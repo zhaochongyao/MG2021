@@ -1,4 +1,6 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
+using UnityEngine;
 using Utilities.DesignPatterns;
 
 namespace KeywordSystem
@@ -6,7 +8,9 @@ namespace KeywordSystem
     public class KeywordCollector : LSingleton<KeywordCollector>
     {
         private HashSet<string> _keywordSet;
-        
+
+        public event Action<string> KeywordCollect = delegate { };
+
         protected override void Awake()
         {
             base.Awake();
@@ -16,7 +20,15 @@ namespace KeywordSystem
 
         public void Collect(string keyword)
         {
+#if UNITY_EDITOR
+            if (_keywordSet.Contains(keyword))
+            {
+                Debug.LogError("关键词已经收集过了");
+                return;
+            }
+#endif
             _keywordSet.Add(keyword);
+            KeywordCollect.Invoke(keyword);
         }
 
         public bool Check(string keyword)

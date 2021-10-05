@@ -1,4 +1,6 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
+using System.Text.RegularExpressions;
 using Singletons;
 using Utilities.DesignPatterns;
 
@@ -8,13 +10,11 @@ namespace KeywordSystem
     {
         private AcAutomaton _acAutomaton;
         private KeywordConfigSO _keywordConfigSO;
-        
+
         private void Start()
         {
             _acAutomaton = new AcAutomaton();
-
             _keywordConfigSO = GameConfigProxy.Instance.KeywordConfigSO;
-
             if (_keywordConfigSO.KeywordListSO != null)
             {
                 _acAutomaton.Construct(_keywordConfigSO.KeywordListSO.KeywordList);
