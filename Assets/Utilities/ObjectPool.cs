@@ -216,13 +216,11 @@ namespace Utilities
             
             // 不足，申请新的
             // 即便正在异步加载，也重新申请新的
-            GameObject go = _currentObjects.Count == 0 ? Apply() : _currentObjects.Pop();
+            return _currentObjects.Count == 0 ? Apply() : _currentObjects.Pop();
 
             // 可在对象的OnEnable中重设对象参数
             // 这意味着一次性的初始化操作（非重设操作）
             // 应当在Awake内完成而非Start
-            go.SetActive(true);
-            return go;
         }
 
         /// <summary> 延迟返还物体实现 </summary>
@@ -272,7 +270,9 @@ namespace Utilities
         /// <param name="original"> 预制体名 </param>
         public static GameObject Spawn(GameObject original)
         {
-            return _poolsMapping[original.name].BaseSpawn();
+            GameObject go = _poolsMapping[original.name].BaseSpawn();
+            go.SetActive(true);
+            return go;
         }
 
         /// <summary> 获取物体并设定父物体（世界位置为默认位置+父物体位置） </summary>
@@ -283,6 +283,8 @@ namespace Utilities
         {
             GameObject go = _poolsMapping[original.name].BaseSpawn();
             go.transform.SetParent(parent, spawnInWorldSpace);
+            // SetActive放在最后，此时执行OnEnable，保证对象已经在新的parent下，而不是对象池结点
+            go.SetActive(true);
             return go;
         }
 
@@ -294,6 +296,7 @@ namespace Utilities
         {
             GameObject go = _poolsMapping[original.name].BaseSpawn();
             go.transform.SetPositionAndRotation(position, rotation);
+            go.SetActive(true);
             return go;
         }
         
@@ -308,6 +311,7 @@ namespace Utilities
             go.transform.SetPositionAndRotation(position, rotation);
             go.transform.SetParent(parent);
             go.transform.localScale = Vector3.one;
+            go.SetActive(true);
             return go;
         }
 

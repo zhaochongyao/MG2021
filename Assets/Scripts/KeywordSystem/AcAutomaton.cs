@@ -2,11 +2,21 @@
 
 namespace KeywordSystem
 {
+    /// <summary>
+    /// 闭区间
+    /// </summary>
     public readonly struct Range
     {
+        /// <summary> 左 </summary>
         public readonly int Left;
+        /// <summary> 右 </summary>
         public readonly int Right;
 
+        /// <summary>
+        /// 构造
+        /// </summary>
+        /// <param name="left"> 左 </param>
+        /// <param name="right"> 右 </param>
         public Range(int left = 0, int right = 0)
         {
             Left = left;
@@ -15,8 +25,8 @@ namespace KeywordSystem
     }
     
     /// <summary>
+    /// AC自动机
     /// 多模式串匹配
-    /// （AC自动机实现）
     /// </summary>
     public sealed class AcAutomaton
     {
@@ -110,7 +120,12 @@ namespace KeywordSystem
                 }
             }
         }
-
+        
+        /// <summary>
+        /// 找出一段文字中出现的关键词
+        /// </summary>
+        /// <param name="text"> 要检测的文字 </param>
+        /// <returns> 关键词的下标区间 </returns>
         public List<Range> Match(string text)
         {
             List<Range> res = new List<Range>();

@@ -11,6 +11,9 @@ using Utilities;
 
 namespace KeywordSystem
 {
+    /// <summary>
+    /// 关键词表现器
+    /// </summary>
     [RequireComponent(typeof(TextMeshProUGUI))]
     public class KeywordShower : MonoBehaviour
     {
@@ -35,6 +38,7 @@ namespace KeywordSystem
             _text = GetComponent<TextMeshProUGUI>();
             _clicker = gameObject.transform.parent.GetComponentInChildren<KeywordClicker>();
 
+            // 获取对话框下标
             DialogueLineIndex dialogueLineIndex = GetComponentInParent<DialogueLineIndex>();
             _lineIndex = dialogueLineIndex == null ? -1 : dialogueLineIndex.Index;
 
@@ -52,11 +56,13 @@ namespace KeywordSystem
             _highLightColorHex = ColorUtility.ToHtmlStringRGB(_keywordConfigSO.HighLightColor);
             _collectedColorHex = ColorUtility.ToHtmlStringRGB(_keywordConfigSO.CollectedColor);
 
+            // 显示关键词
             StartCoroutine(BuildKeyword());
         }
 
         private IEnumerator BuildKeyword()
         {
+            // 需等待一帧，让关键词匹配器初始化完毕
             yield return null;
             if (IsLightColor())
             {
@@ -75,6 +81,7 @@ namespace KeywordSystem
 
         private void OnTextUpdate(int lineIndex, string newText)
         {
+            // 更新文本时，建立亮色字体关键词
             if (_lineIndex == lineIndex && IsLightColor())
             {
                 BuildLightKeyword(newText);
@@ -83,6 +90,7 @@ namespace KeywordSystem
 
         private void OnTextShowBegin(int lineIndex)
         {
+            // 文本开始渐渐显现时，建立暗色字体关键词
             if (_lineIndex == lineIndex && IsLightColor() == false)
             {
                 BuildDarkKeyword();
@@ -91,6 +99,7 @@ namespace KeywordSystem
 
         private void OnKeywordCollect(string keyword)
         {
+            // 收集关键词时，刷新关键词显示
             if (IsLightColor())
             {
                 RefreshLightKeyword(keyword);
@@ -103,9 +112,8 @@ namespace KeywordSystem
 
         private void BuildLightKeyword(string newText)
         {
+            // 使用富文本标签，让关键词变色
             string text = newText;
-            // Debug.Log(text + " " + text.Length);
-
             List<Range> ori = _keywordMatcher.Match(text);
             if (ori.Count == 0)
             {
@@ -118,7 +126,6 @@ namespace KeywordSystem
 
             foreach (Range range in ori)
             {
-                // Debug.LogWarning(range.Left + " " + range.Right);
                 for (; i < range.Left; ++i)
                 {
                     sb.Append(text[i]);
@@ -129,7 +136,6 @@ namespace KeywordSystem
                 {
                     keyword.Append(text[i]);
                 }
-                // Debug.LogWarning(keyword);
 
                 string keywordColorHex = _keywordCollector.Check(keyword.ToString())
                     ? _collectedColorHex
@@ -143,13 +149,12 @@ namespace KeywordSystem
             {
                 sb.Append(text[i]);
             }
-
-            // Debug.LogError(_text.text + "\n" + sb);
             _text.text = sb.ToString();
         }
 
         private void RefreshLightKeyword(string keyword)
         {
+            // 将标签中的高亮色十六进制码换成收集颜色的十六进制码
             string text = _text.text;
             StringBuilder sb = new StringBuilder();
             sb.Append("<color=#");
@@ -170,19 +175,23 @@ namespace KeywordSystem
 
         private void BuildDarkKeyword()
         {
+            // 获取关键词组件中计算的包围盒，生成关键词的背景方块
             Camera cameraOwner = GetComponentInParent<Canvas>().worldCamera;
             _keywordBackgroundMap.Clear();
 
             foreach (KeyValuePair<string, List<BoundingBox>> pair in _clicker.KeywordBoxMap)
             {
                 string keyword = pair.Key;
+                // 建立关键词和其包围盒背景方块的映射，方便更新颜色
                 List<Image> backgroundList = new List<Image>(pair.Value.Count);
                 _keywordBackgroundMap.Add(keyword, backgroundList);
                 foreach (BoundingBox box in pair.Value)
                 {
                     Vector3 position = box.Center;
+                    // 生成位置使用世界坐标
                     GameObject go = ObjectPool.Spawn(_keywordBackgroundPrefab,
                         position, Quaternion.identity, transform.parent);
+                    // 不遮挡字体
                     go.transform.SetAsFirstSibling();
 
                     RectTransform rectTrans = go.GetComponent<RectTransform>();
@@ -193,7 +202,8 @@ namespace KeywordSystem
                         y = origin.y,
                         z = 0f // 归零
                     };
-
+                    
+                    // 长宽需要用屏幕坐标
                     BoundingBox screenBox = new BoundingBox
                     (
                         cameraOwner.WorldToScreenPoint(box.Min),
@@ -205,13 +215,12 @@ namespace KeywordSystem
                     float refWidth = canvasScaler.referenceResolution.x;
                     float refHeight = canvasScaler.referenceResolution.y;
 
-                    // Debug.Log(refWidth + " " + refHeight);
-                    // Debug.Log(GraphicOptions.Width + " " + GraphicOptions.Height);
                     Vector2 size = screenBox.Size;
                     size.x = size.x * refWidth * 2 / GraphicOptions.Width;
                     size.y = size.y * refHeight / GraphicOptions.Height;
                     rectTrans.sizeDelta = size;
 
+                    // 设置颜色
                     Image background = go.GetComponent<Image>();
                     background.color = _keywordCollector.Check(keyword)
                         ? _keywordConfigSO.CollectedColor
@@ -224,6 +233,7 @@ namespace KeywordSystem
 
         private void RefreshDarkKeyword(string keyword)
         {
+            // 根据关键词，更新其对应所有方块颜色
             if (_keywordBackgroundMap.TryGetValue(keyword, out List<Image> backgroundList))
             {
                 foreach (Image background in backgroundList)
