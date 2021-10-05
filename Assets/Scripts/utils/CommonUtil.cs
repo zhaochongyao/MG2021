@@ -2,7 +2,6 @@ using UnityEngine;
 
 namespace utils
 {
-    
     public class CommonUtil
     {
         public static bool CheckPointInColliderArea(Vector3 point, Collider2D collider)
