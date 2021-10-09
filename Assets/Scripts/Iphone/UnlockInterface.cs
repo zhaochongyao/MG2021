@@ -78,6 +78,7 @@ namespace Iphone
         private void Unlock()
         {
             Debug.LogWarning("Unlock");
+            InterfaceManager.Instance.ToMainMenu();
         }
     }
 }

@@ -13,3 +13,11 @@ MonoBehaviour:
   m_Name: IphoneConfigSO
   m_EditorClassIdentifier: 
   _password: 202110
+  _clientName: "\u94DD\u5927\u9505"
+  _sexText: "\u7537"
+  _isMale: 1
+  _age: 21
+  _occupation: "\u5B66\u751F"
+  _educationBackground: "\u5357\u660C\u822A\u7A7A\u5927\u5B66"
+  _clientBackgrounds:
+  - "\u6211\u53D8\u79C3\u4E86\u4E5F\u53D8\u5F3A\u4E86"

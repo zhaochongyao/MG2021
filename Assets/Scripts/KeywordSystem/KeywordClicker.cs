@@ -37,7 +37,7 @@ namespace KeywordSystem
         protected override void Start()
         {
             base.Start();
-        
+
             // 禁止组件在非游戏状态下执行以下初始化代码
             if (Application.isPlaying == false)
             {
@@ -47,6 +47,8 @@ namespace KeywordSystem
             Transform parent = transform.parent;
             _textMeshProUGUI = parent.GetComponentInChildren<TextMeshProUGUI>();
             _rectTrans = GetComponent<RectTransform>();
+
+            text = _textMeshProUGUI.text;
             
             bool receiveOptionEvent = parent.GetComponent<DialogueOptionReceiver>() != null;
             if (receiveOptionEvent)
