@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 using DialogueSystem;
+using Iphone.ChatSystem;
 using Singletons;
 using TMPro;
 using UnityEngine;
@@ -45,7 +46,8 @@ namespace KeywordSystem
             }
             
             Transform parent = transform.parent;
-            _textMeshProUGUI = parent.GetComponentInChildren<TextMeshProUGUI>();
+            _textMeshProUGUI = parent.GetComponent<TextMeshProUGUI>();
+            
             _rectTrans = GetComponent<RectTransform>();
 
             text = _textMeshProUGUI.text;
@@ -59,8 +61,8 @@ namespace KeywordSystem
             _raycastOff = false;
             
             // 对话框行号，若不是对话框，设置为-1
-            DialogueLineIndex dialogueLineIndex = GetComponentInParent<DialogueLineIndex>();
-            _lineIndex = dialogueLineIndex == null ? -1 : dialogueLineIndex.Index; 
+            KeywordLineIndex keywordLineIndex = GetComponentInParent<KeywordLineIndex>();
+            _lineIndex = keywordLineIndex == null ? -1 : keywordLineIndex.Index; 
             
             _keywordConfigSO = GameConfigProxy.Instance.KeywordConfigSO;
             _keywordCollector = KeywordCollector.Instance;
@@ -69,6 +71,8 @@ namespace KeywordSystem
             DialoguePlayer.Instance.TextUpdate += OnTextUpdate;
             DialoguePlayer.Instance.TextShowBegin += OnTextShowBegin;
             DialoguePlayer.Instance.TextShowEnd += OnTextShowEnd;
+
+            ChatPlayer.Instance.TextUpdate += OnTextUpdate;
             
             // 不显示文字，0透明度
             color = new Color(0f, 0f, 0f, 0f);
@@ -178,7 +182,7 @@ namespace KeywordSystem
         protected override void OnPopulateMesh(VertexHelper toFill)
         {
             base.OnPopulateMesh(toFill);
-            Debug.Log("Populate");
+            // Debug.Log("Populate");
 
             // 作为对话框文本渐渐显示时，不更新包围盒
             if (_textShowTerminate == false || Application.isPlaying == false) // 在编辑器时，不计算包围盒

@@ -39,8 +39,8 @@ namespace KeywordSystem
             _clicker = gameObject.transform.parent.GetComponentInChildren<KeywordClicker>();
 
             // 获取对话框下标
-            DialogueLineIndex dialogueLineIndex = GetComponentInParent<DialogueLineIndex>();
-            _lineIndex = dialogueLineIndex == null ? -1 : dialogueLineIndex.Index;
+            KeywordLineIndex keywordLineIndex = GetComponentInParent<KeywordLineIndex>();
+            _lineIndex = keywordLineIndex == null ? -1 : keywordLineIndex.Index;
 
             _keywordCollector = KeywordCollector.Instance;
             _keywordConfigSO = GameConfigProxy.Instance.KeywordConfigSO;

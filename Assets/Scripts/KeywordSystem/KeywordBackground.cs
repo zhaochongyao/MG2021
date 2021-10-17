@@ -20,8 +20,12 @@ namespace KeywordSystem
 
         private void OnEnable()
         {
-            _background.color = new Color(0f, 0f, 0f, 0f);
             _text = transform.parent.GetComponentInChildren<TextMeshProUGUI>();
+        }
+
+        private void OnDisable()
+        {
+            _background.color = new Color(0f, 0f, 0f, 0f);
         }
 
         private void Update()

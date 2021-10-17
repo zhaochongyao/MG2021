@@ -10,21 +10,34 @@ namespace Iphone
         [SerializeField] private GameObject _unlockInterface;
         [SerializeField] private GameObject _wechat;
         [SerializeField] private GameObject _dingGuaGua;
+
+        [SerializeField] private GameObject _defaultInterface;
         
         private int _curInterface;
 
-        private List<GameObject> _allInterface;
+        private List<CanvasGroup> _allInterface;
         
         private void Start()
         {
-            _curInterface = 1;
-            _allInterface = new List<GameObject>
+            _allInterface = new List<CanvasGroup>
             {
-                _mainMenu,          // 0
-                _unlockInterface,   // 1
-                _wechat,            // 2
-                _dingGuaGua          // 3
+                _mainMenu.GetComponent<CanvasGroup>(),          // 0
+                _unlockInterface.GetComponent<CanvasGroup>(),   // 1
+                _wechat.GetComponent<CanvasGroup>(),            // 2
+                _dingGuaGua.GetComponent<CanvasGroup>()          // 3
             };
+            for (int i = 0; i < _allInterface.Count; ++i)
+            {
+                if (_allInterface[i].gameObject == _defaultInterface)
+                {
+                    Show(_allInterface[i]);
+                    _curInterface = i;
+                }
+                else
+                {
+                    Hide(_allInterface[i]);
+                }
+            }
         }
 
         public void ToMainMenu() => SwitchInterface(0);
@@ -37,16 +50,27 @@ namespace Iphone
 
         private void SwitchInterface(int index)
         {
-#if UNITY_EDITOR
             if (index == _curInterface)
             {
-                Debug.LogError("重复进入同一界面");
                 return;
             }
-#endif
-            _allInterface[_curInterface].SetActive(false);
-            _allInterface[index].SetActive(true);
+            Hide(_allInterface[_curInterface]);
+            Show(_allInterface[index]);
             _curInterface = index;
+        }
+
+        private void Show(CanvasGroup canvasGroup)
+        {
+            canvasGroup.alpha = 1f;
+            canvasGroup.interactable = true;
+            canvasGroup.blocksRaycasts = true;
+        }
+
+        private void Hide(CanvasGroup canvasGroup)
+        {
+            canvasGroup.alpha = 0f;
+            canvasGroup.interactable = false;
+            canvasGroup.blocksRaycasts = false;
         }
     }
 }

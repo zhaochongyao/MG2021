@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using Iphone.ChatSystem;
+using UnityEngine;
 
 namespace Iphone
 {
@@ -15,6 +16,12 @@ namespace Iphone
         [SerializeField] private string _educationBackground;
 
         [SerializeField] private string[] _clientBackgrounds;
+
+        [SerializeField] private ChatterSO _selfChatter;
+        [SerializeField] private int _maxHorizontalChar;
+
+        [SerializeField] private float _maxMemePicHeight;
+        [SerializeField] private float _maxMemePicWidth;
         
         public string Password => _password;
 
@@ -25,5 +32,11 @@ namespace Iphone
         public string Occupation => _occupation;
         public string EducationBackground => _educationBackground;
         public string[] ClientBackgrounds => _clientBackgrounds;
+
+        public ChatterSO SelfChatter => _selfChatter;
+        public int MaxHorizontalChar => _maxHorizontalChar;
+
+        public float MaxMemePicHeight => _maxMemePicHeight;
+        public float MaxMemePicWidth => _maxMemePicWidth;
     }
 }

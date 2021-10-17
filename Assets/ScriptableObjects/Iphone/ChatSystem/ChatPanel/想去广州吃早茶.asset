@@ -1,0 +1,17 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9a7b0a32240d4374aad1e7619686a8e5, type: 3}
+  m_Name: "\u60F3\u53BB\u5E7F\u5DDE\u5403\u65E9\u8336"
+  m_EditorClassIdentifier: 
+  _thumbnail: {fileID: 21300000, guid: 7188184a03ddcae43ba2ed17eec986ee, type: 3}
+  _chatName: "\u60F3\u53BB\u5E7F\u5DDE\u5403\u65E9\u8336\uFF086\uFF09"
+  _groupChat: 1

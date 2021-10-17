@@ -1,0 +1,66 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 399a9442778f4733abc16fd89056fca9, type: 3}
+  m_Name: ChatLineList
+  m_EditorClassIdentifier: 
+  _chatPanelSO: {fileID: 11400000, guid: 2a5a752c948c3c34caa980a1d77836a8, type: 2}
+  _chatLineList:
+  - _chatterSO: {fileID: 11400000, guid: dae1213ebb4e0684dbb669e078251679, type: 2}
+    _waitTime: 0
+    _chatText: "\u4ECA\u5929\u665A\u4E0A\u5927\u5BB6\u5C0F\u7ED3\u4E0B\u8FDB\u5EA6\uFF0C\u624B\u5934\u4E0A\u6B63\u5728\u505A\u7684\uFF0C\u5DF2\u7ECF\u505A\u5B8C\u7684\uFF0C\u90FD\u5728\u7FA4\u91CC\u8BF4\u4E00\u4E0B"
+    _memePic: {fileID: 0}
+    _timeStampInChat: 19:04
+    _timeStampOverlook: 19:04
+  - _chatterSO: {fileID: 11400000, guid: adec06deff3fdc7459c5d3d7b023f26a, type: 2}
+    _waitTime: 3
+    _chatText: "\u6211\u5148\u7B80\u5355\u8BF4\u4E0B\u6211\u7684"
+    _memePic: {fileID: 0}
+    _timeStampInChat: 20:33
+    _timeStampOverlook: 20:33
+  - _chatterSO: {fileID: 11400000, guid: adec06deff3fdc7459c5d3d7b023f26a, type: 2}
+    _waitTime: 3
+    _chatText: "\u76EE\u524D\u5B8C\u6210\u7684\u6709\u8881\u540C\u5B66\u548C\u65B9\u540C\u5B66\u7684\u89D2\u8272\u7F8E\u672F\uFF08\u73B0\u5728\u4EA4\u63A5\u5230\u7D2B\u71A0\u4F18\u5316\uFF09\uFF0C\u7136\u540E\u8FD8\u6709\u6545\u969C\u548C\u5165\u68A6\u7684shader\uFF0C\u7136\u540E\u73B0\u5728\u51C6\u5907\u505A\u5730\u7F16\uFF0C\u7B49\u89D2\u8272\u4F18\u5316\u5B8C\u6211\u518D\u505A\u89D2\u8272\u7684\u52A8\u753B"
+    _memePic: {fileID: 0}
+    _timeStampInChat: 
+    _timeStampOverlook: 
+  - _chatterSO: {fileID: 11400000, guid: 4f9d24e9927dae541808149ac8a1e7c9, type: 2}
+    _waitTime: 3
+    _chatText: "\u6211\u8FD9\u8FB9\u6210\u5C31\u7CFB\u7EDF\u57FA\u672C\u4E0A\u5DF2\u7ECF\u641E\u597D\u4E86\uFF0C\u5185\u90E8\u7684\u89E6\u53D1\u53EA\u9700\u8981\u5728\u5177\u4F53\u903B\u8F91\u4E2D\u8C03\u7528\u76F8\u5173\u7684\u65B9\u6CD5\uFF0C\u5E94\u8BE5\u662F\u6CA1\u6709\u5176\u4ED6\u7684\u5F00\u53D1\u91CF\u4E86\uFF0C\u53EA\u9700\u8981\u5173\u6CE8\u4E8B\u4EF6\u72B6\u6001\u6539\u53D8\u7684\u89E6\u53D1\u8282\u70B9\u3002"
+    _memePic: {fileID: 0}
+    _timeStampInChat: 
+    _timeStampOverlook: 
+  - _chatterSO: {fileID: 11400000, guid: 4f9d24e9927dae541808149ac8a1e7c9, type: 2}
+    _waitTime: 3
+    _chatText: "[\u56FE\u7247]"
+    _memePic: {fileID: 21300000, guid: 9c31b78b52c99944a86b6d45f26eb824, type: 3}
+    _timeStampInChat: 
+    _timeStampOverlook: 
+  - _chatterSO: {fileID: 11400000, guid: 22f8c04ceaea78442b9e6f882f34a1d2, type: 2}
+    _waitTime: 3
+    _chatText: "\u4E09\u4E2A\u573A\u666F\u5DF2\u7ECF\u7ED9\u66E6\u82E5\u53BB\u505A\u6750\u8D28\u4E86\uFF0C\u7136\u540E\u4F18\u5316\u4E86\u4E00\u4E0B\u4EBA\u7269\uFF0C\u8881\u65B9\u4E24\u4E2A\u521A\u4FEE\u597D\u8FB9\u7F18"
+    _memePic: {fileID: 0}
+    _timeStampInChat: 
+    _timeStampOverlook: 
+  - _chatterSO: {fileID: 11400000, guid: 22f8c04ceaea78442b9e6f882f34a1d2, type: 2}
+    _waitTime: 3
+    _chatText: "[\u56FE\u7247]"
+    _memePic: {fileID: 21300000, guid: 6feb23bddf970a047b12dd88c844d540, type: 3}
+    _timeStampInChat: 
+    _timeStampOverlook: 
+  - _chatterSO: {fileID: 11400000, guid: 284b2ee04557b354384328f2b4d86854, type: 2}
+    _waitTime: 3
+    _chatText: "\u76EE\u524D\u5B8C\u6210\u7684\u6709\u6E38\u620F\u5BF9\u8BDD\u548C\u624B\u673A\u9876\u5471\u5471\u754C\u9762\u7684\u539F\u578B\uFF0C\u7136\u540E\u73B0\u5728\u6B63\u5728\u505A\u76F8\u518C\u5FAE\u4FE1\u65E5\u5386\u548C\u5F00\u9501\u754C\u9762\u7684\u539F\u578B\uFF0C\u7ED3\u675F\u540E\u4F1A\u4EA4\u4ED8\u9AD8\u4FDD\u771F\u56FE"
+    _memePic: {fileID: 0}
+    _timeStampInChat: 20:50
+    _timeStampOverlook: 20:50
+  _chatOptionSO: {fileID: 11400000, guid: 75d9fed39cf172b4ba9c957037396f39, type: 2}
+  _existedMessage: 0

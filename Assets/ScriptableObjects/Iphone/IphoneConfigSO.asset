@@ -21,3 +21,7 @@ MonoBehaviour:
   _educationBackground: "\u5357\u660C\u822A\u7A7A\u5927\u5B66"
   _clientBackgrounds:
   - "\u6211\u53D8\u79C3\u4E86\u4E5F\u53D8\u5F3A\u4E86"
+  _selfChatter: {fileID: 11400000, guid: 0fe28d8cccc0241409b8be207b268d4f, type: 2}
+  _maxHorizontalChar: 9
+  _maxMemePicHeight: 180
+  _maxMemePicWidth: 180

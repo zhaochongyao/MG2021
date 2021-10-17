@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using DG.Tweening;
+using KeywordSystem;
 using Singletons;
 using TMPro;
 using UnityEngine;
@@ -138,7 +139,7 @@ namespace DialogueSystem
                     dialogueOptionReceiver = imageObj.AddComponent<DialogueOptionReceiver>();
                 }
 
-                imageObj.AddComponent<DialogueLineIndex>().Index = index;
+                imageObj.AddComponent<KeywordLineIndex>().Index = index;
                 // 需要等待一帧，生成对象的坐标数据才会被更新
                 yield return null;
 

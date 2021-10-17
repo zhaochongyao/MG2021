@@ -1,11 +1,13 @@
-﻿using System.Text;
+﻿using System;
+using System.Text;
 using Singletons;
 using UnityEngine;
 using UnityEngine.UI;
+using Utilities.DesignPatterns;
 
 namespace Iphone
 {
-    public class UnlockInterface : MonoBehaviour
+    public class UnlockInterface : LSingleton<UnlockInterface>
     {
         [SerializeField] private Button[] _numButtons;
         [SerializeField] private Button _deleteButton;
@@ -16,6 +18,8 @@ namespace Iphone
         private StringBuilder _curInput;
 
         private GameObject[] _passwordDots;
+
+        public event Action PhoneUnlock = delegate { };
 
         private void Start()
         {
@@ -50,10 +54,8 @@ namespace Iphone
         {
             _passwordDots[_curInput.Length].SetActive(true);
             _curInput.Append((char) (num + '0'));
-            Debug.Log(num + " " + (char) (num + '0'));
             if (_curInput.Length == _password.Length)
             {
-                Debug.LogError(_curInput + " " + _password);
                 if (_curInput.ToString() == _password)
                 {
                     Unlock();
@@ -72,13 +74,12 @@ namespace Iphone
             {
                 dot.SetActive(false);
             }
-            Debug.LogWarning("Delete");
         }
 
         private void Unlock()
         {
-            Debug.LogWarning("Unlock");
             InterfaceManager.Instance.ToMainMenu();
+            PhoneUnlock.Invoke();
         }
     }
 }

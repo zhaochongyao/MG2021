@@ -1,0 +1,20 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 399a9442778f4733abc16fd89056fca9, type: 3}
+  m_Name: ChatLineList3
+  m_EditorClassIdentifier: 
+  _chatPanelSO: {fileID: 11400000, guid: 97a6e14d840f32748bd32483b33a37c2, type: 2}
+  _chatLineList:
+  - _chatterSO: {fileID: 11400000, guid: d494288fea2234441b2b1ad2c92620a2, type: 2}
+    _chatText: "\u8001\u5E08\uFF1F\u60A8\u8FD8\u5728\u5417"
+    _waitTime: 5
+  _chatOptionSO: {fileID: 11400000, guid: ccbf60f2d5fc0754f9261538fecb42f8, type: 2}

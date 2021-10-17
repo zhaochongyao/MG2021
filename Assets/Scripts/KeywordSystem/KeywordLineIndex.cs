@@ -1,8 +1,8 @@
 ﻿using UnityEngine;
 
-namespace DialogueSystem
+namespace KeywordSystem
 {
-    public class DialogueLineIndex : MonoBehaviour
+    public class KeywordLineIndex : MonoBehaviour
     {
         public int Index { get; set; }
     }

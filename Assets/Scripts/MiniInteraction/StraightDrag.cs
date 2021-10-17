@@ -23,7 +23,7 @@ namespace MiniInteraction
         {
             _dragRectTrans = GetComponent<RectTransform>();
         }
-
+        
         public void OnDrag(PointerEventData eventData)
         {
             Vector3 originPosition = _dragRectTrans.position;

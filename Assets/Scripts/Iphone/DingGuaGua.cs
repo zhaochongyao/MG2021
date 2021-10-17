@@ -62,6 +62,9 @@ namespace Iphone
 
         [SerializeField] private float _mergeResultShowTime;
 
+        [SerializeField] private GameObject _clientDataRedDot;
+        [SerializeField] private GameObject _memorandumRedDot;
+
         private void Start()
         {
             _iphoneConfigSO = GameConfigProxy.Instance.IphoneConfigSO;
@@ -89,20 +92,34 @@ namespace Iphone
 
         private void UpdateDataProgress()
         {
+            if (_clientData.activeInHierarchy == false && _clientDataRedDot.activeSelf == false)
+            {
+                RedDotManager.Instance.ShowRedDot(_clientDataRedDot);
+            }
+            
             _collectedData++;
             _baseDataProgressBar.fillAmount = (float) _collectedData / _maxData;
         }
 
         private void UpdateBackgroundProgress()
         {
+            if (_clientData.activeInHierarchy == false && _clientDataRedDot.activeSelf == false)
+            {
+                RedDotManager.Instance.ShowRedDot(_clientDataRedDot);
+            }
+            
             _collectedBackground++;
             _clientBackgroundProgressBar.fillAmount = (float) _collectedBackground / _maxBackground;
         }
 
         private void UpdateKeywordCollectProgress()
         {
+            if (_memorandum.activeInHierarchy == false && _memorandumRedDot.activeSelf == false)
+            {
+                RedDotManager.Instance.ShowRedDot(_memorandumRedDot);
+            }
+            
             _collectedKeyword++;
-            Debug.Log(_collectedKeyword + " " + _maxKeyword);
             _keywordCollectProgressBar.fillAmount = (float) _collectedKeyword / _maxKeyword;
         }
 
@@ -122,6 +139,7 @@ namespace Iphone
                         _backgroundTexts[i].text = background;
                         StartCoroutine(ShowMergeResultCo(res));
                         UpdateBackgroundProgress();
+
                         break;
                     }
                 }
@@ -215,18 +233,37 @@ namespace Iphone
 
         public void ToClientDetail()
         {
+            if (_clientData.activeSelf && _clientDataRedDot.activeSelf)
+            {
+                RedDotManager.Instance.HideRedDot(_clientDataRedDot);
+            }
+            if (_memorandum.activeSelf && _memorandumRedDot.activeSelf)
+            {
+                RedDotManager.Instance.HideRedDot(_memorandumRedDot);
+            }
+            
             _workingArea.SetActive(false);
             _clientDetail.SetActive(true);
         }
 
         public void ToClientData()
         {
+            if (_clientDataRedDot.activeSelf)
+            {
+                RedDotManager.Instance.HideRedDot(_clientDataRedDot);
+            }
+
             _clientData.SetActive(true);
             _memorandum.SetActive(false);
         }
 
         public void ToMemorandum()
         {
+            if (_memorandumRedDot.activeSelf)
+            {
+                RedDotManager.Instance.HideRedDot(_memorandumRedDot);
+            }
+            
             _clientData.SetActive(false);
             _memorandum.SetActive(true);
         }

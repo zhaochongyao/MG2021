@@ -1,7 +1,8 @@
+using DialogueSystem;
 using UnityEngine;
 using Utilities.Random;
 
-namespace DialogueSystem
+namespace Test
 {
     public sealed class DialogueTester : MonoBehaviour
     {
