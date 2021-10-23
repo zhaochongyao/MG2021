@@ -1,0 +1,19 @@
+
+[
+  {
+    "event_id": 1,
+    "event_name": "移动",
+    "over": false,
+    "front_event_name_list": [],
+    "bind_achievement": ["新手任务"],
+    "tips": "备注: 什么时候触发, 用于程序配置"
+  },
+  {
+    "event_id": 2,
+    "event_name": "点击",
+    "over": false,
+    "front_event_name_list": ["移动"],
+    "bind_achievement": ["新手任务"],
+    "tips": "备注: 什么时候触发, 用于程序配置"
+  }
+]

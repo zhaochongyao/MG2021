@@ -1,0 +1,8 @@
+[
+  {
+    "achievement_id": 1,
+    "achievement_name": "新手任务",
+    "over": false,
+    "event_name_list": ["移动", "点击"]
+  }
+]
