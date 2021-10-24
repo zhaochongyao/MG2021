@@ -15,7 +15,7 @@ public class GameManager : MonoBehaviour
         InputMgr.GetInstance().changeInputStart(true);
         EventCenter.GetInstance().AddEventListener<Vector3>("点击事件",ClickObject);
         // UIManager.GetInstance().ShowPanel<GameStartPanel>("GameStartPanel", Layer.System, null);
-        AchievementMgr.GetInstance().Init();
+        // AchievementMgr.GetInstance().Init();
     }
     void ClickObject(Vector3 clickPos)
     {

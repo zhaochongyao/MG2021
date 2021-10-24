@@ -1,19 +1,26 @@
-
 [
   {
     "event_id": 1,
-    "event_name": "移动",
+    "event_name": "独乐乐不如众乐乐",
     "over": false,
-    "front_event_name_list": [],
-    "bind_achievement": ["新手任务"],
-    "tips": "备注: 什么时候触发, 用于程序配置"
+    "front_event_name_list": ["事件3[输错了]或[系统出错了]","事件4","事件6"],
+    "bind_achievement": ["事件7"],
+    "tips": "事件7结束触发"
   },
   {
     "event_id": 2,
-    "event_name": "点击",
+    "event_name": "囚徒之境",
     "over": false,
-    "front_event_name_list": ["移动"],
-    "bind_achievement": ["新手任务"],
-    "tips": "备注: 什么时候触发, 用于程序配置"
+    "front_event_name_list": ["事件1[不回复]","事件3[你应该向优秀同学学习]","事件4","事件5[您也知道学生总喜欢找借口]","事件8"],
+    "bind_achievement": ["事件9"],
+    "tips": "事件9结束触发"
+  }
+  {
+    "event_id": 3,
+    "event_name": "成长的疼痛",
+    "over": false,
+    "front_event_name_list": ["事件1[不回复]","事件3[你应该向优秀同学学习]","事件4","事件5[估计是我对他们的要求太严格了]","事件10"],
+    "bind_achievement": ["事件11"],
+    "tips": "事件11结束触发"
   }
 ]

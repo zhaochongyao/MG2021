@@ -88,7 +88,7 @@ public class StarA
                 points[i, j].f = 0;
                 points[i, j].g = 0;
                 points[i, j].h = 0;
-                Controllers[i, j].GetComponent<SpriteRenderer>().color = Color.white;
+                // Controllers[i, j].GetComponent<SpriteRenderer>().color = Color.white;
             }
         }
 
@@ -161,7 +161,7 @@ public class StarA
         {
             end.father.child = end;
         }
-        Controllers[end.x, end.y].GetComponent<SpriteRenderer>().color = Color.green;
+        // Controllers[end.x, end.y].GetComponent<SpriteRenderer>().color = Color.green;
         Link(end.father);
     }
 
