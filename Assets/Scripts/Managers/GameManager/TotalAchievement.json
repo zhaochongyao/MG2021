@@ -1,0 +1,20 @@
+[
+  {
+    "achievement_id": 1,
+    "achievement_name": "独乐乐不如众乐乐",
+    "over": false,
+    "event_name_list": ["事件7"]
+  }
+  {
+    "achievement_id": 2,
+    "achievement_name": "囚徒之境",
+    "over": false,
+    "event_name_list": ["事件9"]
+  }
+  {
+    "achievement_id": 3,
+    "achievement_name": "成长的疼痛",
+    "over": false,
+    "event_name_list": ["事件11"]
+  }
+]

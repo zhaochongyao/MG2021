@@ -17,10 +17,10 @@ namespace Managers.MapManager
         private void Start()
         {
             var localTransform = transform;
-            var renderSize = localTransform.GetComponent<SpriteRenderer>().size;
+            var renderSize = localTransform.GetComponent<Transform>().localScale;
             var localScale = localTransform.localScale;
-            _width = renderSize.x * localScale.x;
-            _height = renderSize.y * localScale.y;
+            _width = renderSize.x * localScale.x * localScale.x;
+            _height = renderSize.z * localScale.z * localScale.x;
             GenerateMap();
         }
 
@@ -43,15 +43,16 @@ namespace Managers.MapManager
             var parentRotation = gameObject.transform.rotation;
             var itemWidth = _width / splitRow;
             var itemHeight = _height / splitColumn;
-            MapManager.GetInstance().Init(splitRow, splitColumn);
+            MapManager.GetInstance().Init(splitColumn, splitRow);
             MapItemController[,] controllers = new MapItemController[splitColumn, splitRow];
             for (var column = 0; column < splitColumn; column++)
             {
                 for (var row = 0; row < splitRow; row++)
                 {
                     var item = GameObject.Instantiate(generateItem,  parentPosition + new Vector3(row*itemWidth, 0, column*itemHeight), parentRotation, null);
+                    item.transform.name = "generate_" + column + "_" + row;
                     var itemLocalScale = item.transform.localScale;
-                    itemLocalScale = new Vector3(itemLocalScale.x / splitRow, itemLocalScale.y / splitColumn, itemLocalScale.z);
+                    itemLocalScale = new Vector3(itemLocalScale.x / splitRow, itemLocalScale.y / splitColumn, itemLocalScale.z / splitColumn);
                     item.transform.localScale = itemLocalScale;
                     item.layer = LayerMask.NameToLayer(ConstDefine.MapLayer);
                     item.AddComponent<BoxCollider>();
@@ -65,7 +66,7 @@ namespace Managers.MapManager
                 }
             }
             MapManager.GetInstance().SetControllers(controllers);
-            Destroy(gameObject);
+            // Destroy(gameObject);
         }
     }
 }
