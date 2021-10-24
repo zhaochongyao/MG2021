@@ -61,7 +61,7 @@ namespace KeywordSystem
             _raycastOff = false;
             
             // 对话框行号，若不是对话框，设置为-1
-            KeywordLineIndex keywordLineIndex = GetComponentInParent<KeywordLineIndex>();
+            KeywordLineIndex keywordLineIndex = parent.GetComponent<KeywordLineIndex>();
             _lineIndex = keywordLineIndex == null ? -1 : keywordLineIndex.Index; 
             
             _keywordConfigSO = GameConfigProxy.Instance.KeywordConfigSO;

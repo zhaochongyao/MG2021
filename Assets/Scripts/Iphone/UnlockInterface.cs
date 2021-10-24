@@ -75,7 +75,7 @@ namespace Iphone
                 }
                 else
                 {
-                    OnDelete();
+                    StartCoroutine(WrongCo());
                 }
             }
         }
@@ -83,13 +83,16 @@ namespace Iphone
         private void OnDelete()
         {
             _curInput.Clear();
-            StartCoroutine(WrongCo());
+            foreach (GameObject dot in _passwordDots)
+            {
+                dot.SetActive(false);
+            }
         }
 
         private IEnumerator WrongCo()
         {
             _lock = true;
-
+            _curInput.Clear();
             foreach (GameObject dot in _passwordDots)
             {
                 if (dot.activeSelf)

@@ -1,6 +1,8 @@
-﻿namespace Singletons
+﻿using Utilities.DesignPatterns;
+
+namespace Singletons
 {
-    public class AchievementManager
+    public class AchievementManager : GSingleton<AchievementManager>
     {
         
     }

@@ -36,7 +36,7 @@ namespace KeywordSystem
         private void Start()
         {
             _text = GetComponent<TextMeshProUGUI>();
-            _clicker = gameObject.transform.parent.GetComponentInChildren<KeywordClicker>();
+            _clicker = transform.GetChild(0).GetComponent<KeywordClicker>();
 
             // 获取对话框下标
             KeywordLineIndex keywordLineIndex = GetComponentInParent<KeywordLineIndex>();
