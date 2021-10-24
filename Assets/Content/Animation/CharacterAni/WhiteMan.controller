@@ -96,7 +96,7 @@ AnimatorController:
     m_Type: 4
     m_DefaultFloat: 0
     m_DefaultInt: 0
-    m_DefaultBool: 0
+    m_DefaultBool: 1
     m_Controller: {fileID: 0}
   - m_Name: IsTurnAround
     m_Type: 4
@@ -104,7 +104,13 @@ AnimatorController:
     m_DefaultInt: 0
     m_DefaultBool: 0
     m_Controller: {fileID: 0}
-  - m_Name: IsTurnBack
+  - m_Name: IsBack
+    m_Type: 4
+    m_DefaultFloat: 0
+    m_DefaultInt: 0
+    m_DefaultBool: 0
+    m_Controller: {fileID: 0}
+  - m_Name: IsSide
     m_Type: 4
     m_DefaultFloat: 0
     m_DefaultInt: 0
@@ -134,8 +140,11 @@ AnimatorStateTransition:
   - m_ConditionMode: 1
     m_ConditionEvent: IsFront
     m_EventTreshold: 0
-  - m_ConditionMode: 2
+  - m_ConditionMode: 1
     m_ConditionEvent: IsTurnAround
+    m_EventTreshold: 0
+  - m_ConditionMode: 2
+    m_ConditionEvent: IsSide
     m_EventTreshold: 0
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: -2561196006669137876}
@@ -163,7 +172,7 @@ AnimatorStateTransition:
     m_ConditionEvent: IsTurnAround
     m_EventTreshold: 0
   - m_ConditionMode: 2
-    m_ConditionEvent: IsTurnBack
+    m_ConditionEvent: IsBack
     m_EventTreshold: 0
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: -8094635569213497691}
@@ -243,10 +252,13 @@ AnimatorStateTransition:
   m_Name: 
   m_Conditions:
   - m_ConditionMode: 1
-    m_ConditionEvent: IsTurnBack
+    m_ConditionEvent: IsBack
+    m_EventTreshold: 0
+  - m_ConditionMode: 1
+    m_ConditionEvent: IsTurnAround
     m_EventTreshold: 0
   - m_ConditionMode: 2
-    m_ConditionEvent: IsTurnAround
+    m_ConditionEvent: IsSide
     m_EventTreshold: 0
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: 4920589278338457012}

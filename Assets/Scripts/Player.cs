@@ -18,19 +18,21 @@ public class Player : MonoBehaviour
 
     private Animator _animator;
     // attribute
-    public int IsUp =-1;
-    public int IsDown = -1;
-    public int IsMove = -1;
+    public int IsTurnAround =-1;
+    public int IsBack = -1;
+    public int IsFront = -1;
+    public int IsSide = -1;
 
+    public bool Left = true;
     private void Start()
     {
         EventCenter.GetInstance().AddEventListener<StarA.Point>(Common.PlayerMoveEvent, MoveTo);
         _animator = GetComponentInChildren<Animator>();
         _animator.speed = 0;
-        IsUp = Animator.StringToHash ("IsUp");
-        IsDown = Animator.StringToHash ("IsDown");
-        IsMove = Animator.StringToHash ("IsMove");
-
+        IsTurnAround = Animator.StringToHash ("IsTurnAround");
+        IsBack = Animator.StringToHash ("IsBack");
+        IsFront = Animator.StringToHash ("IsFront");
+        IsSide = Animator.StringToHash("IsSide");
     }
 
     private Vector3 ConvertScreenToWorldPoint(Vector3 screenPoint)
@@ -71,25 +73,46 @@ public class Player : MonoBehaviour
         }
         if (_resultPoint != null && _playerPoint != _resultPoint && _playerPoint.child != null)
         {
-            _animator.SetBool(IsMove, true);
+            _animator.SetBool(IsFront, true);
             var step = moveSpeed * Time.deltaTime; 
             var pointPosition = new Vector3(_playerPoint.child.Layout.x, transform.position.y, _playerPoint.child.Layout.z);
-            Debug.Log("move to " + pointPosition + "   index = "+_playerPoint.child.x+_playerPoint.child.y);
+            // Debug.Log("move to " + pointPosition + "   index = "+_playerPoint.child.x+_playerPoint.child.y);
             bool left = pointPosition.x < transform.localPosition.x;
-            bool up = pointPosition.z < transform.localPosition.z;
-            if (pointPosition.z == transform.localPosition.z)
-            {
-                _animator.SetBool(IsUp, false);
-                _animator.SetBool(IsDown, false);
-            }
             
-            if (up)
+            if (pointPosition.z > transform.localPosition.z && Math.Abs(pointPosition.z - transform.localPosition.z) > 0.1f)
             {
-                _animator.SetBool(IsUp, true);
+                _animator.SetBool(IsTurnAround, true);
+                _animator.SetBool(IsBack, true);
+                _animator.SetBool(IsFront, false);
+                _animator.SetBool(IsSide, false);
             }
-            else
+            else if (pointPosition.z < transform.localPosition.z && Math.Abs(pointPosition.z - transform.localPosition.z) > 0.1f)
             {
-                _animator.SetBool(IsDown, true);
+                _animator.SetBool(IsTurnAround, true);
+                _animator.SetBool(IsFront, true);
+                _animator.SetBool(IsBack, false);
+                _animator.SetBool(IsSide, false);
+
+            }
+
+            Debug.Log(Math.Abs(pointPosition.z - transform.localPosition.z));
+            if (Math.Abs(pointPosition.z - transform.localPosition.z) < 0.1f)
+            {
+                _animator.SetBool(IsTurnAround, true);
+                _animator.SetBool(IsBack, false);
+                _animator.SetBool(IsFront, false);
+                _animator.SetBool(IsSide, true);
+
+                if (left && !Left)
+                {
+                    Left = true;
+                    transform.DOFlip();
+                }
+                else if (!left && Left)
+                {
+                    Left = false;
+                    transform.DOFlip();
+                }
             }
             gameObject.transform.localPosition = Vector3.MoveTowards(gameObject.transform.localPosition, pointPosition, step);
             _animator.speed = 1;
@@ -101,7 +124,7 @@ public class Player : MonoBehaviour
         else
         {
             _animator.speed = 0;
-           // _animator.SetBool(IsMove, false);
+            // _animator.SetBool(IsMove, false);
         }
     }
 

@@ -1,26 +1,114 @@
 [
   {
     "event_id": 1,
-    "event_name": "独乐乐不如众乐乐",
+    "event_name": "事件7",
     "over": false,
-    "front_event_name_list": ["事件3[输错了]或[系统出错了]","事件4","事件6"],
-    "bind_achievement": ["事件7"],
-    "tips": "事件7结束触发"
+    "front_event_name_list": ["事件3.3","事件4","事件6"],
+    "bind_achievement": ["独乐乐不如众乐乐"],
+    "tips": "事件6结束触发"
   },
   {
     "event_id": 2,
-    "event_name": "囚徒之境",
+    "event_name": "事件3.3",
     "over": false,
-    "front_event_name_list": ["事件1[不回复]","事件3[你应该向优秀同学学习]","事件4","事件5[您也知道学生总喜欢找借口]","事件8"],
-    "bind_achievement": ["事件9"],
-    "tips": "事件9结束触发"
-  }
+    "front_event_name_list": ["事件3.2","点击"],
+    "bind_achievement": ["独乐乐不如众乐乐"],
+    "tips": "点击触发"
+  },
   {
     "event_id": 3,
-    "event_name": "成长的疼痛",
+    "event_name": "事件3.2",
     "over": false,
-    "front_event_name_list": ["事件1[不回复]","事件3[你应该向优秀同学学习]","事件4","事件5[估计是我对他们的要求太严格了]","事件10"],
-    "bind_achievement": ["事件11"],
-    "tips": "事件11结束触发"
-  }
+    "front_event_name_list": ["点击"],
+    "bind_achievement": ["独乐乐不如众乐乐"或者"囚徒之境"或者"成长的疼痛"],
+    "tips": "点击触发"
+  },
+  {
+    "event_id": 4,
+    "event_name": "事件4",
+    "over": false,
+    "front_event_name_list": ["事件3.5"],
+    "bind_achievement": ["独乐乐不如众乐乐"或者"囚徒之境"或者"成长的疼痛"],
+    "tips": "事件3.5结束自动触发"
+  },
+  {
+    "event_id": 5,
+    "event_name": "事件3.5",
+    "over": false,
+    "front_event_name_list": ["事件3.1",或者"事件3.3"],
+    "bind_achievement": ["独乐乐不如众乐乐"],
+    "tips": "事件3.1结束 或 事件3.3结束自动触发"
+  },
+  {
+    "event_id": 6,
+    "event_name": "事件3.1",
+    "over": false,
+    "front_event_name_list": ["点击"],
+    "bind_achievement": ["囚徒之境"或者"成长的疼痛"],
+    "tips": "点击触发"
+  },
+  {
+    "event_id": 7,
+    "event_name": "事件6",
+    "over": false,
+    "front_event_name_list": ["事件3.3","事件4"],
+    "bind_achievement": ["独乐乐不如众乐乐"],
+    "tips": "事件4结束自动触发"
+  },
+  {
+    "event_id": 8,
+    "event_name": "事件9",
+    "over": false,
+    "front_event_name_list": ["事件3.1","事件4","事件5.2","事件5.3","事件8"],
+    "bind_achievement": ["囚徒之境"],
+    "tips": "事件8结束自动触发"
+  },
+  {
+    "event_id": 9,
+    "event_name": "事件5.2",
+    "over": false,
+    "front_event_name_list": ["点击"],
+    "bind_achievement": ["囚徒之境"],
+    "tips": "点击触发"
+  },
+  {
+    "event_id": 10,
+    "event_name": "事件5.3",
+    "over": false,
+    "front_event_name_list": ["事件5.1","or","事件5.2"],
+    "bind_achievement": ["囚徒之境", "or", "成长的疼痛"],
+    "tips": "事件5.1"结束  或者 "事件5.2"结束自动触发"
+  },
+  {
+    "event_id": 11,
+    "event_name": "事件5.1",
+    "over": false,
+    "front_event_name_list": ["点击"],
+    "bind_achievement": ["成长的疼痛"],
+    "tips": "点击触发"
+  },
+  {
+    "event_id": 12,
+    "event_name": "事件8",
+    "over": false,
+    "front_event_name_list": ["事件5.3"],
+    "bind_achievement": ["囚徒之境","or","成长的疼痛"],
+    "tips": "事件5.3结束自动触发"
+  },
+  {
+    "event_id": 13,
+    "event_name": "事件11",
+    "over": false,
+    "front_event_name_list": ["事件3.1","事件4","事件5.1","事件5.3","事件10"],
+    "bind_achievement": ["成长的疼痛"],
+    "tips": "事件10结束自动触发"
+  },
+  {
+    "event_id": 14,
+    "event_name": "事件10",
+    "over": false,
+    "front_event_name_list": ["事件5.3"],
+    "bind_achievement": ["成长的疼痛"],
+    "tips": "事件5.3结束自动触发"
+  },
 ]
