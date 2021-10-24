@@ -3,7 +3,6 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 using Utilities.DesignPatterns;
-using UI;
 
 namespace Iphone.ChatSystem
 {
@@ -52,7 +51,7 @@ namespace Iphone.ChatSystem
             ChatPlayer.Instance.ChatSend += OnChatSend;
             ChatPlayer.Instance.ChatTimeUpdate += OnChatTimeUpdate;
 
-            UI.UIManager.Instance.PhoneChange += OnPhoneChange;
+            GameUI.UIManager.Instance.PhoneChange += OnPhoneChange;
 
             _chatPanelContextMap = new Dictionary<ChatPanelSO, ChatPanelContext>();
             _friendZoneButton.onClick.AddListener(ToFriendZone);
@@ -134,6 +133,7 @@ namespace Iphone.ChatSystem
                 _friendZone.SetActive(false);
                 _chatList.SetActive(true);
                 _friendZoneButton.gameObject.SetActive(true);
+                _descriptionText.text = "聊天";
             }
             else
             {
@@ -157,7 +157,7 @@ namespace Iphone.ChatSystem
 
         private void OnChatSend(ChatPanelSO chatPanelSO, string talk)
         {
-            if (UI.UIManager.Instance.PhoneOn == false && 
+            if (GameUI.UIManager.Instance.PhoneOn == false && 
                 _curChatPanel != null &&
                 _chatPanelContextMap[_curChatPanel].ChatRedDot.activeSelf == false ||
                 _curChatPanel != chatPanelSO &&

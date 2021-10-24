@@ -1,0 +1,28 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a0d7467e57d645acb96dd4b7d564be1c, type: 3}
+  m_Name: DialogueOption2
+  m_EditorClassIdentifier: 
+  _noticeDialogues: []
+  _options:
+  - _description:
+      _characterDialogueStyleSO: {fileID: 11400000, guid: 31307c4f73636ba4ca661f59c78d3c3e, type: 2}
+      _text: "\u4F60\u5E94\u8BE5\u5411\u4F18\u79C0\u7684\u540C\u5B66\u5B66\u4E60"
+      _dialogueEventName: 
+      _continueEventName: 
+    _dialogueDataSO: {fileID: 11400000, guid: 76bbae7d5f2447d418af692274c1a81b, type: 2}
+  - _description:
+      _characterDialogueStyleSO: {fileID: 11400000, guid: 31307c4f73636ba4ca661f59c78d3c3e, type: 2}
+      _text: "\u6211\u67E5\u4E00\u4E0B"
+      _dialogueEventName: 
+      _continueEventName: 
+    _dialogueDataSO: {fileID: 11400000, guid: 8f050a9e7e158a84d9c15ee683ee5ffd, type: 2}

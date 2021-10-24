@@ -1,0 +1,19 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b9916c60578446a1b23c9a4562d975c3, type: 3}
+  m_Name: KeyWordConfigChapter2
+  m_EditorClassIdentifier: 
+  _highLightColor: {r: 1, g: 0.90000004, b: 0, a: 1}
+  _collectedColor: {r: 0.754717, g: 0.754717, b: 0.754717, a: 1}
+  _keywordListSO: {fileID: 11400000, guid: 808cb827039e87642ad55eb9650d1f6f, type: 2}
+  _keywordBackgroundPrefab: {fileID: 6157476503975679952, guid: be2162b6698d10d48a6a25e4ae5a3d58, type: 3}
+  _clickBoxExpandRatio: 0.2

@@ -1,0 +1,18 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1ecc2923908141388ce95c8e7a093154, type: 3}
+  m_Name: ChatPanelListTest
+  m_EditorClassIdentifier: 
+  _chatPanelList:
+  - {fileID: 11400000, guid: 97a6e14d840f32748bd32483b33a37c2, type: 2}
+  - {fileID: 11400000, guid: 2a5a752c948c3c34caa980a1d77836a8, type: 2}
+  - {fileID: 11400000, guid: 04b237a6af10cee49828ebec628c0b43, type: 2}

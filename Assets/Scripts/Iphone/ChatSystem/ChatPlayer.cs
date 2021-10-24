@@ -151,15 +151,18 @@ namespace Iphone.ChatSystem
             {
                 bool listening = true;
                 ChatLineListSO optionTarget = null;
+                string chatEventName = null;
 
                 ChatLine selfChatLine = new ChatLine(_selfChatterSO);
                 
                 void ReceiveOption(SingleOption singleOption)
                 {
+                    listening = false;
                     optionTarget = singleOption.TargetChatLineList;
                     selfChatLine.SetChatText(singleOption.ReplyText);
                     selfChatLine.SetMemePic(singleOption.MemePic);
                     selfChatLine.SetTimeStamp(chatOptionSO.TimeStampInChat, chatOptionSO.TimeStampOverlook);
+                    chatEventName = singleOption.ChatEventName;
                 }
 
                 List<GameObject> optionButtons = new List<GameObject>();
@@ -177,7 +180,6 @@ namespace Iphone.ChatSystem
                     (
                         () =>
                         {
-                            listening = false;
                             ReceiveOption(option);
                         }
                     );
@@ -243,8 +245,8 @@ namespace Iphone.ChatSystem
 
                     ChatSend.Invoke(curChatPanel, selfChatLine.ChatText);
                 }
-                
-                ChatEvent.Invoke(chatOptionSO.ChatEventName);
+
+                ChatEvent.Invoke(chatEventName);
 
                 // 递归开启选项对应的下一段消息（如有）
                 if (optionTarget != null)

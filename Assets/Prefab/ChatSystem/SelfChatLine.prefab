@@ -397,7 +397,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_FontData:
-    m_Font: {fileID: 12800000, guid: f454e8cf5950b0643bf2422feb67cdff, type: 3}
+    m_Font: {fileID: 12800000, guid: 2bbe9a9d1b3ae6f4c9750b56afe01b02, type: 3}
     m_FontSize: 24
     m_FontStyle: 0
     m_BestFit: 0
@@ -464,10 +464,10 @@ RectTransform:
   m_Father: {fileID: 7138531388454896343}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 1, y: 1}
-  m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -117.995, y: -10}
-  m_SizeDelta: {x: 216.01001, y: 126.71}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 118.005, y: -10}
+  m_SizeDelta: {x: 216.01001, y: 129.38}
   m_Pivot: {x: 0.5, y: 1}
 --- !u!222 &7138531387350266740
 CanvasRenderer:
@@ -536,8 +536,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 24
-  m_fontSizeBase: 24
+  m_fontSize: 20
+  m_fontSizeBase: 20
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -712,7 +712,7 @@ RectTransform:
   m_AnchorMin: {x: 1, y: 1}
   m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: -100.000046, y: -25}
-  m_SizeDelta: {x: 236.01, y: 146.70999}
+  m_SizeDelta: {x: 241.01, y: 149.38}
   m_Pivot: {x: 1.0000001, y: 1}
 --- !u!222 &7138531388454896337
 CanvasRenderer:
@@ -735,14 +735,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.61960787, g: 0.9176471, b: 0.4156863, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 0
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 8edb87f8c5c44914dae884ba19301bf8, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 5d11568b34fcf314586169aae653eb1b, type: 3}
   m_Type: 1
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -766,7 +766,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Padding:
     m_Left: 10
-    m_Right: 10
+    m_Right: 15
     m_Top: 10
     m_Bottom: 10
   m_ChildAlignment: 4

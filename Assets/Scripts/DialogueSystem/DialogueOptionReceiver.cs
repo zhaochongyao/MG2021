@@ -10,7 +10,6 @@ using Utilities.DataStructures;
 
 namespace DialogueSystem
 {
-    [RequireComponent(typeof(Image))]
     public sealed class DialogueOptionReceiver : MonoBehaviour, IPointerClickHandler
     {
         private Image _background;

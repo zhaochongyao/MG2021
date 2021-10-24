@@ -13,4 +13,4 @@ MonoBehaviour:
   m_Name: "\u5F20\u8389\u8389"
   m_EditorClassIdentifier: 
   _chatterName: "\u5F20\u8389\u8389"
-  _avatar: {fileID: 10911, guid: 0000000000000000f000000000000000, type: 0}
+  _avatar: {fileID: 21300000, guid: 6feb23bddf970a047b12dd88c844d540, type: 3}

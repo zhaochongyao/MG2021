@@ -1,0 +1,44 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8c420b4d81397be43a77d69e7522e152, type: 3}
+  m_Name: Dialogue3
+  m_EditorClassIdentifier: 
+  _dialogues:
+  - _characterDialogueStyleSO: {fileID: 11400000, guid: afc71c772fb41664eaf6fc0278f13264, type: 2}
+    _text: "\u5F20\u8001\u5E08\uFF0C\u6211\u77E5\u9053\u60A8\u5728"
+    _dialogueEventName: 
+    _continueEventName: 
+  - _characterDialogueStyleSO: {fileID: 11400000, guid: afc71c772fb41664eaf6fc0278f13264, type: 2}
+    _text: "\u8BF7\u95EE\u6211\u53EF\u4EE5\u8FDB\u6765\u627E\u60A8\u804A\u804A\u5417"
+    _dialogueEventName: 
+    _continueEventName: 
+  - _characterDialogueStyleSO: {fileID: 11400000, guid: a460fff044f91df44b11008df50575c5, type: 2}
+    _text: "\u4F60\u8FDB\u6765\u5427"
+    _dialogueEventName: 
+    _continueEventName: 
+  - _characterDialogueStyleSO: {fileID: 11400000, guid: afc71c772fb41664eaf6fc0278f13264, type: 2}
+    _text: "\u5F20\u8001\u5E08\u60A8\u597D"
+    _dialogueEventName: 
+    _continueEventName: 
+  - _characterDialogueStyleSO: {fileID: 11400000, guid: afc71c772fb41664eaf6fc0278f13264, type: 2}
+    _text: "\u8FD9\u6B21\u7684\u5206\u6570\u8FD8\u8BA9\u6211\u633A\u610F\u5916\u7684"
+    _dialogueEventName: 
+    _continueEventName: 
+  - _characterDialogueStyleSO: {fileID: 11400000, guid: a460fff044f91df44b11008df50575c5, type: 2}
+    _text: "\u4F60\u591A\u5C11\u5206\u554A"
+    _dialogueEventName: 
+    _continueEventName: 
+  - _characterDialogueStyleSO: {fileID: 11400000, guid: afc71c772fb41664eaf6fc0278f13264, type: 2}
+    _text: "\u554A\u2026\u6211\u624D71"
+    _dialogueEventName: 
+    _continueEventName: 
+  _dialogueOptionSO: {fileID: 11400000, guid: a03abd5659340ed46980abd65907ca25, type: 2}

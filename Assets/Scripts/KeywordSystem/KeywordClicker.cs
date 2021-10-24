@@ -52,7 +52,7 @@ namespace KeywordSystem
 
             text = _textMeshProUGUI.text;
             
-            bool receiveOptionEvent = parent.GetComponent<DialogueOptionReceiver>() != null;
+            bool receiveOptionEvent = GetComponentInParent<DialogueOptionReceiver>() != null;
             if (receiveOptionEvent)
             {
                 DialoguePlayer.Instance.OptionBegin += OnOptionBegin;

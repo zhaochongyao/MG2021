@@ -1,0 +1,31 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 399a9442778f4733abc16fd89056fca9, type: 3}
+  m_Name: "\u8881\u5C0F\u82B8ChatLineList"
+  m_EditorClassIdentifier: 
+  _chatPanelSO: {fileID: 11400000, guid: 04b237a6af10cee49828ebec628c0b43, type: 2}
+  _chatLineList:
+  - _chatterSO: {fileID: 11400000, guid: 26e08cd0a2d4aaf4cbd5fbb62514f0b9, type: 2}
+    _waitTime: 10
+    _chatText: "\u8001\u5E08\u60A8\u597D"
+    _memePic: {fileID: 0}
+    _timeStampInChat: 
+    _timeStampOverlook: 
+  - _chatterSO: {fileID: 11400000, guid: 26e08cd0a2d4aaf4cbd5fbb62514f0b9, type: 2}
+    _waitTime: 3
+    _chatText: "\u65B9\u4FBF\u53D1\u4E00\u4E0B\u671F\u4E2D\u4F18\u79C0\u793A\u8303\u8BBA\u6587\u5417"
+    _memePic: {fileID: 0}
+    _timeStampInChat: 
+    _timeStampOverlook: 
+  _chatOptionSO: {fileID: 11400000, guid: 6a95574a7a1cc994d90e655563d189f8, type: 2}
+  _chatEventName: 
+  _existedMessage: 0

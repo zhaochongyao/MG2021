@@ -41,8 +41,10 @@ namespace DialogueSystem
 
         public event Action OptionEnd = delegate { };
 
-
+        public event Action<string> DialogueEvent = delegate { };
+        
         private Func<bool> _dialogueContinueCondition;
+        private Func<bool> _defaultContinueCondition;
 
         private int _playingDialogue;
 
@@ -88,13 +90,14 @@ namespace DialogueSystem
             _background = new List<Image>();
             _text = new List<TextMeshProUGUI>();
             _optionReceivers = new List<DialogueOptionReceiver>();
+            _eventNameSet = new HashSet<string>();
 
             _config = GameConfigProxy.Instance.DialogueSystemConfigSO;
-
+            
             _optionSelected = false;
             _playingDialogue = 0;
 
-            _dialogueContinueCondition = () =>
+            _defaultContinueCondition = () =>
                 Input.GetMouseButtonDown(0) && EventSystem.current.IsPointerOverGameObject() == false;
         }
 
@@ -196,7 +199,7 @@ namespace DialogueSystem
         public void SwapCameraCanvas()
         {
             _currentValues.Swap(_backupValues);
-
+            
             _dialogueGroup.transform.SetParent(_currentValues.CameraPanel, false);
             _verticalLayoutGroup.padding.left = _currentValues.LeftPadding;
             _verticalLayoutGroup.padding.right = _currentValues.RightPadding;
@@ -204,7 +207,17 @@ namespace DialogueSystem
             foreach (Image bg in _background)
             {
                 bg.rectTransform.pivot = _currentValues.Pivot;
+
+                // if (_currentValues.CameraPanel == _sceneCameraPanel && bg.rectTransform.localScale.x > 0f)
+                // {
+                //     bg.rectTransform.localScale = new Vector3(-1f, 1f, 1f);
+                // }
+                // else if (_currentValues.CameraPanel == _localCameraPanel && bg.rectTransform.localScale.x < 0f)
+                // {
+                //     bg.rectTransform.localScale = new Vector3(1f, 1f, 1f);
+                // }
             }
+            
         }
 
         private IEnumerator DialogueControlFlowCo()
@@ -229,6 +242,18 @@ namespace DialogueSystem
                 }
             }
         }
+        
+        private HashSet<string> _eventNameSet;
+
+        private bool Check(string eventName)
+        {
+            return _eventNameSet.Contains(eventName);
+        }
+
+        public void InvokeContinueEvent(string eventName)
+        {
+            _eventNameSet.Add(eventName);
+        }
 
         private IEnumerator DialogueGroupDisplayCo(Dialogue[] dialogues)
         {
@@ -238,6 +263,11 @@ namespace DialogueSystem
                 Dialogue dialogue = dialogues[i];
                 StartCoroutine(DialogueLineDisplayCo(curLine, dialogue));
                 yield return WaitCache.Seconds(_config.DialogueContinueDisplayInterval);
+
+                _dialogueContinueCondition = 
+                    string.IsNullOrEmpty(dialogue.ContinueEventName) ?
+                    _defaultContinueCondition : 
+                    () => Check(dialogue.ContinueEventName);
 
                 // 等待按下按键
                 while (true)
@@ -272,7 +302,6 @@ namespace DialogueSystem
             }
 
             _optionSelected = false;
-
             OptionBegin.Invoke();
             foreach (SingleOption option in dialogueOptionSO.Options)
             {
@@ -358,6 +387,10 @@ namespace DialogueSystem
             yield return WaitCache.Seconds(_config.TextShowTime);
             TextShowEnd.Invoke(dialogueIndex);
 
+            if (string.IsNullOrEmpty(dialogue.DialogueEventName))
+            {
+                DialogueEvent.Invoke(dialogue.DialogueEventName);
+            }
             _playingDialogue--;
         }
 
@@ -391,13 +424,13 @@ namespace DialogueSystem
             _dialogueQueue.Enqueue(dialogueDataSO);
         }
 
-        /// <summary>
-        /// 设置对话继续播放的条件，默认为按下任意键继续
-        /// </summary>
-        /// <param name="condition"> 判定条件 </param>
-        public void SetDialogueContinueCondition(Func<bool> condition)
-        {
-            _dialogueContinueCondition = condition;
-        }
+        // /// <summary>
+        // /// 设置对话继续播放的条件，默认为按下任意键继续
+        // /// </summary>
+        // /// <param name="condition"> 判定条件 </param>
+        // public void SetDialogueContinueCondition(Func<bool> condition)
+        // {
+        //     _dialogueContinueCondition = condition;
+        // }
     }
 }
