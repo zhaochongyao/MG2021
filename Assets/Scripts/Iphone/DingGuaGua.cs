@@ -46,11 +46,7 @@ namespace Iphone
         [SerializeField] private TextMeshProUGUI _femaleText;
 
         [SerializeField] private Slider _ageSlider;
-        // [SerializeField] private Sprite _unselectedSlider;
-        // [SerializeField] private Image _sliderBackground;
-        // [SerializeField] private GameObject _sliderFill;
-        // [SerializeField] private GameObject _sliderToggle;
-        
+
         [SerializeField] private TextMeshProUGUI _ageText;
         [SerializeField] private TextMeshProUGUI _ageNumText;
 
@@ -210,6 +206,28 @@ namespace Iphone
             }
 
             DeleteMergeTry();
+        }
+
+        public void AddBackground(string text)
+        {
+            _keywordCollector.Collect(text);
+
+            // 是否为背景
+            for (int i = 0; i < _iphoneConfigSO.ClientBackgrounds.Length; ++i)
+            {
+                string background = _iphoneConfigSO.ClientBackgrounds[i];
+                if (text == background)
+                {
+                    _backgroundTexts[i].text = background;
+                    _backgroundTexts[i].transform.parent.GetChild(0)
+                        .GetComponent<Image>().sprite = _backgroundUnlockImage;
+                    _backgroundTexts[i].transform.parent.GetChild(0)
+                        .GetComponentInChildren<TextMeshProUGUI>().text = (i + 1).ToString();
+                    UpdateBackgroundProgress();
+
+                    break;
+                }
+            }
         }
 
         private IEnumerator ShowMergeResultCo(string res)

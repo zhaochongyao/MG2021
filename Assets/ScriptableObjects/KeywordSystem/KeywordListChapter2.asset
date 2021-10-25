@@ -12,5 +12,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 65acec729b76446ca067922ffd67a6d9, type: 3}
   m_Name: KeywordListChapter2
   m_EditorClassIdentifier: 
-  _keywordList: []
-  _mergeOnlyKeywordList: []
+  _keywordList:
+  - "\u5F20\u8389\u8389"
+  - "\u5973"
+  - 31
+  - "\u5927\u5B66\u8BB2\u5E08"
+  - "\u4E1C\u6E56\u5927\u5B66"
+  _mergeOnlyKeywordList:
+  - _keyword: "\u4E0E\u5B66\u751F\u4E4B\u95F4\u5B58\u5728\u77DB\u76FE"
+    _dependency:
+    - "\u4E0E\u5B66\u751F\u4E4B\u95F4\u5B58\u5728\u77DB\u76FE"
+  - _keyword: "\u6559\u5B66\u4E8B\u6545"
+    _dependency:
+    - "\u6559\u5B66\u4E8B\u6545"

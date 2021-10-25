@@ -272,6 +272,10 @@ namespace DialogueSystem
                 // 等待按下按键
                 while (true)
                 {
+                    if (dialogue.ContinueEventName != "")
+                    {
+                        Debug.Log(_dialogueContinueCondition.Invoke() + " " + dialogue.ContinueEventName);
+                    }
                     yield return null; // 顺序不能换
                     if (_dialogueContinueCondition.Invoke())
                     {

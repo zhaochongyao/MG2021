@@ -23,8 +23,8 @@ MonoBehaviour:
     _continueEventName: 
   - _characterDialogueStyleSO: {fileID: 11400000, guid: a460fff044f91df44b11008df50575c5, type: 2}
     _text: "\u4F60\u8FDB\u6765\u5427"
-    _dialogueEventName: 
-    _continueEventName: 
+    _dialogueEventName: "\u8881\u5C0F\u82B8\u8FDB\u95E8\u5F00\u59CB"
+    _continueEventName: "\u8881\u5C0F\u82B8\u8FDB\u95E8\u5B8C\u6BD5"
   - _characterDialogueStyleSO: {fileID: 11400000, guid: afc71c772fb41664eaf6fc0278f13264, type: 2}
     _text: "\u5F20\u8001\u5E08\u60A8\u597D"
     _dialogueEventName: 

@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using DG.Tweening;
 using DialogueSystem;
 using GameUI;
 using Iphone;
@@ -12,6 +13,13 @@ namespace StoryLine
 {
     public class ChapterTwo : LSingleton<ChapterTwo>
     {
+        [SerializeField] private GameObject _yuanXiaoYunTalker;
+        [SerializeField] private GameObject _xiZhuRenTalker;
+        
+        [SerializeField] private float _maxMoveDistance;
+        [SerializeField] private Ease _moveCurve;
+        [SerializeField] private float _moveTime;
+        
         [SerializeField] private float _dingGuaGuaNoticeDelay;
         [SerializeField] private GameObject _dingGuaGuaNotice;
         [SerializeField] private float _dingGuaGuaNoticeStay;
@@ -45,11 +53,11 @@ namespace StoryLine
         [SerializeField] private float _happyEndDialogueDelay;
         [SerializeField] private DialogueDataSO _happyEndDialogue;
 
-        [SerializeField] private float _badEndDialogueDelay;
         [Header("今晚朋友圈热闹非凡")] [SerializeField] private DialogueDataSO _badEndDialogue;
+        [SerializeField] private float _badEndDialogueDelay;
 
-        [SerializeField] private float _normalEndDialogueDelay;
         [Header("成长的疼痛")] [SerializeField] private DialogueDataSO _normalEndDialogue;
+        [SerializeField] private float _normalEndDialogueDelay;
 
         private void Start()
         {
@@ -61,6 +69,24 @@ namespace StoryLine
             UnlockInterface.Instance.PhoneUnlock += OnPhoneUnlock;
 
             SelfTalkManager.Instance.SelfTalkEnd += OnSelfTalkEnd;
+
+            // StartCoroutine(TalkerInCo(_yuanXiaoYunTalker));
+        }
+
+        private IEnumerator TalkerInCo(GameObject talker)
+        {
+            // yield return talker.GetComponent<RectTransform>()
+                // .DOMoveY(talker)
+            yield return talker.transform
+                .DOMoveY(talker.transform.position.y + _maxMoveDistance, _moveTime)
+                .SetEase(_moveCurve).WaitForCompletion();
+        }
+
+        private IEnumerator TalkerOutCo(GameObject talker)
+        {
+            yield return talker.transform
+                .DOMoveY(talker.transform.position.y - _maxMoveDistance, _moveTime)
+                .SetEase(_moveCurve).WaitForCompletion();
         }
 
         private void OnChatEventSend(string eventName)
@@ -88,6 +114,7 @@ namespace StoryLine
                 {
                     // 系主任
                     yield return WaitCache.Seconds(_xiZhuRenDialogueDelay);
+                    yield return StartCoroutine(TalkerInCo(_xiZhuRenTalker));
                     DialoguePlayer.Instance.SendDialogue(_xiZhuRenDialogue);
                 } 
                 else if (_eventMark.Contains("C2输错成绩"))
@@ -122,18 +149,29 @@ namespace StoryLine
             
             Debug.LogWarning(eventName);
 
-            if (eventName == "袁小芸结束")
+            if (eventName == "袁小芸进门开始")
             {
+                StartCoroutine(TalkerInCo(_yuanXiaoYunTalker));
+                WaitCache.Delayed(() =>
+                {
+                    DialogueEventInvoker.Instance.InvokeContinueEvent("袁小芸进门完毕");
+                }, _moveTime);
+            }
+            else if (eventName == "袁小芸结束")
+            {
+                StartCoroutine(TalkerOutCo(_yuanXiaoYunTalker));
                 WaitCache.Delayed(() =>
                 {
                     SelfTalkManager.Instance.PlaySelfTalk(_selfTalkAfterYuanXiaoYun, _selfTalkAfterYuanXiaoYunStay);
                 }, _selfTalkAfterYuanXiaoYunDelay);
             }
-            
+
             if (eventName.StartsWith("C2"))
             {
                 if (eventName == "C2系主任")
                 {
+                    StartCoroutine(TalkerOutCo(_xiZhuRenTalker));
+
                     // 5
                     if (_eventMark.Contains("C2逃避错误"))
                     {
@@ -171,7 +209,7 @@ namespace StoryLine
 
         private IEnumerator ToSecondDayCo()
         {
-            yield return null;
+            yield return WaitCache.Seconds(_toSecondDayDelay);
         }
 
         private void OnPhoneUnlock()
@@ -214,28 +252,27 @@ namespace StoryLine
 
         private void OnNicePaperFound()
         {
+            StartCoroutine(OnNicePaperFoundCo());
+        }
+
+        private IEnumerator OnNicePaperFoundCo()
+        {
             // 内心独白
-            WaitCache.Delayed(() =>
-            {
-                SelfTalkManager.Instance.PlaySelfTalk(_selfTalkPaperFound[0], _selfTalkPaperFoundStay[0]);
-            }, _selfTalkPaperFoundDelay);
+            yield return WaitCache.Seconds(_selfTalkPaperFoundDelay);
+            SelfTalkManager.Instance.PlaySelfTalk(_selfTalkPaperFound[0], _selfTalkPaperFoundStay[0]);
 
-            float pre = SelfTalkManager.Instance.FadeInTime + SelfTalkManager.Instance.FadeOutTime +
-                        _selfTalkPaperFoundStay[0] + _selfTalkPaperFoundDelay;
-
-            WaitCache.Delayed(() =>
-            {
-                SelfTalkManager.Instance.PlaySelfTalk(_selfTalkPaperFound[1], _selfTalkPaperFoundStay[1]);
-            }, pre + _selfTalkPaperFoundDelay);
-
-            pre += SelfTalkManager.Instance.FadeInTime + SelfTalkManager.Instance.FadeOutTime +
-                   _selfTalkPaperFoundStay[1] + _selfTalkPaperFoundDelay;
+            yield return WaitCache.Seconds(SelfTalkManager.Instance.FadeInTime + 
+                                           SelfTalkManager.Instance.FadeOutTime +
+                                           _selfTalkPaperFoundStay[0] +
+                                           _selfTalkPaperFoundDelay);
             
-            // 袁小芸敲门
-            WaitCache.Delayed(() =>
-            {
-                DialoguePlayer.Instance.SendDialogue(_yuanXiaoYunDialogue);
-            }, pre + _yuanXiaoYunDialogueDelay);
+            SelfTalkManager.Instance.PlaySelfTalk(_selfTalkPaperFound[1], _selfTalkPaperFoundStay[1]);
+
+            yield return WaitCache.Seconds(SelfTalkManager.Instance.FadeInTime +
+                                           SelfTalkManager.Instance.FadeOutTime +
+                                           _selfTalkPaperFoundStay[1]);
+            yield return WaitCache.Seconds(_yuanXiaoYunDialogueDelay);
+            DialoguePlayer.Instance.SendDialogue(_yuanXiaoYunDialogue);
         }
     }
 }
