@@ -1,0 +1,61 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 399a9442778f4733abc16fd89056fca9, type: 3}
+  m_Name: "\u73ED\u7EA7\u7FA4ChatLinePre1"
+  m_EditorClassIdentifier: 
+  _chatPanelSO: {fileID: 11400000, guid: 152b156eae818c04a88f255eedebd90f, type: 2}
+  _chatLineList:
+  - _chatterSO: {fileID: 11400000, guid: 23d99e3fa1757094aa95be7b4e89e3d6, type: 2}
+    _waitTime: 0
+    _chatText: "\u8FD9\u6B21\u4F5C\u4E1A\u674E\u534E\u3001\u65B9\u5B50\u6587\u8868\u73B0\u4F18\u79C0"
+    _memePic: {fileID: 0}
+    _timeStampInChat: "2021\u5E742\u67083\u65E5"
+    _timeStampOverlook: "2021\u5E742\u67083\u65E5"
+  - _chatterSO: {fileID: 11400000, guid: 23d99e3fa1757094aa95be7b4e89e3d6, type: 2}
+    _waitTime: 0
+    _chatText: "\u5206\u522B\u4E3A\u7B2C\u4E00\u540D\u548C\u7B2C\u4E8C\u540D"
+    _memePic: {fileID: 0}
+    _timeStampInChat: 
+    _timeStampOverlook: 
+  - _chatterSO: {fileID: 11400000, guid: 23d99e3fa1757094aa95be7b4e89e3d6, type: 2}
+    _waitTime: 0
+    _chatText: "\u503C\u5F97\u5927\u5BB6\u5B66\u4E60"
+    _memePic: {fileID: 0}
+    _timeStampInChat: 
+    _timeStampOverlook: 
+  - _chatterSO: {fileID: 11400000, guid: 23d99e3fa1757094aa95be7b4e89e3d6, type: 2}
+    _waitTime: 0
+    _chatText: "\u503C\u5F97\u5927\u5BB6\u5B66\u4E60"
+    _memePic: {fileID: 0}
+    _timeStampInChat: 
+    _timeStampOverlook: 
+  - _chatterSO: {fileID: 11400000, guid: 7a97f5ba403491a43a062478d21bbd72, type: 2}
+    _waitTime: 0
+    _chatText: "\u6536\u5230"
+    _memePic: {fileID: 0}
+    _timeStampInChat: 
+    _timeStampOverlook: 
+  - _chatterSO: {fileID: 11400000, guid: f07906a7e55558941914526104a8690b, type: 2}
+    _waitTime: 0
+    _chatText: "\u6536\u5230"
+    _memePic: {fileID: 0}
+    _timeStampInChat: 
+    _timeStampOverlook: 
+  - _chatterSO: {fileID: 11400000, guid: 26e08cd0a2d4aaf4cbd5fbb62514f0b9, type: 2}
+    _waitTime: 0
+    _chatText: "\u6536\u5230"
+    _memePic: {fileID: 0}
+    _timeStampInChat: 
+    _timeStampOverlook: 
+  _chatOptionSO: {fileID: 0}
+  _chatEventName: 
+  _existedMessage: 1

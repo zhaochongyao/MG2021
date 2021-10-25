@@ -1,0 +1,52 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8c420b4d81397be43a77d69e7522e152, type: 3}
+  m_Name: Dialogue
+  m_EditorClassIdentifier: 
+  _dialogues:
+  - _characterDialogueStyleSO: {fileID: 11400000, guid: a460fff044f91df44b11008df50575c5, type: 2}
+    _text: "\u4ECA\u5929\u7684\u8BFE\u7A0B\u7ED3\u675F\u4E86\uFF0C\u4E0B\u8BFE\u524D\u6211\u8FD8\u60F3\u548C\u5927\u5BB6\u804A\u804A\u671F\u4E2D\u4F5C\u4E1A\u7684\u4E8B"
+    _dialogueEventName: 
+    _continueEventName: 
+  - _characterDialogueStyleSO: {fileID: 11400000, guid: a460fff044f91df44b11008df50575c5, type: 2}
+    _text: "\u6709\u4E2A\u522B\u540C\u5B66\u5BF9\u6210\u7EE9\u5F88\u4E0D\u6EE1\u610F"
+    _dialogueEventName: 
+    _continueEventName: 
+  - _characterDialogueStyleSO: {fileID: 11400000, guid: a460fff044f91df44b11008df50575c5, type: 2}
+    _text: "\u6211\u786E\u5B9E\u6709\u4E00\u4E9B\u4E0D\u59A5\u5F53\u7684\u5904\u7406"
+    _dialogueEventName: 
+    _continueEventName: 
+  - _characterDialogueStyleSO: {fileID: 11400000, guid: a460fff044f91df44b11008df50575c5, type: 2}
+    _text: "\u5728\u8FD9\u91CC\u6211\u90D1\u91CD\u7684\u9053\u6B49"
+    _dialogueEventName: 
+    _continueEventName: 
+  - _characterDialogueStyleSO: {fileID: 11400000, guid: a460fff044f91df44b11008df50575c5, type: 2}
+    _text: "\u4E4B\u540E\u7684\u4F5C\u4E1A\uFF0C\u6211\u4F1A\u8BBE\u7F6E\u5B57\u6570\u4E0A\u9650\u548C\u4E0B\u9650\uFF0C\u8BC4\u5206\u6807\u51C6\u5728\u8D28\u91CF\u4E0D\u5728\u6570\u91CF"
+    _dialogueEventName: 
+    _continueEventName: 
+  - _characterDialogueStyleSO: {fileID: 11400000, guid: a460fff044f91df44b11008df50575c5, type: 2}
+    _text: "\u6211\u76F8\u4FE1\uFF0C\u629B\u5F00\u7EE9\u70B9\u2026\u2026\u4F60\u4EEC\u7684\u672A\u6765\u4E5F\u5341\u5206\u5149\u660E"
+    _dialogueEventName: 
+    _continueEventName: 
+  - _characterDialogueStyleSO: {fileID: 11400000, guid: a460fff044f91df44b11008df50575c5, type: 2}
+    _text: "\u4E0B\u8BFE\u5427"
+    _dialogueEventName: 
+    _continueEventName: 
+  - _characterDialogueStyleSO: {fileID: 11400000, guid: a460fff044f91df44b11008df50575c5, type: 2}
+    _text: "\u674E\u534E\uFF0C\u4F60\u6765\u4E00\u4E0B"
+    _dialogueEventName: 
+    _continueEventName: 
+  - _characterDialogueStyleSO: {fileID: 11400000, guid: 0795c7fc7b3640649b4f17d0b51c6c98, type: 2}
+    _text: "\u8001\u5E08\u674E\u534E\u4E0D\u5728"
+    _dialogueEventName: 
+    _continueEventName: 
+  _dialogueOptionSO: {fileID: 0}

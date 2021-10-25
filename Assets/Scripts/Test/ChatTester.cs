@@ -1,4 +1,5 @@
-﻿using Iphone.ChatSystem;
+﻿using GameUI;
+using Iphone.ChatSystem;
 using UnityEngine;
 
 namespace Test
@@ -17,6 +18,12 @@ namespace Test
             if (Input.GetKeyDown(KeyCode.G))
             {
                 ChatPlayer.Instance.SendChat(_groupTest);
+            }
+
+            if (Input.GetKeyDown(KeyCode.R))
+            {
+                SelfTalkManager.Instance.PlaySelfTalk(
+                    "得了ICPC金牌真的好爽啊！嘿嘿", 2f);  
             }
         }
     }

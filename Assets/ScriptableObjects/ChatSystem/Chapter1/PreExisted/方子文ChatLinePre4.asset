@@ -1,0 +1,25 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 399a9442778f4733abc16fd89056fca9, type: 3}
+  m_Name: "\u65B9\u5B50\u6587ChatLinePre4"
+  m_EditorClassIdentifier: 
+  _chatPanelSO: {fileID: 11400000, guid: 97a6e14d840f32748bd32483b33a37c2, type: 2}
+  _chatLineList:
+  - _chatterSO: {fileID: 11400000, guid: d494288fea2234441b2b1ad2c92620a2, type: 2}
+    _waitTime: 0
+    _chatText: "\u4F60\u4E00\u76F4\u7B2C\u4E00\uFF0C\u5F53\u7136\u4F53\u4F1A\u4E0D\u4E86\u4E86"
+    _memePic: {fileID: 0}
+    _timeStampInChat: 
+    _timeStampOverlook: 
+  _chatOptionSO: {fileID: 11400000, guid: d0725f60421f317489b4e10a00d5aaf1, type: 2}
+  _chatEventName: 
+  _existedMessage: 1

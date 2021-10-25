@@ -25,7 +25,7 @@ MonoBehaviour:
   _dialoguePanelFadeOutTime: 0.4
   _dialoguePanelFadeOutCurve: 4
   _dialogueLinePrefab: {fileID: 3621177419281274919, guid: 96571b8add4c7f4458b0f4e5dbccb427, type: 3}
-  _dialogueLayoutTopPadding: 100
-  _dialogueLayoutHorizontalPadding: 100
-  _dialogueLayoutBottomPadding: 50
+  _dialogueLayoutTopPadding: 150
+  _dialogueLayoutHorizontalPadding: 80
+  _dialogueLayoutBottomPadding: 120
   _dialogueLayoutSpacing: 40

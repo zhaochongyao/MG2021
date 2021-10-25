@@ -1,0 +1,27 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3da74b56fed744ecace2cb2be97852e2, type: 3}
+  m_Name: "\u8881\u5C0F\u82B8ChatOption"
+  m_EditorClassIdentifier: 
+  _options:
+  - _optionText: "\u4E0D\u56DE\u590D\u4E86\uFF0C\u8FD9\u5E2E\u5B66\u751F\u771F\u8BA9\u4EBA\u5934\u5927"
+    _targetChatLineList: {fileID: 0}
+    _replyText: 
+    _memePic: {fileID: 0}
+    _chatEventName: "C2\u4E0D\u56DE\u590D\u4E86"
+  - _optionText: "\u884C\u5427\uFF0C\u4F60\u7B49\u4E00\u4F1A\u987A\u4FBF\u53D1\u7ED9\u9700\u8981\u7684\u540C\u5B66"
+    _targetChatLineList: {fileID: 0}
+    _replyText: "\u884C\u5427\uFF0C\u4F60\u7B49\u4E00\u4F1A\u987A\u4FBF\u53D1\u7ED9\u9700\u8981\u7684\u540C\u5B66"
+    _memePic: {fileID: 0}
+    _chatEventName: "C2\u5BFB\u627E\u8BBA\u6587"
+  _timeStampInChat: 
+  _timeStampOverlook: 
