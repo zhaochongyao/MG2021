@@ -13,8 +13,6 @@ namespace GameUI
         {
             _normal = GetComponent<Image>();
             _selected = transform.GetChild(0).GetComponent<Image>();
-            Debug.Log(_normal);
-            Debug.LogError(_selected);
             _normal.color = Color.white;
             _selected.color = Color.clear;
         }

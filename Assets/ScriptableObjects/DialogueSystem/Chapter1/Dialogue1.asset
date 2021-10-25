@@ -15,14 +15,18 @@ MonoBehaviour:
   _dialogues:
   - _characterDialogueStyleSO: {fileID: 11400000, guid: 20adf1ad6d04e544c80dddc692b8f388, type: 2}
     _text: "\u8FD9\u662F\u2026\u2026"
+    _dialogueEventName: 
     _continueEventName: 
   - _characterDialogueStyleSO: {fileID: 11400000, guid: 20adf1ad6d04e544c80dddc692b8f388, type: 2}
-    _text: "\u5F00\u59CB\u4E86\u5417\uFF1F"
+    _text: "\u5F00\u59CB\u4E86\u5417"
+    _dialogueEventName: 
     _continueEventName: 
   - _characterDialogueStyleSO: {fileID: 11400000, guid: 20adf1ad6d04e544c80dddc692b8f388, type: 2}
-    _text: "\u5BA2\u6237\u8D44\u6599\u6CA1\u6709\u5BF9\u63A5\uFF01"
+    _text: "\u5BA2\u6237\u8D44\u6599\u6CA1\u6709\u5BF9\u63A5"
+    _dialogueEventName: 
     _continueEventName: 
   - _characterDialogueStyleSO: {fileID: 11400000, guid: 20adf1ad6d04e544c80dddc692b8f388, type: 2}
     _text: "\u7B2C\u4E00\u5355\u5C31\u9047\u5230\u5927\u9EBB\u70E6\u4E86\u2026\u2026"
+    _dialogueEventName: "\u521D\u59CB\u5BF9\u8BDD\u7ED3\u675F"
     _continueEventName: 
   _dialogueOptionSO: {fileID: 0}

@@ -12,8 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 65acec729b76446ca067922ffd67a6d9, type: 3}
   m_Name: KeywordListChapter2
   m_EditorClassIdentifier: 
-  _keywordList:
-  - 
-  _mergeOnlyKeywordList:
-  - _keyword: 
-    _dependency: []
+  _keywordList: []
+  _mergeOnlyKeywordList: []

@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 using Utilities.DesignPatterns;
@@ -18,6 +19,8 @@ namespace Iphone
         private int _curInterface;
 
         private List<CanvasGroup> _allInterface;
+
+        public event Action WeChatOpen = delegate { };
         
         private void Start()
         {
@@ -49,7 +52,11 @@ namespace Iphone
 
         public void ToUnlockInterface() => SwitchInterface(1);
 
-        public void ToWeChat() => SwitchInterface(2);
+        public void ToWeChat()
+        {
+            WeChatOpen.Invoke();
+            SwitchInterface(2);
+        }
 
         public void ToDingGuaGua() => SwitchInterface(3);
 

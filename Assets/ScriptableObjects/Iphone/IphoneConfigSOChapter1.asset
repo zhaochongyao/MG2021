@@ -39,3 +39,4 @@ MonoBehaviour:
   - _thumbnail: {fileID: 21300000, guid: 6feb23bddf970a047b12dd88c844d540, type: 3}
     _picture: {fileID: 21300000, guid: 6feb23bddf970a047b12dd88c844d540, type: 3}
     _date: "2000\u5E7410\u670824\u65E5"
+  _preExistedChatSO: {fileID: 11400000, guid: 49777f44f0845d94a8e62458c07d4642, type: 2}

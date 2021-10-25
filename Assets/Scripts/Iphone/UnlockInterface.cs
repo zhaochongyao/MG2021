@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.IO;
 using System.Text;
 using DG.Tweening;
@@ -27,6 +28,8 @@ namespace Iphone
         private StringBuilder _curInput;
 
         private GameObject[] _passwordDots;
+
+        public event Action PhoneUnlock = delegate { };
 
         private void Start()
         {
@@ -72,6 +75,7 @@ namespace Iphone
                 if (_curInput.ToString() == _password)
                 {
                     Unlock();
+                    PhoneUnlock.Invoke();
                 }
                 else
                 {

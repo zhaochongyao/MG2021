@@ -24,9 +24,11 @@ MonoBehaviour:
       _dialogueEventName: 
       _continueEventName: 
     _dialogueDataSO: {fileID: 11400000, guid: 3a96340b8032ec740869c4cdd9e40291, type: 2}
+    _dialogueEventNameOption: "C2\u627F\u8BA4\u9519\u8BEF"
   - _description:
       _characterDialogueStyleSO: {fileID: 11400000, guid: 31307c4f73636ba4ca661f59c78d3c3e, type: 2}
       _text: "\u60A8\u4E5F\u77E5\u9053\uFF0C\u4ED6\u4EEC\u559C\u6B22\u627E\u501F\u53E3"
       _dialogueEventName: 
       _continueEventName: 
     _dialogueDataSO: {fileID: 11400000, guid: a40b874bbc5ddc649a07e131d1990fea, type: 2}
+    _dialogueEventNameOption: "C2\u9003\u907F\u9519\u8BEF"

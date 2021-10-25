@@ -15,14 +15,18 @@ MonoBehaviour:
   _dialogues:
   - _characterDialogueStyleSO: {fileID: 11400000, guid: afc71c772fb41664eaf6fc0278f13264, type: 2}
     _text: "\u554A\uFF0C\u90A3\u600E\u4E48\u529E"
+    _dialogueEventName: 
     _continueEventName: 
   - _characterDialogueStyleSO: {fileID: 11400000, guid: a460fff044f91df44b11008df50575c5, type: 2}
     _text: "\u4F60\u653E\u5FC3\u6211\u4F1A\u7ED9\u4F60\u5904\u7406\u597D\u7684"
+    _dialogueEventName: 
     _continueEventName: 
   - _characterDialogueStyleSO: {fileID: 11400000, guid: a460fff044f91df44b11008df50575c5, type: 2}
     _text: "\u53BB\u5FD9\u5427\uFF0C\u6709\u6D88\u606F\u518D\u8054\u7CFB\u4F60"
+    _dialogueEventName: 
     _continueEventName: 
   - _characterDialogueStyleSO: {fileID: 11400000, guid: afc71c772fb41664eaf6fc0278f13264, type: 2}
     _text: "\u597D\u2026\u2026\u597D\u7684"
+    _dialogueEventName: "\u8881\u5C0F\u82B8\u7ED3\u675F"
     _continueEventName: 
   _dialogueOptionSO: {fileID: 0}

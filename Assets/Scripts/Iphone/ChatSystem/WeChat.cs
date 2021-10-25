@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -50,6 +51,8 @@ namespace Iphone.ChatSystem
 
         public Dictionary<ChatPanelSO, ChatPanelContext> ChatPanelContextMap => _chatPanelContextMap;
 
+        public event Action FriendZoneEnter = delegate { };
+        
         private void Start()
         {
             ChatPlayer.Instance.ChatSend += OnChatSend;
@@ -158,6 +161,8 @@ namespace Iphone.ChatSystem
 
         private void ToFriendZone()
         {
+            FriendZoneEnter.Invoke();
+            
             _friendZoneButton.gameObject.SetActive(false);
             _chatList.SetActive(false);
             _friendZone.SetActive(true);
@@ -165,7 +170,7 @@ namespace Iphone.ChatSystem
             _topIcon.sprite = _friendZoneIcon;
         }
 
-        private void OnChatSend(ChatPanelSO chatPanelSO, string talk)
+        private void OnChatSend(ChatPanelSO chatPanelSO, string talk, bool existed)
         {
             if (GameUI.UIManager.Instance.PhoneOn == false && 
                 _curChatPanel != null &&
@@ -173,7 +178,10 @@ namespace Iphone.ChatSystem
                 _curChatPanel != chatPanelSO &&
                 _chatPanelContextMap[chatPanelSO].ChatRedDot.activeSelf == false)
             {
-                RedDotManager.Instance.ShowRedDot(_chatPanelContextMap[chatPanelSO].ChatRedDot);
+                if (existed == false)
+                {
+                    RedDotManager.Instance.ShowRedDot(_chatPanelContextMap[chatPanelSO].ChatRedDot);
+                }
             }
 
             _chatPanelContextMap[chatPanelSO].LastTalkText.text = talk;

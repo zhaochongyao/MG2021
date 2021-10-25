@@ -17,15 +17,21 @@ MonoBehaviour:
   - _description:
       _characterDialogueStyleSO: {fileID: 11400000, guid: 31307c4f73636ba4ca661f59c78d3c3e, type: 2}
       _text: "\u554A\uFF0C\u662F\u6211\u7ED9\u4F60\u5728\u7CFB\u7EDF\u8F93\u9519\u4E86"
+      _dialogueEventName: 
       _continueEventName: 
     _dialogueDataSO: {fileID: 11400000, guid: c56191483b5d7a94193098e6d5351c82, type: 2}
+    _dialogueEventNameOption: "C2\u8F93\u9519\u6210\u7EE9"
   - _description:
       _characterDialogueStyleSO: {fileID: 11400000, guid: 31307c4f73636ba4ca661f59c78d3c3e, type: 2}
       _text: "\u786E\u5B9E\u662F71\u5206"
+      _dialogueEventName: 
       _continueEventName: 
     _dialogueDataSO: {fileID: 11400000, guid: 65fa2dd6f6906eb488c0644213ac8703, type: 2}
+    _dialogueEventNameOption: "C2\u5411\u674E\u534E\u5B66\u4E60"
   - _description:
       _characterDialogueStyleSO: {fileID: 11400000, guid: 31307c4f73636ba4ca661f59c78d3c3e, type: 2}
       _text: "\u662F\u7CFB\u7EDF\u51FA\u9519\u4E86"
+      _dialogueEventName: 
       _continueEventName: 
     _dialogueDataSO: {fileID: 11400000, guid: c56191483b5d7a94193098e6d5351c82, type: 2}
+    _dialogueEventNameOption: "C2\u8F93\u9519\u6210\u7EE9"

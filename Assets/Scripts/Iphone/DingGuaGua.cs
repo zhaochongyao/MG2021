@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using KeywordSystem;
 using Singletons;
@@ -89,6 +90,7 @@ namespace Iphone
         [SerializeField] private GameObject _clientDataRedDot;
         [SerializeField] private GameObject _memorandumRedDot;
 
+        public event Action DataCollected = delegate { }; 
         
         private void Start()
         {
@@ -164,6 +166,10 @@ namespace Iphone
             
             _collectedBackground++;
             _clientBackgroundProgressBar.fillAmount = (float) _collectedBackground / _maxBackground;
+            if (_collectedBackground == _maxBackground)
+            {
+                DataCollected.Invoke();
+            }
         }
 
         private void UpdateKeywordCollectProgress()

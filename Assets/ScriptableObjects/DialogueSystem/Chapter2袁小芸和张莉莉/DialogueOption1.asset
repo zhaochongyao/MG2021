@@ -17,10 +17,12 @@ MonoBehaviour:
   - _description:
       _characterDialogueStyleSO: {fileID: 11400000, guid: 31307c4f73636ba4ca661f59c78d3c3e, type: 2}
       _text: "\u8BF7\u8FDB"
+      _dialogueEventName: 
       _continueEventName: 
     _dialogueDataSO: {fileID: 11400000, guid: 2f8584e3b20416e4ea78cbf6718a174e, type: 2}
   - _description:
       _characterDialogueStyleSO: {fileID: 11400000, guid: 31307c4f73636ba4ca661f59c78d3c3e, type: 2}
       _text: "\u65E0\u89C6"
+      _dialogueEventName: 
       _continueEventName: 
     _dialogueDataSO: {fileID: 11400000, guid: eff5fa37d8dcb584c9409a644929874d, type: 2}

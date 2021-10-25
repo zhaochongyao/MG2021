@@ -25,6 +25,7 @@ namespace Iphone
         
         [SerializeField] private ThumbnailPictureItem[] _thumbnailPictureItems;
 
+        [SerializeField] private PreExistedChatSO _preExistedChatSO;
         
         public string Password => _password;
 
@@ -43,5 +44,7 @@ namespace Iphone
         public float MaxMemePicWidth => _maxMemePicWidth;
         
         public ThumbnailPictureItem[] ThumbnailPictureItems => _thumbnailPictureItems;
+        
+        public PreExistedChatSO PreExistedChatSO => _preExistedChatSO;
     }
 }

@@ -330,13 +330,18 @@ namespace DialogueSystem
         private IEnumerator ActivateOption(int curLine, SingleOption option)
         {
             yield return StartCoroutine(DialogueLineDisplayCo(curLine, option.Description));
-            _optionReceivers[curLine].OptionUpdate(option.DialogueDataSO);
+            _optionReceivers[curLine].OptionUpdate(option.DialogueDataSO, option.DialogueEventNameOption);
         }
 
-        private void OnReceiveClick(DialogueDataSO dialogueDataSO)
+        private void OnReceiveClick(DialogueDataSO dialogueDataSO, string eventName)
         {
             _optionSelected = true;
             _dialogueQueue.Enqueue(dialogueDataSO);
+            
+            if (string.IsNullOrEmpty(eventName) == false)
+            {
+                DialogueEvent.Invoke(eventName);
+            }
         }
 
         private IEnumerator DialogueLineDisplayCo(int dialogueIndex, Dialogue dialogue)
@@ -386,11 +391,12 @@ namespace DialogueSystem
 
             yield return WaitCache.Seconds(_config.TextShowTime);
             TextShowEnd.Invoke(dialogueIndex);
-
-            if (string.IsNullOrEmpty(dialogue.DialogueEventName))
+            
+            if (string.IsNullOrEmpty(dialogue.DialogueEventName) == false)
             {
                 DialogueEvent.Invoke(dialogue.DialogueEventName);
             }
+            
             _playingDialogue--;
         }
 

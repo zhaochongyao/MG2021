@@ -25,4 +25,12 @@ MonoBehaviour:
     _text: "\u73B0\u5728\u8FD9\u4E2A\u5185\u5377\u554A\u2026\u2026\u96BE\u529E"
     _dialogueEventName: 
     _continueEventName: 
+  - _characterDialogueStyleSO: {fileID: 11400000, guid: 7d114dc119bead84aa12a688dac6a412, type: 2}
+    _text: "\u7406\u89E3\uFF0C\u4F46\u5982\u679C\u4E0B\u6B21\u518D\u6536\u5230\u8FD9\u6837\u7684\u90AE\u4EF6\uFF0C\u5C31\u6709\u4E9B\u9EBB\u70E6\u4E86"
+    _dialogueEventName: 
+    _continueEventName: 
+  - _characterDialogueStyleSO: {fileID: 11400000, guid: a460fff044f91df44b11008df50575c5, type: 2}
+    _text: "\u597D\u7684\u4E3B\u4EFB\uFF0C\u6211\u77E5\u9053\u4E86"
+    _dialogueEventName: "C2\u7CFB\u4E3B\u4EFB"
+    _continueEventName: 
   _dialogueOptionSO: {fileID: 0}

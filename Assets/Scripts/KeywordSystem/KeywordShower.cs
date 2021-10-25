@@ -209,15 +209,21 @@ namespace KeywordSystem
                         cameraOwner.WorldToScreenPoint(box.Min),
                         cameraOwner.WorldToScreenPoint(box.Max)
                     );
+                    
+                    // BoundingBox screenBox = new BoundingBox
+                    // (
+                        // box.Min,
+                        // box.Max
+                    // );
 
-                    // 根据分辨率缩放大小
-                    CanvasScaler canvasScaler = GetComponentInParent<CanvasScaler>();
-                    float refWidth = canvasScaler.referenceResolution.x;
-                    float refHeight = canvasScaler.referenceResolution.y;
-
+                    // // 根据分辨率缩放大小
+                    // CanvasScaler canvasScaler = GetComponentInParent<CanvasScaler>();
+                    // float refWidth = canvasScaler.referenceResolution.x;
+                    // float refHeight = canvasScaler.referenceResolution.y;
+                    //
                     Vector2 size = screenBox.Size;
-                    size.x = size.x * refWidth * 2 / GraphicOptions.Width;
-                    size.y = size.y * refHeight / GraphicOptions.Height;
+                    // size.x = size.x * refWidth * 2 / GraphicOptions.Width;
+                    // size.y = size.y * refHeight / GraphicOptions.Height;
                     rectTrans.sizeDelta = size;
 
                     // 设置颜色

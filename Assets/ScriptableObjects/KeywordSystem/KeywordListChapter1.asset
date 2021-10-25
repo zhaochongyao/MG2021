@@ -20,8 +20,8 @@ MonoBehaviour:
   - "\u8BBA\u6587"
   - "\u4F5C\u4E1A\u8981\u6C42800\u5B57"
   - "\u5B57\u657025670\u5B57"
-  - "\u65B9\u540C\u5B66\u4E4B\u524D\u7684\u6392\u540D"
-  - "\u65B9\u540C\u5B66\u672C\u6B21\u7684\u6392\u540D"
+  - "\u7B2C\u56DB\u540D"
+  - "\u7B2C\u4E8C\u540D"
   - GPA
   - "\u7B80\u5386"
   - "\u7761\u4E0D\u7740"
@@ -38,12 +38,12 @@ MonoBehaviour:
     - "\u771F\u68D2"
   - _keyword: "\u6B3A\u9A97"
     _dependency:
-    - "\u5B57\u657025670\u5B57"
     - "\u4F5C\u4E1A\u8981\u6C42800\u5B57"
-  - _keyword: "\u6392\u540D\u4E0B\u964D"
+    - "\u5B57\u657025670\u5B57"
+  - _keyword: "\u65B9\u540C\u5B66\u6392\u540D\u4E0B\u964D"
     _dependency:
-    - "\u65B9\u540C\u5B66\u4E4B\u524D\u7684\u6392\u540D"
-    - "\u65B9\u540C\u5B66\u672C\u6B21\u7684\u6392\u540D"
+    - "\u7B2C\u56DB\u540D"
+    - "\u7B2C\u4E8C\u540D"
   - _keyword: "\u7F3A\u4E4F\u5B9E\u4E60\u7ECF\u9A8C"
     _dependency:
     - "\u7B80\u5386"
@@ -62,7 +62,7 @@ MonoBehaviour:
     - "\u8BBA\u6587"
   - _keyword: "\u53CB\u8C0A\u5371\u673A"
     _dependency:
-    - "\u6392\u540D\u4E0B\u964D"
+    - "\u65B9\u540C\u5B66\u6392\u540D\u4E0B\u964D"
     - "\u6B3A\u9A97"
   - _keyword: "\u8FF7\u832B"
     _dependency:
