@@ -48,15 +48,19 @@ namespace StoryLine
         [SerializeField] private DialogueDataSO _xiZhuRenDialogue;
 
         [SerializeField] private float _toSecondDayDelay;
+
+        [SerializeField] private GameObject _secondDayPic;
         
-        [Header("平安夜")] [SerializeField] private GameObject _pingAnYePicture;
+        [Header("平安夜")] [SerializeField] private GameObject _achievementOnePic;
         [SerializeField] private float _happyEndDialogueDelay;
         [SerializeField] private DialogueDataSO _happyEndDialogue;
 
-        [Header("今晚朋友圈热闹非凡")] [SerializeField] private DialogueDataSO _badEndDialogue;
+        [Header("今晚朋友圈热闹非凡")] [SerializeField] private GameObject _achievementTwoPic;
+        [SerializeField] private DialogueDataSO _badEndDialogue;
         [SerializeField] private float _badEndDialogueDelay;
 
-        [Header("成长的疼痛")] [SerializeField] private DialogueDataSO _normalEndDialogue;
+        [Header("成长的疼痛")] [SerializeField] private GameObject _achievementThreePic;
+        [SerializeField] private DialogueDataSO _normalEndDialogue;
         [SerializeField] private float _normalEndDialogueDelay;
 
         private void Start()
@@ -123,7 +127,8 @@ namespace StoryLine
                     // 系主任
                     // 第二天
                     Debug.LogError("平安夜");
-                    
+                    _achievementOnePic.SetActive(true);
+
                     yield return StartCoroutine(ToSecondDayCo());
                     yield return WaitCache.Seconds(_happyEndDialogueDelay);
                     DialoguePlayer.Instance.SendDialogue(_happyEndDialogue);
@@ -154,7 +159,7 @@ namespace StoryLine
                 StartCoroutine(TalkerInCo(_yuanXiaoYunTalker));
                 WaitCache.Delayed(() =>
                 {
-                    DialogueEventInvoker.Instance.InvokeContinueEvent("袁小芸进门完毕");
+                    DialoguePlayer.Instance.InvokeContinueEvent("袁小芸进门完毕");
                 }, _moveTime);
             }
             else if (eventName == "袁小芸结束")
@@ -193,6 +198,8 @@ namespace StoryLine
         {
             // 今晚朋友圈“热闹”非凡
             Debug.LogError("今晚朋友圈“热闹”非凡");
+            _achievementTwoPic.SetActive(true);
+            
             yield return StartCoroutine(ToSecondDayCo());
             yield return WaitCache.Seconds(_badEndDialogueDelay);
             DialoguePlayer.Instance.SendDialogue(_badEndDialogue);
@@ -202,6 +209,9 @@ namespace StoryLine
         {
             // 成长的疼痛
             Debug.LogError("成长的疼痛");
+            
+            _achievementThreePic.SetActive(true);
+
             yield return StartCoroutine(ToSecondDayCo());
             yield return WaitCache.Seconds(_normalEndDialogueDelay);
             DialoguePlayer.Instance.SendDialogue(_normalEndDialogue);
@@ -210,6 +220,7 @@ namespace StoryLine
         private IEnumerator ToSecondDayCo()
         {
             yield return WaitCache.Seconds(_toSecondDayDelay);
+            _secondDayPic.SetActive(true);
         }
 
         private void OnPhoneUnlock()

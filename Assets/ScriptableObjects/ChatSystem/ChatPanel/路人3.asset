@@ -10,8 +10,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 9a7b0a32240d4374aad1e7619686a8e5, type: 3}
-  m_Name: "\u5218\u8001\u5E08"
+  m_Name: "\u8DEF\u4EBA3"
   m_EditorClassIdentifier: 
-  _thumbnail: {fileID: 21300000, guid: 8229d4a78466dbe45b00abbf2d5b41ff, type: 3}
-  _chatName: "\u5218\u8001\u5E08"
+  _thumbnail: {fileID: 21300000, guid: d13599f56439799438dd922b42f34dd1, type: 3}
+  _chatName: "\u8DEF\u4EBA3"
   _groupChat: 0
