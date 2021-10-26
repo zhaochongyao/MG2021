@@ -49,13 +49,13 @@ namespace GameUI
                 .DOFade(1f, _fadeInTime)
                 .SetEase(_fadeInCurve);
 
-            yield return WaitCache.Seconds(_fadeInTime + lastTime);
+            yield return Wait.Seconds(_fadeInTime + lastTime);
 
             _selfTalkText
                 .DOFade(0f, _fadeOutTime)
                 .SetEase(_fadeOutCurve);
 
-            yield return WaitCache.Seconds(_fadeInTime);
+            yield return Wait.Seconds(_fadeInTime);
             
             SelfTalkEnd.Invoke(content);
         }

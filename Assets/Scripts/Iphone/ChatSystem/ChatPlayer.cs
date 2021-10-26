@@ -78,7 +78,7 @@ namespace Iphone.ChatSystem
             // 显示聊天信息
             foreach (ChatLine chatLine in chatLineListSO.ChatLineList)
             {
-                yield return WaitCache.Seconds(chatLine.WaitTime);
+                yield return Wait.Seconds(chatLine.WaitTime);
 
                 if (string.IsNullOrEmpty(chatLine.TimeStampInChat) == false)
                 {
@@ -118,7 +118,7 @@ namespace Iphone.ChatSystem
                 TextUpdate.Invoke(_chatLineID, chatLine.ChatText);
                 _chatLineID++;
 
-                yield return WaitCache.Frames(3);
+                yield return Wait.Frames(3);
             
                 if (heightLimit < chatContentLayoutGroup.sizeDelta.y)
                 {
@@ -190,7 +190,7 @@ namespace Iphone.ChatSystem
                     ChatLineNoName chatLineNoName = selfChat.GetComponent<ChatLineNoName>();
                     chatLineNoName.Set(selfChatLine);
 
-                    yield return WaitCache.Frames(3);
+                    yield return Wait.Frames(3);
 
                     if (heightLimit < chatContentLayoutGroup.sizeDelta.y)
                     {
@@ -304,7 +304,7 @@ namespace Iphone.ChatSystem
                     ChatLineNoName chatLineNoName = selfChat.GetComponent<ChatLineNoName>();
                     chatLineNoName.Set(selfChatLine);
 
-                    yield return WaitCache.Frames(3);
+                    yield return Wait.Frames(3);
 
                     if (heightLimit < chatContentLayoutGroup.sizeDelta.y)
                     {

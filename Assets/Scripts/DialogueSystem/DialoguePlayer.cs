@@ -262,7 +262,7 @@ namespace DialogueSystem
             {
                 Dialogue dialogue = dialogues[i];
                 StartCoroutine(DialogueLineDisplayCo(curLine, dialogue));
-                yield return WaitCache.Seconds(_config.DialogueContinueDisplayInterval);
+                yield return Wait.Seconds(_config.DialogueContinueDisplayInterval);
 
                 _dialogueContinueCondition = 
                     string.IsNullOrEmpty(dialogue.ContinueEventName) ?
@@ -272,10 +272,6 @@ namespace DialogueSystem
                 // 等待按下按键
                 while (true)
                 {
-                    if (dialogue.ContinueEventName != "")
-                    {
-                        Debug.Log(_dialogueContinueCondition.Invoke() + " " + dialogue.ContinueEventName);
-                    }
                     yield return null; // 顺序不能换
                     if (_dialogueContinueCondition.Invoke())
                     {
@@ -310,7 +306,7 @@ namespace DialogueSystem
             foreach (SingleOption option in dialogueOptionSO.Options)
             {
                 StartCoroutine(ActivateOption(curLine, option));
-                yield return WaitCache.Seconds(_config.DialogueOptionDisplayInterval);
+                yield return Wait.Seconds(_config.DialogueOptionDisplayInterval);
 
 #if UNITY_EDITOR
                 if (curLine == _background.Count - 1)
@@ -325,7 +321,7 @@ namespace DialogueSystem
             }
 
             DialogueOptionReceiver.ReceiveClick += OnReceiveClick;
-            yield return WaitCache.Until(() => _optionSelected);
+            yield return Wait.Until(() => _optionSelected);
             DialogueOptionReceiver.ReceiveClick -= OnReceiveClick;
             OptionEnd.Invoke();
             yield return StartCoroutine(CloseDialogueGroupCo());
@@ -385,7 +381,7 @@ namespace DialogueSystem
                 _config.BackgroundScaleXTime,
                 _config.BackgroundScaleYTime
             );
-            yield return WaitCache.Seconds(scaleTime);
+            yield return Wait.Seconds(scaleTime);
 
             TextShowBegin.Invoke(dialogueIndex);
             // 文字逐渐出现
@@ -393,7 +389,7 @@ namespace DialogueSystem
                 .DOFade(1f, _config.TextShowTime)
                 .SetEase(_config.TextShowCurve);
 
-            yield return WaitCache.Seconds(_config.TextShowTime);
+            yield return Wait.Seconds(_config.TextShowTime);
             TextShowEnd.Invoke(dialogueIndex);
             
             if (string.IsNullOrEmpty(dialogue.DialogueEventName) == false)
@@ -408,7 +404,7 @@ namespace DialogueSystem
 
         private IEnumerator CloseDialogueGroupCo()
         {
-            yield return WaitCache.Until(NoDialoguePlaying);
+            yield return Wait.Until(NoDialoguePlaying);
 
             // 屏幕对话框全部渐渐消失
             for (int i = 0; i < _background.Count; ++i)
@@ -422,7 +418,7 @@ namespace DialogueSystem
                     .SetEase(_config.DialoguePanelFadeoutCurve);
             }
 
-            yield return WaitCache.Seconds(_config.DialoguePanelFadeOutTime);
+            yield return Wait.Seconds(_config.DialoguePanelFadeOutTime);
         }
 
         /// <summary>

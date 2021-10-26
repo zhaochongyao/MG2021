@@ -106,7 +106,7 @@ namespace Iphone
                 }
             }
             
-            yield return WaitCache.Seconds(_changeTime + _stayTime);
+            yield return Wait.Seconds(_changeTime + _stayTime);
 
             foreach (GameObject dot in _passwordDots)
             {

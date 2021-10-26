@@ -236,7 +236,7 @@ namespace Iphone
             _mergeResult.text = res;
             _mergeButton.SetActive(false);
             mergeResultObject.gameObject.SetActive(true);
-            yield return WaitCache.Seconds(_mergeResultShowTime);
+            yield return Wait.Seconds(_mergeResultShowTime);
             _mergeButton.SetActive(true);
             mergeResultObject.gameObject.SetActive(false);
         }

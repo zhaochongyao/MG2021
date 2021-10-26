@@ -15,6 +15,8 @@ namespace Iphone
         [SerializeField] private GameObject _calendar;
         
         [SerializeField] private GameObject _defaultInterface;
+
+        [SerializeField] private bool _noUnlock;
         
         private int _curInterface;
 
@@ -24,6 +26,11 @@ namespace Iphone
         
         private void Start()
         {
+            if (_noUnlock)
+            {
+                _defaultInterface = _mainMenu;
+            }
+            
             _allInterface = new List<CanvasGroup>
             {
                 _mainMenu.GetComponent<CanvasGroup>(),          // 0

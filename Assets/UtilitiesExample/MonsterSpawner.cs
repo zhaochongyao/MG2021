@@ -45,14 +45,14 @@ namespace UtilitiesExample
         
             yield return null;
         
-            yield return WaitCache.Seconds(1f);
+            yield return Wait.Seconds(1f);
             // 代替 yield return new WaitForSeconds(1f);
 
-            yield return WaitCache.Frames(10);
+            yield return Wait.Frames(10);
 
-            yield return WaitCache.FixedUpdate();
+            yield return Wait.FixedUpdate();
 
-            yield return WaitCache.EndOfFrame();
+            yield return Wait.EndOfFrame();
         }
     
         /// <summary> 怪物对象预制体 </summary>
@@ -85,7 +85,7 @@ namespace UtilitiesExample
                 // 代替 Destroy(go, 100f);
                 // 100秒后自动回收
             
-                yield return WaitCache.Seconds(1f);
+                yield return Wait.Seconds(1f);
                 // 间隔1秒生成
             }
         }

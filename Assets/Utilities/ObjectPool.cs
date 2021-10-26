@@ -176,7 +176,7 @@ namespace Utilities
                     GameObject go = Apply();
                     _currentObjects.Push(go);              
                 }
-                yield return WaitCache.Frames(asyncFrames);
+                yield return Wait.Frames(asyncFrames);
             }
 
             while (_appliedObjects.Count > newSize)
@@ -186,7 +186,7 @@ namespace Utilities
                     Destroy(_appliedObjects.Pop());
                 }
 
-                yield return WaitCache.Frames(asyncFrames);
+                yield return Wait.Frames(asyncFrames);
             }
 
             System.Diagnostics.Debug.Assert(AsyncDoneEvent != null, nameof(AsyncDoneEvent) + " != null");
@@ -226,7 +226,7 @@ namespace Utilities
         /// <summary> 延迟返还物体实现 </summary>
         private IEnumerator BaseReturnCo(GameObject go, float delay)
         {
-            yield return WaitCache.Seconds(delay);
+            yield return Wait.Seconds(delay);
             // 加入缓冲栈
             _returningObjects.Push(go);
         }

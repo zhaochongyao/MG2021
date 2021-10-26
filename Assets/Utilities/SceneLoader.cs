@@ -209,7 +209,7 @@ namespace Utilities
             // 加载完毕
             ProgressUpdate(1.0f);
 
-            yield return WaitCache.Seconds(reactTime);
+            yield return Wait.Seconds(reactTime);
 
             // 进入目标场景
             info.allowSceneActivation = true;

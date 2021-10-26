@@ -15,18 +15,23 @@ MonoBehaviour:
   _dialogues:
   - _characterDialogueStyleSO: {fileID: 11400000, guid: 2e2c2e9f499e9d54bb50a5b1cc2ede41, type: 2}
     _text: "\u4E0B\u4E00\u4F4D\u540C\u5B66\uFF0C\u8BF7\u524D\u5F80\u5927\u5385\u524D\u53F0"
-    _continueEventName: 
+    _dialogueEventName: 
+    _continueEventName: "\u5230\u8FBE\u524D\u53F0"
   - _characterDialogueStyleSO: {fileID: 11400000, guid: 2e2c2e9f499e9d54bb50a5b1cc2ede41, type: 2}
     _text: "\u55EF\u55EF\uFF0C\u8BF7\u62FF\u51FA\u624B\u673A\uFF0C\u4E0B\u8F7D\u5DE5\u4F5C\u53F0
       App"
+    _dialogueEventName: "\u542F\u7528\u624B\u673A"
     _continueEventName: 
   - _characterDialogueStyleSO: {fileID: 11400000, guid: 2e2c2e9f499e9d54bb50a5b1cc2ede41, type: 2}
     _text: "\u8BA2\u5355\u5F00\u59CB\u65F6 App \u4F1A\u81EA\u52A8\u5B89\u88C5\u5728\u5BA2\u6237\u624B\u673A\u5185\u54E6"
+    _dialogueEventName: 
     _continueEventName: 
   - _characterDialogueStyleSO: {fileID: 11400000, guid: 2e2c2e9f499e9d54bb50a5b1cc2ede41, type: 2}
     _text: "\u4F60\u53EF\u4EE5\u5728\u91CC\u9762\u67E5\u770B\u5BA2\u6237\u4FE1\u606F\u548C\u5F85\u529E\u4E8B\u9879"
+    _dialogueEventName: 
     _continueEventName: 
   - _characterDialogueStyleSO: {fileID: 11400000, guid: 2e2c2e9f499e9d54bb50a5b1cc2ede41, type: 2}
     _text: "\u73B0\u5728\u4F60\u53EF\u4EE5\u53BB\u5DE5\u4F4D\u4E86"
+    _dialogueEventName: "\u79BB\u5F00\u573A\u666F"
     _continueEventName: 
   _dialogueOptionSO: {fileID: 0}

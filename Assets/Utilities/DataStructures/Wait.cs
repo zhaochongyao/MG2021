@@ -10,7 +10,7 @@ namespace Utilities.DataStructures
     /// 对Wait类对象，使用池化或缓存
     /// 降低垃圾回收压力，提高性能
     /// </summary>
-    public static class WaitCache
+    public static class Wait
     {
         /// <summary> 默认池或缓存大小 </summary>
         private const int DefaultSize = 10;
@@ -41,7 +41,7 @@ namespace Utilities.DataStructures
         
         /// <summary> 静态初始化 </summary>
         // 在创建第一个实例或引用任何静态成员之前，将自动调用静态构造函数。
-        static WaitCache()
+        static Wait()
         {
             // 初始化Pool
             if (_disableSecondsRealTimePool == false)

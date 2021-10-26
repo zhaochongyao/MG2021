@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9f2ae6c88d8c4302927e039352aefa81, type: 3}
   m_Name: IphoneConfigSOPrologue
   m_EditorClassIdentifier: 
-  _password: 
+  _password: 000000
   _clientName: 
   _sexText: 
   _isMale: 0
@@ -34,3 +34,4 @@ MonoBehaviour:
   - _thumbnail: {fileID: 21300000, guid: 6feb23bddf970a047b12dd88c844d540, type: 3}
     _picture: {fileID: 21300000, guid: 6feb23bddf970a047b12dd88c844d540, type: 3}
     _date: 
+  _preExistedChatSO: {fileID: 0}

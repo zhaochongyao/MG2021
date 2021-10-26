@@ -64,7 +64,7 @@ namespace DialogueSystem
                 .DOFade(0f, _fadeOutTime)
                 .SetEase(_fadeOutCurve);
 
-            yield return WaitCache.Seconds(_fadeOutTime);
+            yield return Wait.Seconds(_fadeOutTime);
 
             ReceiveClick.Invoke(_optionTarget, _eventName);
         }

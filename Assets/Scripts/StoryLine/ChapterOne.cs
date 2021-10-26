@@ -51,7 +51,7 @@ namespace StoryLine
 
         private IEnumerator StartCo()
         {
-            yield return WaitCache.Seconds(_initDialogueDelay);
+            yield return Wait.Seconds(_initDialogueDelay);
             DialoguePlayer.Instance.SendDialogue(_initDialogue);
         }
 
@@ -70,10 +70,10 @@ namespace StoryLine
 
         private IEnumerator OnPhoneUnlockCo()
         {
-            yield return WaitCache.Seconds(_dingGuaGuaNoticeDelay);
+            yield return Wait.Seconds(_dingGuaGuaNoticeDelay);
             _dingGuaGuaNotice.SetActive(true);
             
-            yield return WaitCache.Seconds(_dingGuaGuaNoticeStay);
+            yield return Wait.Seconds(_dingGuaGuaNoticeStay);
             while (true)
             {
                 yield return null;
@@ -94,7 +94,7 @@ namespace StoryLine
             _phoneUnlockOnce = true;
             _friendZoneEnteredOnce = false;
 
-            WaitCache.Delayed(() =>
+            Wait.Delayed(() =>
             {
                 ChatPlayer.Instance.SendChat(_zhouLingChat);
             }, _zhouLingChatDelay);
@@ -108,7 +108,7 @@ namespace StoryLine
             }
             _friendZoneEnteredOnce = true;
             
-            WaitCache.Delayed(() =>
+            Wait.Delayed(() =>
             {
                 ChatPlayer.Instance.SendChat(_wenWenChat);
             }, _wenWenChatDelay);
@@ -122,7 +122,7 @@ namespace StoryLine
 
         private void WakeUpInOffice()
         {
-            WaitCache.Delayed(() =>
+            Wait.Delayed(() =>
             {
                 SelfTalkManager.Instance.PlaySelfTalk(_endSelfTalk, _endSelfTalkStay);
             }, _endSelfTalkDelay);
@@ -132,7 +132,7 @@ namespace StoryLine
                             SelfTalkManager.Instance.FadeInTime +
                             SelfTalkManager.Instance.FadeOutTime;
             
-            WaitCache.Delayed(() =>
+            Wait.Delayed(() =>
             {
                 DialoguePlayer.Instance.SendDialogue(_endDialogue);
             },  preTime + _endDialogueDelay);

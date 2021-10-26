@@ -117,7 +117,7 @@ namespace StoryLine
                 if (_eventMark.Contains("C2向李华学习"))
                 {
                     // 系主任
-                    yield return WaitCache.Seconds(_xiZhuRenDialogueDelay);
+                    yield return Wait.Seconds(_xiZhuRenDialogueDelay);
                     yield return StartCoroutine(TalkerInCo(_xiZhuRenTalker));
                     DialoguePlayer.Instance.SendDialogue(_xiZhuRenDialogue);
                 } 
@@ -130,7 +130,7 @@ namespace StoryLine
                     _achievementOnePic.SetActive(true);
 
                     yield return StartCoroutine(ToSecondDayCo());
-                    yield return WaitCache.Seconds(_happyEndDialogueDelay);
+                    yield return Wait.Seconds(_happyEndDialogueDelay);
                     DialoguePlayer.Instance.SendDialogue(_happyEndDialogue);
                 }
             }
@@ -157,7 +157,7 @@ namespace StoryLine
             if (eventName == "袁小芸进门开始")
             {
                 StartCoroutine(TalkerInCo(_yuanXiaoYunTalker));
-                WaitCache.Delayed(() =>
+                Wait.Delayed(() =>
                 {
                     DialoguePlayer.Instance.InvokeContinueEvent("袁小芸进门完毕");
                 }, _moveTime);
@@ -165,7 +165,7 @@ namespace StoryLine
             else if (eventName == "袁小芸结束")
             {
                 StartCoroutine(TalkerOutCo(_yuanXiaoYunTalker));
-                WaitCache.Delayed(() =>
+                Wait.Delayed(() =>
                 {
                     SelfTalkManager.Instance.PlaySelfTalk(_selfTalkAfterYuanXiaoYun, _selfTalkAfterYuanXiaoYunStay);
                 }, _selfTalkAfterYuanXiaoYunDelay);
@@ -201,7 +201,7 @@ namespace StoryLine
             _achievementTwoPic.SetActive(true);
             
             yield return StartCoroutine(ToSecondDayCo());
-            yield return WaitCache.Seconds(_badEndDialogueDelay);
+            yield return Wait.Seconds(_badEndDialogueDelay);
             DialoguePlayer.Instance.SendDialogue(_badEndDialogue);
         }
 
@@ -213,13 +213,13 @@ namespace StoryLine
             _achievementThreePic.SetActive(true);
 
             yield return StartCoroutine(ToSecondDayCo());
-            yield return WaitCache.Seconds(_normalEndDialogueDelay);
+            yield return Wait.Seconds(_normalEndDialogueDelay);
             DialoguePlayer.Instance.SendDialogue(_normalEndDialogue);
         }
 
         private IEnumerator ToSecondDayCo()
         {
-            yield return WaitCache.Seconds(_toSecondDayDelay);
+            yield return Wait.Seconds(_toSecondDayDelay);
             _secondDayPic.SetActive(true);
         }
 
@@ -230,10 +230,10 @@ namespace StoryLine
         
         private IEnumerator OnPhoneUnlockCo()
         {
-            yield return WaitCache.Seconds(_dingGuaGuaNoticeDelay);
+            yield return Wait.Seconds(_dingGuaGuaNoticeDelay);
             _dingGuaGuaNotice.SetActive(true);
             
-            yield return WaitCache.Seconds(_dingGuaGuaNoticeStay);
+            yield return Wait.Seconds(_dingGuaGuaNoticeStay);
             while (true)
             {
                 yield return null;
@@ -244,12 +244,12 @@ namespace StoryLine
             }
             _dingGuaGuaNotice.SetActive(false);
             
-            WaitCache.Delayed(() =>
+            Wait.Delayed(() =>
             {
                 SelfTalkManager.Instance.PlaySelfTalk(_selfTalkWithFear, _selfTalkWithFearStay);
             }, _selfTalkWithFearDelay);
             
-            yield return WaitCache.Seconds(_fangZiWenChatDelay);
+            yield return Wait.Seconds(_fangZiWenChatDelay);
             ChatPlayer.Instance.SendChat(_fangZiWenChat);
         }
 
@@ -269,20 +269,20 @@ namespace StoryLine
         private IEnumerator OnNicePaperFoundCo()
         {
             // 内心独白
-            yield return WaitCache.Seconds(_selfTalkPaperFoundDelay);
+            yield return Wait.Seconds(_selfTalkPaperFoundDelay);
             SelfTalkManager.Instance.PlaySelfTalk(_selfTalkPaperFound[0], _selfTalkPaperFoundStay[0]);
 
-            yield return WaitCache.Seconds(SelfTalkManager.Instance.FadeInTime + 
+            yield return Wait.Seconds(SelfTalkManager.Instance.FadeInTime + 
                                            SelfTalkManager.Instance.FadeOutTime +
                                            _selfTalkPaperFoundStay[0] +
                                            _selfTalkPaperFoundDelay);
             
             SelfTalkManager.Instance.PlaySelfTalk(_selfTalkPaperFound[1], _selfTalkPaperFoundStay[1]);
 
-            yield return WaitCache.Seconds(SelfTalkManager.Instance.FadeInTime +
+            yield return Wait.Seconds(SelfTalkManager.Instance.FadeInTime +
                                            SelfTalkManager.Instance.FadeOutTime +
                                            _selfTalkPaperFoundStay[1]);
-            yield return WaitCache.Seconds(_yuanXiaoYunDialogueDelay);
+            yield return Wait.Seconds(_yuanXiaoYunDialogueDelay);
             DialoguePlayer.Instance.SendDialogue(_yuanXiaoYunDialogue);
         }
     }

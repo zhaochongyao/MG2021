@@ -8,7 +8,7 @@ public class DingGuaGuaInitializer : MonoBehaviour
 {
     private void Start()
     {
-        WaitCache.Delayed(() =>
+        Wait.Delayed(() =>
         {
             KeywordConfigSO keywordConfigSO = GameConfigProxy.Instance.KeywordConfigSO;
             foreach (string keyword in keywordConfigSO.KeywordListSO.KeywordList)
