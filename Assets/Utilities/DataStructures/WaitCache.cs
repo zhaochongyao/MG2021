@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -139,6 +140,23 @@ namespace Utilities.DataStructures
         private static void Return(WaitWhileCustom wait)
         {
             _whilePool.Push(wait);
+        }
+        
+        /// <summary>
+        /// 延迟执行某动作
+        /// </summary>
+        /// <param name="act"> 动作 </param>
+        /// <param name="time"> 延迟时间 </param>
+        public static void Delayed(Action act, float time)
+        {
+            ManagerProxy.Instance.StartCoroutine(DelayedCo(act, time));
+        }
+
+        /// <summary> 延迟执行某动作实现 </summary>
+        private static IEnumerator DelayedCo(Action act, float time)
+        {
+            yield return Seconds(time);
+            act.Invoke();
         }
         
         /// <summary>

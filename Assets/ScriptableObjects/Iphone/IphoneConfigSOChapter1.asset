@@ -1,0 +1,42 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9f2ae6c88d8c4302927e039352aefa81, type: 3}
+  m_Name: IphoneConfigSOChapter1
+  m_EditorClassIdentifier: 
+  _password: 202110
+  _clientName: "\u674E\u534E"
+  _sexText: "\u5973"
+  _isMale: 0
+  _age: 20
+  _occupation: "\u5B66\u751F"
+  _educationBackground: "\u4E1C\u6E56\u5927\u5B66"
+  _clientBackgrounds:
+  - "\u540D\u5217\u524D\u8305\u7684\u5C16\u5B50\u751F"
+  - "\u4F17\u77E2\u4E4B\u7684"
+  - "\u53CB\u8C0A\u5371\u673A"
+  - "\u8FF7\u832B"
+  - "\u91CD\u5EA6\u7126\u8651"
+  _selfChatter: {fileID: 11400000, guid: 5ecc8a8d488794645854b409418e9583, type: 2}
+  _maxHorizontalChar: 12
+  _maxMemePicHeight: 180
+  _maxMemePicWidth: 180
+  _thumbnailPictureItems:
+  - _thumbnail: {fileID: 21300000, guid: 7f18600f2b5ed0a4b956280a87bdf3a3, type: 3}
+    _picture: {fileID: 21300000, guid: 7f18600f2b5ed0a4b956280a87bdf3a3, type: 3}
+    _date: "2021\u5E7410\u670824\u65E5"
+  - _thumbnail: {fileID: 21300000, guid: edfcc7eb28658b84c86ac197f8ebca8f, type: 3}
+    _picture: {fileID: 21300000, guid: edfcc7eb28658b84c86ac197f8ebca8f, type: 3}
+    _date: "2021\u5E749\u670824\u65E5"
+  - _thumbnail: {fileID: 21300000, guid: 6feb23bddf970a047b12dd88c844d540, type: 3}
+    _picture: {fileID: 21300000, guid: 6feb23bddf970a047b12dd88c844d540, type: 3}
+    _date: "2000\u5E7410\u670824\u65E5"
+  _preExistedChatSO: {fileID: 11400000, guid: 49777f44f0845d94a8e62458c07d4642, type: 2}

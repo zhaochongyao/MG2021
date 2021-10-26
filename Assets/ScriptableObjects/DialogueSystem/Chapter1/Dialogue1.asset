@@ -13,10 +13,20 @@ MonoBehaviour:
   m_Name: Dialogue1
   m_EditorClassIdentifier: 
   _dialogues:
-  - _characterDialogueStyleSO: {fileID: 11400000, guid: afc71c772fb41664eaf6fc0278f13264, type: 2}
-    _text: "\u5F20\u8001\u5E08\u6211\u77E5\u9053\u60A8\u5728\uFF0C\u8BF7\u95EE\u6211\u53EF\u4EE5\u8FDB\u6765\u627E\u60A8\u804A\u804A\u5417\uFF1F"
-  - _characterDialogueStyleSO: {fileID: 11400000, guid: a460fff044f91df44b11008df50575c5, type: 2}
-    _text: "\u4F60\u8FDB\u6765\u5427\u3002"
-  - _characterDialogueStyleSO: {fileID: 11400000, guid: afc71c772fb41664eaf6fc0278f13264, type: 2}
-    _text: "\u5F20\u8001\u5E08\u60A8\u597D\uFF0C\u6B64\u6B21\u627E\u60A8\u662F\u60F3\u8BF7\u6559\u6211\u7684\u671F\u4E2D\u4F5C\u4E1A\u8FD8\u6709\u4EC0\u4E48\u4E0D\u8DB3\u3002"
-  _dialogueOptionSO: {fileID: 11400000, guid: d5a8b2e4a5907ac4fa3918211615da80, type: 2}
+  - _characterDialogueStyleSO: {fileID: 11400000, guid: 20adf1ad6d04e544c80dddc692b8f388, type: 2}
+    _text: "\u8FD9\u662F\u2026\u2026"
+    _dialogueEventName: 
+    _continueEventName: 
+  - _characterDialogueStyleSO: {fileID: 11400000, guid: 20adf1ad6d04e544c80dddc692b8f388, type: 2}
+    _text: "\u5F00\u59CB\u4E86\u5417"
+    _dialogueEventName: 
+    _continueEventName: 
+  - _characterDialogueStyleSO: {fileID: 11400000, guid: 20adf1ad6d04e544c80dddc692b8f388, type: 2}
+    _text: "\u5BA2\u6237\u8D44\u6599\u6CA1\u6709\u5BF9\u63A5"
+    _dialogueEventName: 
+    _continueEventName: 
+  - _characterDialogueStyleSO: {fileID: 11400000, guid: 20adf1ad6d04e544c80dddc692b8f388, type: 2}
+    _text: "\u7B2C\u4E00\u5355\u5C31\u9047\u5230\u5927\u9EBB\u70E6\u4E86\u2026\u2026"
+    _dialogueEventName: "\u521D\u59CB\u5BF9\u8BDD\u7ED3\u675F"
+    _continueEventName: 
+  _dialogueOptionSO: {fileID: 0}

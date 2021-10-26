@@ -10,7 +10,6 @@ using Utilities.DataStructures;
 
 namespace DialogueSystem
 {
-    [RequireComponent(typeof(Image))]
     public sealed class DialogueOptionReceiver : MonoBehaviour, IPointerClickHandler
     {
         private Image _background;
@@ -19,8 +18,9 @@ namespace DialogueSystem
         private Ease _fadeOutCurve;
 
         private DialogueDataSO _optionTarget;
-
-        public static event Action<DialogueDataSO> ReceiveClick = delegate {};
+        private string _eventName;
+        
+        public static event Action<DialogueDataSO, string> ReceiveClick = delegate {};
 
         private void Start()
         {
@@ -38,15 +38,16 @@ namespace DialogueSystem
             ReceiveClick += OnReceiveClick;
         }
 
-        private void OnReceiveClick(DialogueDataSO optionTarget)
+        private void OnReceiveClick(DialogueDataSO optionTarget, string eventName)
         {
             _background.raycastTarget = false;
         }
 
-        public void OptionUpdate(DialogueDataSO optionTarget)
+        public void OptionUpdate(DialogueDataSO optionTarget, string eventName)
         {
             _optionTarget = optionTarget;
             _background.raycastTarget = true;
+            _eventName = eventName;
         }
 
         public void OnPointerClick(PointerEventData eventData)
@@ -65,7 +66,7 @@ namespace DialogueSystem
 
             yield return WaitCache.Seconds(_fadeOutTime);
 
-            ReceiveClick.Invoke(_optionTarget);
+            ReceiveClick.Invoke(_optionTarget, _eventName);
         }
     }
 }

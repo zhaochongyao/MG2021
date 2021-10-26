@@ -1,9 +1,9 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 using Utilities.DesignPatterns;
-using UI;
 
 namespace Iphone.ChatSystem
 {
@@ -43,22 +43,28 @@ namespace Iphone.ChatSystem
 
         [SerializeField] private GameObject _weChatAppRedDot;
 
+        [SerializeField] private Image _topIcon;
+        [SerializeField] private Sprite _chatIcon;
+        [SerializeField] private Sprite _friendZoneIcon;
+        
         private Dictionary<ChatPanelSO, ChatPanelContext> _chatPanelContextMap;
 
         public Dictionary<ChatPanelSO, ChatPanelContext> ChatPanelContextMap => _chatPanelContextMap;
 
+        public event Action FriendZoneEnter = delegate { };
+        
         private void Start()
         {
             ChatPlayer.Instance.ChatSend += OnChatSend;
             ChatPlayer.Instance.ChatTimeUpdate += OnChatTimeUpdate;
 
-            UI.UIManager.Instance.PhoneChange += OnPhoneChange;
+            GameUI.UIManager.Instance.PhoneChange += OnPhoneChange;
 
             _chatPanelContextMap = new Dictionary<ChatPanelSO, ChatPanelContext>();
             _friendZoneButton.onClick.AddListener(ToFriendZone);
 
             _curChatPanel = null;
-
+            
             // 生成聊天面板
             foreach (ChatPanelSO chatPanelSO in _chatPanelListSO.ChatPanelList)
             {
@@ -121,6 +127,9 @@ namespace Iphone.ChatSystem
 
                 _chatPanelContextMap.Add(chatPanelSO, chatPanelContext);
             }
+            
+            _descriptionText.text = "聊天";
+            _topIcon.sprite = _chatIcon;
         }
 
         public void OnQuitButtonPressed()
@@ -134,6 +143,8 @@ namespace Iphone.ChatSystem
                 _friendZone.SetActive(false);
                 _chatList.SetActive(true);
                 _friendZoneButton.gameObject.SetActive(true);
+                _descriptionText.text = "聊天";
+                _topIcon.sprite = _chatIcon;
             }
             else
             {
@@ -142,6 +153,7 @@ namespace Iphone.ChatSystem
                 _chatPanelContextMap[_curChatPanel].CanvasGroup.blocksRaycasts = false;
                 _chatList.SetActive(true);
                 _descriptionText.text = "聊天";
+                _topIcon.sprite = _chatIcon;
                 _curChatPanel = null;
                 _friendZoneButton.gameObject.SetActive(true);
             }
@@ -149,21 +161,27 @@ namespace Iphone.ChatSystem
 
         private void ToFriendZone()
         {
+            FriendZoneEnter.Invoke();
+            
             _friendZoneButton.gameObject.SetActive(false);
             _chatList.SetActive(false);
             _friendZone.SetActive(true);
             _descriptionText.text = "朋友圈";
+            _topIcon.sprite = _friendZoneIcon;
         }
 
-        private void OnChatSend(ChatPanelSO chatPanelSO, string talk)
+        private void OnChatSend(ChatPanelSO chatPanelSO, string talk, bool existed)
         {
-            if (UI.UIManager.Instance.PhoneOn == false && 
+            if (GameUI.UIManager.Instance.PhoneOn == false && 
                 _curChatPanel != null &&
                 _chatPanelContextMap[_curChatPanel].ChatRedDot.activeSelf == false ||
                 _curChatPanel != chatPanelSO &&
                 _chatPanelContextMap[chatPanelSO].ChatRedDot.activeSelf == false)
             {
-                RedDotManager.Instance.ShowRedDot(_chatPanelContextMap[chatPanelSO].ChatRedDot);
+                if (existed == false)
+                {
+                    RedDotManager.Instance.ShowRedDot(_chatPanelContextMap[chatPanelSO].ChatRedDot);
+                }
             }
 
             _chatPanelContextMap[chatPanelSO].LastTalkText.text = talk;

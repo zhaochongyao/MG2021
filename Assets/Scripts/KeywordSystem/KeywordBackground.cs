@@ -16,16 +16,12 @@ namespace KeywordSystem
         private void Awake()
         {
             _background = GetComponent<Image>();
+            _text = transform.parent.GetComponentInChildren<TextMeshProUGUI>();
         }
 
         private void OnEnable()
         {
             _text = transform.parent.GetComponentInChildren<TextMeshProUGUI>();
-        }
-
-        private void OnDisable()
-        {
-            _background.color = new Color(0f, 0f, 0f, 0f);
         }
 
         private void Update()
@@ -43,6 +39,7 @@ namespace KeywordSystem
             if (_text.color.a == 0f)
             {
                 ObjectPool.Return(gameObject);
+                _background.color = new Color(0f, 0f, 0f, 0f);
             }
         }
     }

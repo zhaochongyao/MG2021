@@ -6,7 +6,7 @@ using Utilities.DesignPatterns;
 
 namespace Singletons
 {
-    public class GameConfigProxy : GSingleton<GameConfigProxy>
+    public class GameConfigProxy : LSingleton<GameConfigProxy>
     {
         [SerializeField] private DialogueSystemConfigSO _dialogueSystemConfigSO;
         [SerializeField] private KeywordConfigSO _keywordConfigSO;
