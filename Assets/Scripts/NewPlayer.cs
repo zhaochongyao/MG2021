@@ -94,6 +94,8 @@ public class NewPlayer : MonoBehaviour
             return;
         }
 
+        _animator.speed = 1f;
+        
         _target = pos;
         Vector3 p1 = transform.position;
         p1.y = pos.y = 0f;    
@@ -104,6 +106,45 @@ public class NewPlayer : MonoBehaviour
         
         _audioSource.UnPause();
         
+        _animator.SetBool(IsTurnAround, true);
+
+        Vector3 vec = pos - p1;
+        float angle = Vector3.Angle(vec, Vector3.right);
+        Debug.LogError(angle);
+        if (0f <= angle && angle <= 45f)
+        {
+            _animator.SetBool(IsBack, false);
+            _animator.SetBool(IsFront, false);
+            _animator.SetBool(IsLeft, false);
+            _animator.SetBool(IsRight, true);
+        }
+        else if (135f <= angle && angle <= 180f)
+        {
+            _animator.SetBool(IsBack, false);
+            _animator.SetBool(IsFront, false);
+            _animator.SetBool(IsLeft, true);
+            _animator.SetBool(IsRight, false);
+        }
+        else if (pos.z < p1.z)
+        {
+            _animator.SetBool(IsBack, false);
+            _animator.SetBool(IsFront, true);
+            _animator.SetBool(IsLeft, false);
+            _animator.SetBool(IsRight, false);
+        }
+        else
+        {
+            _animator.SetBool(IsBack, true);
+            _animator.SetBool(IsFront, false);
+            _animator.SetBool(IsLeft, false);
+            _animator.SetBool(IsRight, false);
+        }
+        
+        Wait.Delayed(() =>
+        {
+            _animator.SetBool(IsTurnAround, false);
+        }, 0.1f);
+
         Wait.Delayed(() =>
         {
             _moving = false;
@@ -111,6 +152,7 @@ public class NewPlayer : MonoBehaviour
             {
                 action.Invoke();
             }
+            _animator.speed = 0;
             _audioSource.Pause();
         }, time);
     }
@@ -122,6 +164,7 @@ public class NewPlayer : MonoBehaviour
         //     _playerPoint = MapManager.GetInstance().GetPoint(0,  0);
         // }
         // if (_resultPoint != null && _playerPoint != _resultPoint && _playerPoint.child != null)
+        return;
         if (_moving)
         {
             _animator.SetBool(IsLeft, true);
