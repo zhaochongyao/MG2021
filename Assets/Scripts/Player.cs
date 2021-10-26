@@ -21,8 +21,8 @@ public class Player : MonoBehaviour
     public int IsTurnAround =-1;
     public int IsBack = -1;
     public int IsFront = -1;
-    public int IsSide = -1;
-
+    public int IsLeft = -1;
+    public int IsRight = -1;
     public bool Left = true;
     private void Start()
     {
@@ -32,7 +32,8 @@ public class Player : MonoBehaviour
         IsTurnAround = Animator.StringToHash ("IsTurnAround");
         IsBack = Animator.StringToHash ("IsBack");
         IsFront = Animator.StringToHash ("IsFront");
-        IsSide = Animator.StringToHash("IsSide");
+        IsLeft = Animator.StringToHash("IsLeft");
+        IsRight = Animator.StringToHash("IsRight");
     }
 
     private Vector3 ConvertScreenToWorldPoint(Vector3 screenPoint)
@@ -77,43 +78,204 @@ public class Player : MonoBehaviour
             var step = moveSpeed * Time.deltaTime; 
             var pointPosition = new Vector3(_playerPoint.child.Layout.x, transform.position.y, _playerPoint.child.Layout.z);
             // Debug.Log("move to " + pointPosition + "   index = "+_playerPoint.child.x+_playerPoint.child.y);
-            bool left = pointPosition.x < transform.localPosition.x;
+            bool left = _resultPoint.Layout.x < transform.localPosition.x;
             
-            if (pointPosition.z > transform.localPosition.z && Math.Abs(pointPosition.z - transform.localPosition.z) > 0.1f)
+            // Debug.Log(Math.Abs(pointPosition.z - transform.localPosition.z));
+            if (_playerPoint.x > _resultPoint.x && _playerPoint.y == _resultPoint.y)
             {
-                _animator.SetBool(IsTurnAround, true);
+                if (!_animator.GetBool(IsFront))
+                {
+                    _animator.SetBool(IsTurnAround, true);
+                }
+                else
+                {
+                    _animator.SetBool(IsTurnAround, false);
+                }
+                _animator.SetBool(IsBack, false);
+                _animator.SetBool(IsFront, true);
+                _animator.SetBool(IsLeft, false);
+                _animator.SetBool(IsRight, false);
+            } else if (_playerPoint.x < _resultPoint.x && _playerPoint.y == _resultPoint.y)
+            {
+                if (!_animator.GetBool(IsBack))
+                {
+                    _animator.SetBool(IsTurnAround, true);
+                }
+                else
+                {
+                    _animator.SetBool(IsTurnAround, false);
+                }
                 _animator.SetBool(IsBack, true);
                 _animator.SetBool(IsFront, false);
-                _animator.SetBool(IsSide, false);
-            }
-            else if (pointPosition.z < transform.localPosition.z && Math.Abs(pointPosition.z - transform.localPosition.z) > 0.1f)
+                _animator.SetBool(IsLeft, false);
+                _animator.SetBool(IsRight, false);
+            } else if (_playerPoint.y > _resultPoint.y && _playerPoint.x == _resultPoint.x)
             {
-                _animator.SetBool(IsTurnAround, true);
-                _animator.SetBool(IsFront, true);
-                _animator.SetBool(IsBack, false);
-                _animator.SetBool(IsSide, false);
-
-            }
-
-            Debug.Log(Math.Abs(pointPosition.z - transform.localPosition.z));
-            if (Math.Abs(pointPosition.z - transform.localPosition.z) < 0.1f)
-            {
-                _animator.SetBool(IsTurnAround, true);
+                if (!_animator.GetBool(IsRight))
+                {
+                    transform.DOFlip();
+                    _animator.SetBool(IsTurnAround, true);
+                }
+                else
+                {
+                    _animator.SetBool(IsTurnAround, false);
+                }
                 _animator.SetBool(IsBack, false);
                 _animator.SetBool(IsFront, false);
-                _animator.SetBool(IsSide, true);
-
-                if (left && !Left)
+                _animator.SetBool(IsLeft, false);
+                _animator.SetBool(IsRight, true);
+            } else if (_playerPoint.y < _resultPoint.y && _playerPoint.x == _resultPoint.x)
+            {
+                if (!_animator.GetBool(IsLeft))
                 {
-                    Left = true;
-                    transform.DOFlip();
+                    _animator.SetBool(IsTurnAround, true);
                 }
-                else if (!left && Left)
+                else
                 {
-                    Left = false;
-                    transform.DOFlip();
+                    _animator.SetBool(IsTurnAround, false);
                 }
+                _animator.SetBool(IsBack, false);
+                _animator.SetBool(IsFront, false);
+                _animator.SetBool(IsLeft, true);
+                _animator.SetBool(IsRight, false);
+                Debug.Log("向左走");
+            } else if (_playerPoint.y > _resultPoint.y)
+            {
+                if (!_animator.GetBool(IsRight))
+                {
+                    transform.DOFlip();
+                    _animator.SetBool(IsTurnAround, true);
+                }
+                else
+                {
+                    _animator.SetBool(IsTurnAround, false);
+                }
+                _animator.SetBool(IsBack, false);
+                _animator.SetBool(IsFront, false);
+                _animator.SetBool(IsLeft, false);
+                _animator.SetBool(IsRight, true);
+            } else if (_playerPoint.y < _resultPoint.y)
+            {
+                if (!_animator.GetBool(IsLeft))
+                {
+                    _animator.SetBool(IsTurnAround, true);
+                }
+                else
+                {
+                    _animator.SetBool(IsTurnAround, false);
+                }
+                _animator.SetBool(IsBack, false);
+                _animator.SetBool(IsFront, false);
+                _animator.SetBool(IsLeft, true);
+                _animator.SetBool(IsRight, false);
             }
+            // if (_resultPoint.Layout.z > transform.localPosition.z && Math.Abs(_resultPoint.Layout.z - transform.localPosition.z) > 0.1f)
+            // {
+            //     if (!_animator.GetBool(IsBack))
+            //     {
+            //         _animator.SetBool(IsTurnAround, true);
+            //     }
+            //     else
+            //     {
+            //         _animator.SetBool(IsTurnAround, false);
+            //     }
+            //     _animator.SetBool(IsBack, true);
+            //     _animator.SetBool(IsFront, false);
+            //     _animator.SetBool(IsLeft, false);
+            //     _animator.SetBool(IsRight, false);
+            //     Debug.Log("向上走");
+            //     if (math.abs(_resultPoint.Layout.x - transform.localPosition.x) >
+            //         math.abs(_resultPoint.Layout.z - transform.localPosition.z))
+            //     {
+            //         if (left)
+            //         {
+            //             if (!_animator.GetBool(IsLeft))
+            //             {
+            //                 _animator.SetBool(IsTurnAround, true);
+            //             }
+            //             else
+            //             {
+            //                 _animator.SetBool(IsTurnAround, false);
+            //             }
+            //             _animator.SetBool(IsBack, false);
+            //             _animator.SetBool(IsFront, false);
+            //             _animator.SetBool(IsLeft, true);
+            //             _animator.SetBool(IsRight, false);
+            //             Debug.Log("向左走");
+            //         }
+            //         else
+            //         {
+            //             if (!_animator.GetBool(IsRight))
+            //             {
+            //                 transform.DOFlip();
+            //                 _animator.SetBool(IsTurnAround, true);
+            //             }
+            //             else
+            //             {
+            //                 _animator.SetBool(IsTurnAround, false);
+            //             }
+            //             _animator.SetBool(IsBack, false);
+            //             _animator.SetBool(IsFront, false);
+            //             _animator.SetBool(IsLeft, false);
+            //             _animator.SetBool(IsRight, true);
+            //             Debug.Log("向右走");
+            //         }
+            //     }
+            // }
+            // else if (_resultPoint.Layout.z < transform.localPosition.z && Math.Abs(_resultPoint.Layout.z - transform.localPosition.z) > 0.1f)
+            // {
+            //     if (!_animator.GetBool(IsFront))
+            //     {
+            //         _animator.SetBool(IsTurnAround, true);
+            //     }
+            //     else
+            //     {
+            //         _animator.SetBool(IsTurnAround, false);
+            //     }
+            //     _animator.SetBool(IsBack, false);
+            //     _animator.SetBool(IsFront, true);
+            //     _animator.SetBool(IsLeft, false);
+            //     _animator.SetBool(IsRight, false);
+            //     Debug.Log("向下走");
+            //     if (math.abs(_resultPoint.Layout.x - transform.localPosition.x) >
+            //         math.abs(_resultPoint.Layout.z - transform.localPosition.z))
+            //     {
+            //         if (left)
+            //         {
+            //             if (!_animator.GetBool(IsLeft))
+            //             {
+            //                 _animator.SetBool(IsTurnAround, true);
+            //             }
+            //             else
+            //             {
+            //                 _animator.SetBool(IsTurnAround, false);
+            //             }
+            //             _animator.SetBool(IsBack, false);
+            //             _animator.SetBool(IsFront, false);
+            //             _animator.SetBool(IsLeft, true);
+            //             _animator.SetBool(IsRight, false);
+            //             Debug.Log("向左走");
+            //         }
+            //         else
+            //         {
+            //             if (!_animator.GetBool(IsRight))
+            //             {
+            //                 transform.DOFlip();
+            //                 _animator.SetBool(IsTurnAround, true);
+            //             }
+            //             else
+            //             {
+            //                 _animator.SetBool(IsTurnAround, false);
+            //             }
+            //             _animator.SetBool(IsBack, false);
+            //             _animator.SetBool(IsFront, false);
+            //             _animator.SetBool(IsLeft, false);
+            //             _animator.SetBool(IsRight, true);
+            //             Debug.Log("向右走");
+            //         }
+            //     }
+            // }
+
             gameObject.transform.localPosition = Vector3.MoveTowards(gameObject.transform.localPosition, pointPosition, step);
             _animator.speed = 1;
             if (transform.position == pointPosition)
@@ -124,6 +286,7 @@ public class Player : MonoBehaviour
         else
         {
             _animator.speed = 0;
+            _animator.SetBool(IsTurnAround, false);
             // _animator.SetBool(IsMove, false);
         }
     }

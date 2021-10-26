@@ -37,10 +37,10 @@ AnimatorStateTransition:
   m_Name: 
   m_Conditions:
   - m_ConditionMode: 1
-    m_ConditionEvent: IsMove
+    m_ConditionEvent: IsTurnAround
     m_EventTreshold: 0
-  - m_ConditionMode: 2
-    m_ConditionEvent: IsRight
+  - m_ConditionMode: 1
+    m_ConditionEvent: IsFront
     m_EventTreshold: 0
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: 2210809750118898757}
@@ -65,10 +65,10 @@ AnimatorStateTransition:
   m_Name: 
   m_Conditions:
   - m_ConditionMode: 1
-    m_ConditionEvent: IsUp
+    m_ConditionEvent: IsBack
     m_EventTreshold: 0
-  - m_ConditionMode: 2
-    m_ConditionEvent: IsLeft
+  - m_ConditionMode: 1
+    m_ConditionEvent: IsTurnAround
     m_EventTreshold: 0
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: 7031250602355773825}
@@ -92,11 +92,11 @@ AnimatorStateTransition:
   m_PrefabAsset: {fileID: 0}
   m_Name: 
   m_Conditions:
-  - m_ConditionMode: 2
-    m_ConditionEvent: IsLeft
+  - m_ConditionMode: 1
+    m_ConditionEvent: IsFront
     m_EventTreshold: 0
   - m_ConditionMode: 1
-    m_ConditionEvent: IsMove
+    m_ConditionEvent: IsTurnAround
     m_EventTreshold: 0
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: 2210809750118898757}
@@ -121,10 +121,10 @@ AnimatorStateTransition:
   m_Name: 
   m_Conditions:
   - m_ConditionMode: 1
-    m_ConditionEvent: IsUp
+    m_ConditionEvent: IsTurnAround
     m_EventTreshold: 0
   - m_ConditionMode: 2
-    m_ConditionEvent: IsRight
+    m_ConditionEvent: IsBack
     m_EventTreshold: 0
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: 7031250602355773825}
@@ -179,8 +179,8 @@ AnimatorStateTransition:
   m_PrefabAsset: {fileID: 0}
   m_Name: 
   m_Conditions:
-  - m_ConditionMode: 2
-    m_ConditionEvent: IsMove
+  - m_ConditionMode: 1
+    m_ConditionEvent: IsTurnAround
     m_EventTreshold: 0
   - m_ConditionMode: 1
     m_ConditionEvent: IsRight
@@ -208,25 +208,31 @@ AnimatorController:
   m_Name: LIHua
   serializedVersion: 5
   m_AnimatorParameters:
-  - m_Name: IsMove
+  - m_Name: IsTurnAround
     m_Type: 4
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 0
     m_Controller: {fileID: 0}
-  - m_Name: IsUp
+  - m_Name: IsFront
     m_Type: 4
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 0
     m_Controller: {fileID: 0}
-  - m_Name: IsRight
+  - m_Name: IsBack
     m_Type: 4
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 0
     m_Controller: {fileID: 0}
   - m_Name: IsLeft
+    m_Type: 4
+    m_DefaultFloat: 0
+    m_DefaultInt: 0
+    m_DefaultBool: 0
+    m_Controller: {fileID: 0}
+  - m_Name: IsRight
     m_Type: 4
     m_DefaultFloat: 0
     m_DefaultInt: 0
@@ -282,10 +288,10 @@ AnimatorStateTransition:
   m_Name: 
   m_Conditions:
   - m_ConditionMode: 1
-    m_ConditionEvent: IsRight
+    m_ConditionEvent: IsTurnAround
     m_EventTreshold: 0
-  - m_ConditionMode: 2
-    m_ConditionEvent: IsUp
+  - m_ConditionMode: 1
+    m_ConditionEvent: IsRight
     m_EventTreshold: 0
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: -9068714691885325094}
@@ -356,8 +362,8 @@ AnimatorStateTransition:
   m_PrefabAsset: {fileID: 0}
   m_Name: 
   m_Conditions:
-  - m_ConditionMode: 2
-    m_ConditionEvent: IsMove
+  - m_ConditionMode: 1
+    m_ConditionEvent: IsTurnAround
     m_EventTreshold: 0
   - m_ConditionMode: 1
     m_ConditionEvent: IsLeft
@@ -387,8 +393,8 @@ AnimatorStateTransition:
   - m_ConditionMode: 1
     m_ConditionEvent: IsLeft
     m_EventTreshold: 0
-  - m_ConditionMode: 2
-    m_ConditionEvent: IsUp
+  - m_ConditionMode: 1
+    m_ConditionEvent: IsTurnAround
     m_EventTreshold: 0
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: 8368428787810136624}
