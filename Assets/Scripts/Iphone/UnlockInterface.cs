@@ -21,6 +21,9 @@ namespace Iphone
         [SerializeField] private float _changeTime;
         [SerializeField] private float _stayTime;
 
+        [SerializeField] private AudioClip _audioClip;
+        private AudioSource _audioSource;
+        
         private bool _lock;
         
         private IphoneConfigSO _iphoneConfigSO;
@@ -33,6 +36,10 @@ namespace Iphone
 
         private void Start()
         {
+            _audioSource = gameObject.AddComponent<AudioSource>();
+            _audioSource.loop = false;
+            _audioSource.playOnAwake = false;
+            
             _iphoneConfigSO = GameConfigProxy.Instance.IphoneConfigSO;
             _password = _iphoneConfigSO.Password;
 
@@ -123,6 +130,7 @@ namespace Iphone
 
         private void Unlock()
         {
+            _audioSource.PlayOneShot(_audioClip);
             InterfaceManager.Instance.ToMainMenu();
         }
     }

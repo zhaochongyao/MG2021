@@ -45,7 +45,7 @@ namespace StoryLine
         [SerializeField] private GameObject _drawerCamera;
 
         [SerializeField] private NewPlayer _newPlayer;
-        
+
         public void ToRightBackground()
         {
             if (_rightBackground.activeSelf)
@@ -181,8 +181,16 @@ namespace StoryLine
         {
         }
         
+        [SerializeField] private AudioClip _incomingChatSound;
+        [SerializeField] private AudioClip _heartBeatSound;
+        private AudioSource _audioSource;
+        
         private void Start()
         {
+            _audioSource = gameObject.AddComponent<AudioSource>();
+            _audioSource.loop = false;
+            _audioSource.playOnAwake = false;
+            
             MouseClicker.MouseClickEvent += OnMouseClickEvent;
             
             _phoneUnlockOnce = false;
@@ -291,6 +299,11 @@ namespace StoryLine
             _incomingChat.SetActive(true);
             _incomingChat.GetComponent<Image>().color = Color.white;
             _incomingChat.GetComponent<Animator>().enabled = true;
+            _audioSource.PlayOneShot(_incomingChatSound);
+            _audioSource.PlayOneShot(_heartBeatSound);
+            // _audioSource.clip = _heartBeatSound;
+            // _audioSource.Play();
+            
             if (GameUI.UIManager.Instance.PhoneOn == false)
             {
                 GameUI.UIManager.Instance.SwitchPhone();

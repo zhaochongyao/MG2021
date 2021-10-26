@@ -41,6 +41,7 @@ namespace Managers.MapManager
             }
             var parentPosition = transform.position - new Vector3(_width/2f, 0,  _height/2f);
             var parentRotation = gameObject.transform.rotation;
+            Debug.Log("parent:"+parentRotation.eulerAngles);
             var itemWidth = _width / splitRow;
             var itemHeight = _height / splitColumn;
             MapManager.GetInstance().Init(splitColumn, splitRow);

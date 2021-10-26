@@ -32,8 +32,15 @@ namespace Iphone.ChatSystem
 
         private Dictionary<ChatPanelSO, ChatPanelContext> _chatPanelContextMap;
 
+        [SerializeField] private AudioClip _noticeSound;
+        private AudioSource _audioSource;
+        
         private void Start()
         {
+            _audioSource = gameObject.AddComponent<AudioSource>();
+            _audioSource.loop = false;
+            _audioSource.playOnAwake = false;
+            
             _iphoneConfigSO = GameConfigProxy.Instance.IphoneConfigSO;
             _selfChatterSO = _iphoneConfigSO.SelfChatter;
 
@@ -142,6 +149,7 @@ namespace Iphone.ChatSystem
                 if (chatLineListSO.ExistedMessage == false)
                 {
                     // 播放音效
+                    _audioSource.PlayOneShot(_noticeSound);
                 }
                 string chatOverlook = curChatPanel.GroupChat ? 
                     chatLine.ChatterSO.ChatterName + ": " + chatLine.ChatText : 

@@ -65,7 +65,7 @@ namespace Utilities
             GraphicOptions.Init();
             PoolConfigurator.Init(_poolSettings);
             VolumeController.Init(_audioMixer);
-            PostProcessManager.Init(_postProcessGameObject, _postProcessResources);
+            // PostProcessManager.Init(_postProcessGameObject, _postProcessResources);
 
             SaveSystem.Init(Application.persistentDataPath);
             
