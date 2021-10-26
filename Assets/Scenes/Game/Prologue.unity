@@ -2390,7 +2390,7 @@ MonoBehaviour:
   _otherChatLineWithNamePrefab: {fileID: 1598443747988768332, guid: 853a1850c619a4046b132c6bd12f7410, type: 3}
   _selfChatLinePrefab: {fileID: 7138531387555505198, guid: 39bbadc9d930b0546b47b267ad35084b, type: 3}
   _inChatTimeStampPrefab: {fileID: 5620733728333818529, guid: 0554ec3a0daa43b429cd42f002633bab, type: 3}
-  _noticeSound: {fileID: 0}
+  _noticeSound: {fileID: 8300000, guid: dabd82b61e334db4789d56cd481da93f, type: 3}
 --- !u!4 &160851832
 Transform:
   m_ObjectHideFlags: 0
@@ -14242,7 +14242,7 @@ MonoBehaviour:
   _wrongColor: {r: 0.9150943, g: 0.43510142, b: 0.43510142, a: 1}
   _changeTime: 0.1
   _stayTime: 0.4
-  _audioClip: {fileID: 0}
+  _audioClip: {fileID: 8300000, guid: 9be0736755fd6ac40bbdc57c505150a2, type: 3}
 --- !u!4 &1109104520
 Transform:
   m_ObjectHideFlags: 0
