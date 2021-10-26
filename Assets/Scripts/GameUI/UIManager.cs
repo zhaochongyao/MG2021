@@ -1,6 +1,7 @@
 ﻿using System;
 using UnityEngine;
 using UnityEngine.UI;
+using Utilities;
 using Utilities.DesignPatterns;
 
 namespace GameUI
@@ -18,6 +19,43 @@ namespace GameUI
         public bool PhoneOn => _phoneOn;
 
         public event Action<bool> PhoneChange = delegate { };
+
+        [SerializeField] private GameObject _pauseMask;
+        [SerializeField] private GameObject _pauseMenu;
+        private bool _pause = false;
+        
+        public void PressPause()
+        {
+            _pause = !_pause;
+            if (_pause)
+            {
+                Pause();
+            }
+            else
+            {
+                Resume();
+            }
+        }
+
+        public void Resume()
+        {
+            Time.timeScale = 1f;
+            _pauseMask.SetActive(false);
+            _pauseMenu.SetActive(false);
+        }
+
+        public void Pause()
+        {
+            Time.timeScale = 0f;
+            _pauseMask.SetActive(true);
+            _pauseMenu.SetActive(true);
+        }
+
+        public void ToMainMenu()
+        {
+            Time.timeScale = 1f;
+            SceneLoader.LoadScene("MainMenu");
+        }
         
         private void Start()
         {

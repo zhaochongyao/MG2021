@@ -10,7 +10,7 @@ using UnityEngine.Serialization;
 using Utilities.DataStructures;
 
 
-public class Player : MonoBehaviour
+public class NewPlayer : MonoBehaviour
 {
     // attribute
     public float moveSpeed = 3f;            // 水平移动速度
@@ -75,7 +75,7 @@ public class Player : MonoBehaviour
     private bool _moving;
     private Vector3 _target;
     
-    public void MoveTowards(Vector3 pos)
+    public void MoveTowards(Vector3 pos, Action action = null)
     {
         if (_moving)
         {
@@ -93,7 +93,10 @@ public class Player : MonoBehaviour
         Wait.Delayed(() =>
         {
             _moving = false;
-            Debug.Log("Finish");
+            if (action != null)
+            {
+                action.Invoke();
+            }
         }, time);
     }
     

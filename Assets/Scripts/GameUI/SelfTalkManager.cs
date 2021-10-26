@@ -38,12 +38,19 @@ namespace GameUI
             StartCoroutine(PlaySelfTalkCo(content, lastTime));
         }
 
-        private IEnumerator PlaySelfTalkCo(string content, float lastTime)
+        private IEnumerator PlaySelfTalkCo(string content, float lastTime, bool over = false)
         {
-            _sb.Clear();
-            _sb.Append(_prefix);
-            _sb.Append(content);
-            _selfTalkText.text = _sb.ToString();
+            if (over)
+            {
+                _selfTalkText.text = content;
+            }
+            else
+            {
+                _sb.Clear();
+                _sb.Append(_prefix);
+                _sb.Append(content);
+                _selfTalkText.text = _sb.ToString();
+            }
             
             _selfTalkText
                 .DOFade(1f, _fadeInTime)

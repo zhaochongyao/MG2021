@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using DialogueSystem;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using Utilities;
 using Utilities.DataStructures;
 using Utilities.DesignPatterns;
@@ -78,7 +79,7 @@ namespace StoryLine
             yield return Wait.Seconds(_twistDelay);
             _twistFX.SetActive(true);
             yield return Wait.Seconds(_twistStay);
-            SceneLoader.LoadScene(_nextLevel);
+            SceneManager.LoadScene(_nextLevel);
         }
 
         private void OnDialogueEvent(string eventName)

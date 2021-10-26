@@ -7,12 +7,14 @@ namespace KeywordSystem
     {
         [SerializeField] private Color _highLightColor = new Color(1f, 1f, 1f, 1f);
         [SerializeField] private Color _collectedColor = new Color(1f, 1f, 1f, 1f);
-
+        [SerializeField] private Color _fakeHighLightColor = new Color(1f, 1f, 1f, 1f);
+        
         [SerializeField] private KeywordListSO _keywordListSO;
         [SerializeField] private GameObject _keywordBackgroundPrefab;
 
         [SerializeField] private float _clickBoxExpandRatio;
-        
+
+        public Color FakeHighLightColor => _fakeHighLightColor;
         public Color HighLightColor => _highLightColor;
         public Color CollectedColor => _collectedColor;
 

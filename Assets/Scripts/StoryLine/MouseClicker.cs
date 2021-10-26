@@ -1,20 +1,20 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 using UnityEngine.EventSystems;
 
 namespace StoryLine
 {
     public class MouseClicker : MonoBehaviour
     {
-        [SerializeField] private Player _player;
-        [SerializeField] private Transform _target;
+        public static event Action<string> MouseClickEvent = delegate { };
+
+        [SerializeField] private string _eventName;
         
         private void OnMouseOver()
         {
-            Debug.Log("Down");
             if (EventSystem.current.IsPointerOverGameObject() == false && Input.GetMouseButtonDown(0))
             {
-                Debug.Log("Click");
-                _player.MoveTowards(_target.position);
+                MouseClickEvent.Invoke(_eventName);
             }
         }
     }

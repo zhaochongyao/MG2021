@@ -17,10 +17,13 @@ namespace MiniInteraction
 
         [SerializeField] private DragDirection _dragDirection;
 
-        [SerializeField] private bool _canReverse;
+        [SerializeField] private float _amount;
+
+        private Vector3 ori;
         
         private void Awake()
         {
+            ori = transform.position;
             _dragRectTrans = GetComponent<RectTransform>();
         }
         

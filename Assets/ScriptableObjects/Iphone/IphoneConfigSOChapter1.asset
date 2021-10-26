@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9f2ae6c88d8c4302927e039352aefa81, type: 3}
   m_Name: IphoneConfigSOChapter1
   m_EditorClassIdentifier: 
-  _password: 202110
+  _password: 000211
   _clientName: "\u674E\u534E"
   _sexText: "\u5973"
   _isMale: 0

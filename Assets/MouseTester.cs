@@ -7,7 +7,7 @@ using UnityEngine.EventSystems;
 public class MouseTester : MonoBehaviour
 {
     [SerializeField] private Camera _camera;
-    [SerializeField] private Player _player;
+    [SerializeField] private NewPlayer _newPlayer;
     
     private void Update()
     {

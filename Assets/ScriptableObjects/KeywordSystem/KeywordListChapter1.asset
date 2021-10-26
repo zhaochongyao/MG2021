@@ -15,15 +15,15 @@ MonoBehaviour:
   _keywordList:
   - "\u6392\u540D\u7B2C\u4E00"
   - "\u771F\u68D2"
-  - "\u4F18\u79C0\u8303\u6587"
+  - "\u4F18\u79C0\u8BBA\u6587"
   - "\u5377\u738B"
   - "\u8BBA\u6587"
-  - "\u4F5C\u4E1A\u8981\u6C42800\u5B57"
-  - "\u5B57\u657025670\u5B57"
+  - "800\u5B57"
+  - "\uFF08\u5B57\u6570\uFF1A25670\uFF09"
   - "\u7B2C\u56DB\u540D"
   - "\u7B2C\u4E8C\u540D"
   - GPA
-  - "\u7B80\u5386"
+  - "\u5B9E\u4E60\u7ECF\u5386\u6682\u65E0"
   - "\u7761\u4E0D\u7740"
   - "\u6570\u7F8A"
   - "\u674E\u534E"
@@ -34,19 +34,16 @@ MonoBehaviour:
   _mergeOnlyKeywordList:
   - _keyword: "\u8001\u5E08\u7684\u8868\u626C"
     _dependency:
-    - "\u4F18\u79C0\u8303\u6587"
+    - "\u4F18\u79C0\u8BBA\u6587"
     - "\u771F\u68D2"
   - _keyword: "\u6B3A\u9A97"
     _dependency:
-    - "\u4F5C\u4E1A\u8981\u6C42800\u5B57"
-    - "\u5B57\u657025670\u5B57"
+    - "\uFF08\u5B57\u6570\uFF1A25670\uFF09"
+    - "800\u5B57"
   - _keyword: "\u65B9\u540C\u5B66\u6392\u540D\u4E0B\u964D"
     _dependency:
-    - "\u7B2C\u56DB\u540D"
     - "\u7B2C\u4E8C\u540D"
-  - _keyword: "\u7F3A\u4E4F\u5B9E\u4E60\u7ECF\u9A8C"
-    _dependency:
-    - "\u7B80\u5386"
+    - "\u7B2C\u56DB\u540D"
   - _keyword: "\u5931\u7720"
     _dependency:
     - "\u6570\u7F8A"
@@ -67,7 +64,7 @@ MonoBehaviour:
   - _keyword: "\u8FF7\u832B"
     _dependency:
     - GPA
-    - "\u7F3A\u4E4F\u5B9E\u4E60\u7ECF\u9A8C"
+    - "\u5B9E\u4E60\u7ECF\u5386\u6682\u65E0"
   - _keyword: "\u91CD\u5EA6\u7126\u8651"
     _dependency:
     - "\u4F17\u77E2\u4E4B\u7684"

@@ -8,6 +8,8 @@ namespace MiniInteraction
     {
         private RectTransform _dragRectTrans;
 
+        [SerializeField] private bool _moveTop;
+        
         private void Awake()
         {
             _dragRectTrans = GetComponent<RectTransform>();
@@ -15,6 +17,10 @@ namespace MiniInteraction
 
         public void OnDrag(PointerEventData eventData)
         {
+            if (_moveTop)
+            {
+                transform.SetSiblingIndex(transform.parent.childCount - 1);
+            }
             Camera eventCamera = eventData.pressEventCamera;
             Vector3 originPosition = _dragRectTrans.position;
             Vector2 position = eventCamera.WorldToScreenPoint(originPosition);
