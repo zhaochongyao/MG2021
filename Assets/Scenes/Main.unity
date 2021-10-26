@@ -228,6 +228,7 @@ GameObject:
   - component: {fileID: 83443380}
   - component: {fileID: 83443379}
   - component: {fileID: 83443378}
+  - component: {fileID: 83443381}
   m_Layer: 0
   m_Name: Floor_Mesh
   m_TagString: Untagged
@@ -312,6 +313,21 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 83443376}
   m_Mesh: {fileID: 10209, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &83443381
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 83443376}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4063b7f7737c4836bab236eadc1b4ca6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  generateItem: {fileID: 8324200391094738183, guid: f43c02129c26e46abb0b5fe27c588604, type: 3}
+  splitColumn: 10
+  splitRow: 15
 --- !u!1 &138431752
 GameObject:
   m_ObjectHideFlags: 0
@@ -744,7 +760,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &184251350
 Transform:
   m_ObjectHideFlags: 0
@@ -2694,6 +2710,7 @@ GameObject:
   - component: {fileID: 941721531}
   - component: {fileID: 941721530}
   - component: {fileID: 941721529}
+  - component: {fileID: 941721532}
   m_Layer: 0
   m_Name: Floor_Mesh
   m_TagString: Untagged
@@ -2778,6 +2795,21 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 941721527}
   m_Mesh: {fileID: 10209, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &941721532
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 941721527}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4063b7f7737c4836bab236eadc1b4ca6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  generateItem: {fileID: 8324200391094738183, guid: f43c02129c26e46abb0b5fe27c588604, type: 3}
+  splitColumn: 10
+  splitRow: 15
 --- !u!1001 &965845355
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -4219,7 +4251,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1364810102
 Transform:
   m_ObjectHideFlags: 0
@@ -5538,6 +5570,7 @@ GameObject:
   - component: {fileID: 1883058381}
   - component: {fileID: 1883058380}
   - component: {fileID: 1883058379}
+  - component: {fileID: 1883058382}
   m_Layer: 0
   m_Name: Floor_Mesh
   m_TagString: Untagged
@@ -5622,6 +5655,21 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1883058377}
   m_Mesh: {fileID: 10209, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &1883058382
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1883058377}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4063b7f7737c4836bab236eadc1b4ca6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  generateItem: {fileID: 8324200391094738183, guid: f43c02129c26e46abb0b5fe27c588604, type: 3}
+  splitColumn: 10
+  splitRow: 15
 --- !u!1 &1917913156
 GameObject:
   m_ObjectHideFlags: 0
@@ -5633,6 +5681,7 @@ GameObject:
   - component: {fileID: 1917913159}
   - component: {fileID: 1917913158}
   - component: {fileID: 1917913157}
+  - component: {fileID: 1917913160}
   m_Layer: 0
   m_Name: 04Camera
   m_TagString: Untagged
@@ -5705,6 +5754,21 @@ Transform:
   m_Father: {fileID: 184251350}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: -4.4810004, y: -5.512, z: 0.034}
+--- !u!114 &1917913160
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1917913156}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8e0775930e08a45ba8c9a2ddb60a769e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Character: {fileID: 619735445}
+  moveSpeed: 3
+  offset: 4
 --- !u!1 &1932056107
 GameObject:
   m_ObjectHideFlags: 0
