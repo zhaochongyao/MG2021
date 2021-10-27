@@ -188,6 +188,9 @@ namespace StoryLine
                     _zhangLiLiOffice.SetActive(false);
                     _achievementOnePic.SetActive(true);
                     SelfTalkManager.Instance.PlaySelfTalk("【解锁成就：独乐乐不如众乐乐】", 2f, true);
+                    PlayerPrefs.SetInt("AchievementOne", 1);
+                    PlayerPrefs.Save();
+                    
                     DoubleBGMController.Instance.ChangeBGM(_pingAnYeBGM);
                     yield return StartCoroutine(PlayGlitch(_leftCam));
 
@@ -230,7 +233,6 @@ namespace StoryLine
 
             if (eventName == "袁小芸进门开始")
             {
-                // _audioSource.PlayOneShot(_openDoorSound);
                 StartCoroutine(TalkerInCo(_yuanXiaoYunTalker));
                 Wait.Delayed(() => { DialoguePlayer.Instance.InvokeContinueEvent("袁小芸进门完毕"); }, _moveTime);
             }
@@ -278,6 +280,9 @@ namespace StoryLine
             _achievementTwoPic.SetActive(true);
             
             SelfTalkManager.Instance.PlaySelfTalk("【解锁成就：囚徒之境】", 2f, true);
+            PlayerPrefs.SetInt("AchievementTwo", 1);
+            PlayerPrefs.Save();
+            
             DoubleBGMController.Instance.ChangeBGM(_pengYouQuanReNaoBGM);
 
             yield return StartCoroutine(PlayGlitch(_leftCam));
@@ -312,6 +317,10 @@ namespace StoryLine
             _achievementThreePic.SetActive(true);
 
             SelfTalkManager.Instance.PlaySelfTalk("【解锁成就：成长的疼痛】", 2f, true);
+            
+            PlayerPrefs.SetInt("AchievementThree", 1);
+            PlayerPrefs.Save();
+            
             DoubleBGMController.Instance.ChangeBGM(_pengYouQuanReNaoBGM);
             yield return StartCoroutine(PlayGlitch(_leftCam));
 
@@ -372,7 +381,6 @@ namespace StoryLine
                 _dingBaoBook.SetActive(true);
                 _dingBaoBook.GetComponent<Button>().onClick.AddListener(() =>
                 {
-                    DoubleBGMController.Instance.ChangeBGM(_dingBaoShiNovelBGM);
                     _dingBaoBook.transform.GetChild(0).gameObject.SetActive(false);
                     StartCoroutine(PlayGlitch(_rightCam));
                     _dingBaoBook.transform.GetChild(1).gameObject.SetActive(true);
@@ -384,6 +392,7 @@ namespace StoryLine
             {
                 yield return null;
             }
+            DoubleBGMController.Instance.ChangeBGM(_dingBaoShiNovelBGM);
 
             while (true)
             {
@@ -416,6 +425,8 @@ namespace StoryLine
 
             yield return StartCoroutine(Fade(_textMsg.GetComponent<Image>()));
 
+            PlayerPrefs.SetInt("CurrentLevel", 0);
+            PlayerPrefs.Save();
             SceneLoader.LoadScene("MainMenu");
         }
 

@@ -28,8 +28,8 @@ namespace StoryLine
         [SerializeField] private GameObject _frontEnd;
         [SerializeField] private GameObject _office;
 
+        [SerializeField] private Twirl _twirl;
         [SerializeField] private float _twistDelay;
-        [SerializeField] private GameObject _twistFX;
         [SerializeField] private float _twistStay;
         [SerializeField] private string _nextLevel;
         
@@ -77,8 +77,11 @@ namespace StoryLine
         private IEnumerator OnSleep()
         {
             yield return Wait.Seconds(_twistDelay);
-            _twistFX.SetActive(true);
+            _twirl.Time01 = 0f;
+            _twirl.enabled = true;
             yield return Wait.Seconds(_twistStay);
+            PlayerPrefs.SetInt("CurrentLevel", 1);
+            PlayerPrefs.Save();
             SceneManager.LoadScene(_nextLevel);
         }
 

@@ -34,13 +34,11 @@ namespace Utilities
         /// <param name="target"> 覆盖目标对象 </param>
         public static void Load(string fileName, object target)
         {
-#if UNITY_EDITOR
             if (File.Exists(_saveFolder + "/" + fileName + ".json") == false)
             {
                 Debug.LogWarning("No path exists");
                 return;
             }
-#endif
             StreamReader sr = new StreamReader(_saveFolder + "/" + fileName + ".json");
             string json = sr.ReadToEnd();
             sr.Close();

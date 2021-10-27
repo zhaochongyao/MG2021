@@ -278,14 +278,6 @@ namespace StoryLine
             StartCoroutine(WakeUpInOffice());
         }
 
-        private void Update()
-        {
-            if (Input.GetKeyDown(KeyCode.B))
-            {
-                OnDataCollected();
-            }
-        }
-
         [SerializeField] private float _incomingChatDelay;
         [SerializeField] private GameObject _incomingChat;
         [SerializeField] private float _incomingChatStay;
@@ -301,8 +293,6 @@ namespace StoryLine
             _incomingChat.GetComponent<Animator>().enabled = true;
             _audioSource.PlayOneShot(_incomingChatSound);
             _audioSource.PlayOneShot(_heartBeatSound);
-            // _audioSource.clip = _heartBeatSound;
-            // _audioSource.Play();
             
             if (GameUI.UIManager.Instance.PhoneOn == false)
             {
@@ -311,6 +301,7 @@ namespace StoryLine
             InterfaceManager.Instance.ToWeChat();
             yield return Wait.Seconds(_incomingChatStay);
 
+            _incomingChat.SetActive(false);
             _office.SetActive(true);
             _newPlayer.transform.position = _spawnPoint.position;
             _liHuaRoom.SetActive(false);
@@ -324,7 +315,9 @@ namespace StoryLine
 
             yield return Wait.Seconds(_endDialogueDelay);
             DialoguePlayer.Instance.SendDialogue(_endDialogue);
-            
+            yield return Wait.Seconds(2f);
+            PlayerPrefs.SetInt("CurrentLevel", 2);
+            PlayerPrefs.Save();
             SceneLoader.LoadScene("Chapter2");
         }
     }

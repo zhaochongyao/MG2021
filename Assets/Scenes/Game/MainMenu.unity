@@ -169,6 +169,14 @@ MonoBehaviour:
   _fadeTime: 2
   _textStayTime: 2
   _delayTime: 1
+  _achievementImages:
+  - {fileID: 449681418}
+  - {fileID: 1792147724}
+  - {fileID: 486194205}
+  _achievementUnlockImages:
+  - {fileID: 21300000, guid: 8e20c03ca326a234a8d87868c8610295, type: 3}
+  - {fileID: 21300000, guid: 5b11c8a980d0f824cbb8377191e438b5, type: 3}
+  - {fileID: 21300000, guid: 0e1f1029731a76446ad6d914e7721ae1, type: 3}
 --- !u!4 &39918171
 Transform:
   m_ObjectHideFlags: 0
@@ -1075,7 +1083,7 @@ GameObject:
   - component: {fileID: 449681419}
   - component: {fileID: 449681418}
   m_Layer: 5
-  m_Name: Image
+  m_Name: Image1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1120,7 +1128,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 8e20c03ca326a234a8d87868c8610295, type: 3}
+  m_Sprite: {fileID: 21300000, guid: a42e2d78ce9e82c42b92c6ec3b02d691, type: 3}
   m_Type: 0
   m_PreserveAspect: 1
   m_FillCenter: 1
@@ -1150,7 +1158,7 @@ GameObject:
   - component: {fileID: 486194206}
   - component: {fileID: 486194205}
   m_Layer: 5
-  m_Name: Image (2)
+  m_Name: Image3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1195,7 +1203,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 0e1f1029731a76446ad6d914e7721ae1, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 604d236b6a241f84eb9fda8da3c1347a, type: 3}
   m_Type: 0
   m_PreserveAspect: 1
   m_FillCenter: 1
@@ -2157,7 +2165,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 1adf8af173b6ef54f8ff506050fdf6b2, type: 3}
   m_PlayOnAwake: 1
-  m_Volume: 1
+  m_Volume: 0.2
   m_Pitch: 1
   Loop: 1
   Mute: 0
@@ -2603,7 +2611,7 @@ Canvas:
   m_OverrideSorting: 0
   m_OverridePixelPerfect: 0
   m_SortingBucketNormalizedSize: 0
-  m_AdditionalShaderChannelsFlag: 25
+  m_AdditionalShaderChannelsFlag: 0
   m_SortingLayerID: 0
   m_SortingOrder: 0
   m_TargetDisplay: 0
@@ -2804,7 +2812,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: b538f1f63b0380946804170142f81a15, type: 3}
   m_PlayOnAwake: 1
-  m_Volume: 1
+  m_Volume: 0.2
   m_Pitch: 1
   Loop: 1
   Mute: 0
@@ -3317,7 +3325,7 @@ GameObject:
   - component: {fileID: 1792147725}
   - component: {fileID: 1792147724}
   m_Layer: 5
-  m_Name: Image (1)
+  m_Name: Image2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3362,7 +3370,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 5b11c8a980d0f824cbb8377191e438b5, type: 3}
+  m_Sprite: {fileID: 21300000, guid: d2af1b4ad7fb9074f8bb83c4ca4589a5, type: 3}
   m_Type: 0
   m_PreserveAspect: 1
   m_FillCenter: 1

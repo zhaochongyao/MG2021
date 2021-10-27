@@ -20,6 +20,7 @@ namespace StoryLine
             _audioSource = gameObject.AddComponent<AudioSource>();
             _audioSource.loop = false;
             _audioSource.playOnAwake = false;
+            _audioSource.spatialBlend = 0f;
         }
 
         private void OnMouseOver()

@@ -30,14 +30,32 @@ namespace GameUI
         [SerializeField] private float _textStayTime;
         [SerializeField] private float _delayTime;
 
+        [SerializeField] private Image[] _achievementImages;
+        
+        [SerializeField] private Sprite[] _achievementUnlockImages;
+
         public event Action GameStart = delegate { };
         public event Action InterfaceChange = delegate { };
 
         private bool _interactable;
-        
+
         private void Start()
         {
             _interactable = true;
+
+            if (PlayerPrefs.GetInt("AchievementOne") == 1)
+            {
+                _achievementImages[0].sprite = _achievementUnlockImages[0];
+            }
+            if (PlayerPrefs.GetInt("AchievementTwo") == 1)
+            {
+                _achievementImages[1].sprite = _achievementUnlockImages[1];
+            }
+            if (PlayerPrefs.GetInt("AchievementThree") == 1)
+            {
+                _achievementImages[2].sprite = _achievementUnlockImages[2];
+            }
+            
             ToMainMenu();
         }
 
@@ -62,29 +80,29 @@ namespace GameUI
                 .SetEase(_fadeCurve)
                 .WaitForCompletion();
         }
-        
+
         private IEnumerator StartGameCo()
         {
             _interactable = false;
             GameStart.Invoke();
-            
+
             yield return _mainMenu.GetComponent<CanvasGroup>()
                 .DOFade(0f, _fadeTime)
                 .SetEase(_fadeCurve)
                 .WaitForCompletion();
 
             yield return Wait.Seconds(_delayTime);
-            
+
             _rightText.text = _texts[0];
             yield return FadeText(_rightText);
 
             yield return Wait.Seconds(_delayTime);
-            
+
             _rightText.text = _texts[1];
             yield return FadeText(_rightText);
 
             yield return Wait.Seconds(_delayTime);
-                
+
             _leftTitle.DOFade(0f, _fadeTime).SetEase(_fadeCurve);
             _leftBackground.DOFade(1f, _fadeTime).SetEase(_fadeCurve).WaitForCompletion();
 
@@ -94,24 +112,39 @@ namespace GameUI
                 time += Time.deltaTime;
                 yield return null;
             }
-            
+
             yield return Wait.Seconds(_delayTime);
-            
+
             _leftText.text = _texts[2];
             yield return FadeText(_leftText);
-        
+
             yield return Wait.Seconds(_delayTime);
 
             _leftText.text = _texts[3];
             yield return FadeText(_leftText);
 
             yield return Wait.Seconds(_delayTime);
-            
+            PlayerPrefs.SetInt("CurrentLevel", 0);
+            PlayerPrefs.Save();
             SceneLoader.LoadScene(_startChapterName);
+        
         }
 
         public void ContinueGame()
         {
+            int idx = PlayerPrefs.GetInt("CurrentLevel");
+            if (idx == 0)
+            {
+                SceneLoader.LoadScene("Prologue");
+            }
+            else if (idx == 1)
+            {
+                SceneLoader.LoadScene("Chapter1");
+            }
+            else if (idx == 2)
+            {
+                SceneLoader.LoadScene("Chapter2");
+            }
         }
 
         public void ToAchievement()
@@ -120,6 +153,7 @@ namespace GameUI
             {
                 return;
             }
+
             _mainMenu.SetActive(false);
             _achievement.SetActive(true);
             _outTeam.SetActive(false);
@@ -132,6 +166,7 @@ namespace GameUI
             {
                 return;
             }
+
             _mainMenu.SetActive(false);
             _achievement.SetActive(false);
             _outTeam.SetActive(true);
