@@ -16,7 +16,7 @@ MonoBehaviour:
   _chatLineList:
   - _chatterSO: {fileID: 11400000, guid: 7a97f5ba403491a43a062478d21bbd72, type: 2}
     _waitTime: 0
-    _chatText: "\u606D\u559C\u606D\u559C"
+    _chatText: "\u4F18\u79C0\u8BBA\u6587\uFF0C\u606D\u559C\u606D\u559C"
     _memePic: {fileID: 0}
     _timeStampInChat: 
     _timeStampOverlook: 

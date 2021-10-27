@@ -15,7 +15,7 @@ MonoBehaviour:
   _options:
   - _optionText: 
     _targetChatLineList: {fileID: 11400000, guid: bdb8a7a90d5685240b6cc36a5c8e2e74, type: 2}
-    _replyText: "\u54C8\u54C8\u54C8\uFF0C\u6211\u662F\u4F18\u79C0\u8BBA\u6587\u8BF6"
+    _replyText: "\u54C8\u54C8\u54C8\uFF0C\u6211\u662F\u4F18\u79C0\u8BF6"
     _memePic: {fileID: 0}
     _chatEventName: 
   _timeStampInChat: "2021\u5E746\u67083\u65E5"

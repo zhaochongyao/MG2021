@@ -83,6 +83,6 @@ MonoBehaviour:
     _continueEventName: 
   - _characterDialogueStyleSO: {fileID: 11400000, guid: 20adf1ad6d04e544c80dddc692b8f388, type: 2}
     _text: "\u6211\u5927\u6982\u660E\u767D\u4E86\uFF0C\u8001\u5E08"
-    _dialogueEventName: 
+    _dialogueEventName: "C2\u5BF9\u8BDD\u64AD\u653E\u5B8C"
     _continueEventName: 
   _dialogueOptionSO: {fileID: 0}

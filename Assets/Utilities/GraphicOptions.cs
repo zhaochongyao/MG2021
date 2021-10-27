@@ -63,8 +63,8 @@ namespace Utilities
         /// <summary> 初始化 </summary>
         internal static void Init()
         {
-            OptionSaver.SaveEvent += OnSave;
-            OptionSaver.LoadEvent += OnLoad;
+            // OptionSaver.SaveEvent += OnSave;
+            // OptionSaver.LoadEvent += OnLoad;
             // 初始不限制帧率
             Application.targetFrameRate = -1;
             // 垂直同步默认不开
@@ -72,25 +72,25 @@ namespace Utilities
             QualitySettings.vSyncCount = 0;
         }
 
-        /// <summary> 保存 </summary>
-        private static void OnSave()
-        {
-            PlayerPrefs.SetInt("Width", Width);
-            PlayerPrefs.SetInt("Height", Height);
-            PlayerPrefs.SetInt("TargetFrameRate", TargetFrameRate);
-            PlayerPrefs.SetInt("FullScreen", FullScreen ? 1 : 0);
-            PlayerPrefs.SetInt("VSync", VSync ? 1 : 0);
-        }
-
-        /// <summary> 载入 </summary>
-        private static void OnLoad()
-        {
-            int width = PlayerPrefs.GetInt("Width");
-            int height = PlayerPrefs.GetInt("Height");
-            SetWidthHeight(width, height);
-            FullScreen = PlayerPrefs.GetInt("FullScreen") == 1;
-            TargetFrameRate = PlayerPrefs.GetInt("TargetFrameRate");
-            VSync = PlayerPrefs.GetInt("VSync") == 1;
-        }
+        // /// <summary> 保存 </summary>
+        // private static void OnSave()
+        // {
+        //     PlayerPrefs.SetInt("Width", Width);
+        //     PlayerPrefs.SetInt("Height", Height);
+        //     PlayerPrefs.SetInt("TargetFrameRate", TargetFrameRate);
+        //     PlayerPrefs.SetInt("FullScreen", FullScreen ? 1 : 0);
+        //     PlayerPrefs.SetInt("VSync", VSync ? 1 : 0);
+        // }
+        //
+        // /// <summary> 载入 </summary>
+        // private static void OnLoad()
+        // {
+        //     int width = PlayerPrefs.GetInt("Width");
+        //     int height = PlayerPrefs.GetInt("Height");
+        //     SetWidthHeight(width, height);
+        //     FullScreen = PlayerPrefs.GetInt("FullScreen") == 1;
+        //     TargetFrameRate = PlayerPrefs.GetInt("TargetFrameRate");
+        //     VSync = PlayerPrefs.GetInt("VSync") == 1;
+        // }
     }
 }

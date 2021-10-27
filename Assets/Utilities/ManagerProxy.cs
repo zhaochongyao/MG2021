@@ -16,9 +16,9 @@ namespace Utilities
         /// <summary> 单例 </summary>
         internal static ManagerProxy Instance { get; private set; }
 
-        /// <summary> 场景对应对象池配置 </summary>
-        [Header("[PoolConfigurator]")] [SerializeField]
-        private SerializableDictionary<string, PoolSettingSO> _poolSettings;
+        // /// <summary> 场景对应对象池配置 </summary>
+        // [Header("[PoolConfigurator]")] [SerializeField]
+        // private SerializableDictionary<string, PoolSettingSO> _poolSettings;
 
         /// <summary> 混音器 </summary>
         [Header("[VolumeController]")] [SerializeField]
@@ -63,7 +63,7 @@ namespace Utilities
 
             GCScheduler.Init();
             GraphicOptions.Init();
-            PoolConfigurator.Init(_poolSettings);
+            // PoolConfigurator.Init(_poolSettings);
             VolumeController.Init(_audioMixer);
             // PostProcessManager.Init(_postProcessGameObject, _postProcessResources);
 

@@ -14,7 +14,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _chatPanelList:
   - {fileID: 11400000, guid: 97a6e14d840f32748bd32483b33a37c2, type: 2}
-  - {fileID: 11400000, guid: a2ff0fb625bf8d3478a6d3e5918b27a9, type: 2}
   - {fileID: 11400000, guid: 152b156eae818c04a88f255eedebd90f, type: 2}
   - {fileID: 11400000, guid: 04b237a6af10cee49828ebec628c0b43, type: 2}
-  - {fileID: 11400000, guid: e382c9cecc47f8247b6bdd03bef0cbbb, type: 2}
