@@ -7,9 +7,9 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Chair
+  m_Name: bed02
   m_Shader: {fileID: 4800000, guid: 32a1da888887b6344af34d407fa104c8, type: 3}
-  m_ShaderKeywords: ETC1_EXTERNAL_ALPHA
+  m_ShaderKeywords: 
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
@@ -20,12 +20,12 @@ Material:
     serializedVersion: 3
     m_TexEnvs:
     - _MainTex:
-        m_Texture: {fileID: 2800000, guid: 24c3807f8b15b6d42bdd93c21d2e2c7d, type: 3}
+        m_Texture: {fileID: 2800000, guid: a3bf66508a6f10244a15e1bf27a3c001, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     m_Floats:
     - _Steps: 3
-    - _brightNum: 3
+    - _brightNum: 2
     m_Colors:
     - _TexCol: {r: 1, g: 1, b: 1, a: 1}
   m_BuildTextureStacks: []
